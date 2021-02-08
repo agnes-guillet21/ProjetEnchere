@@ -1,5 +1,6 @@
 package ProjetEnchere.bo;
 
+import java.io.Serializable;
 
 public class Categorie implements Serializable {
     private int noCategorie; // auto généré  
