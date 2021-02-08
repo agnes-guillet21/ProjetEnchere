@@ -91,7 +91,7 @@ public class ArticleVendu {
 		this.description = description;
 	}
 	
-	public int getCategorieArticle() {
+	public Categorie getCategorieArticle() {
 		return categorieArticle;
 	}
 	
