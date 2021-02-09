@@ -14,4 +14,6 @@ public interface UtilisateurDAO {
 	void insert ( Utilisateur u1)throws DALException;
 	
 	Utilisateur selectByPseudo(String pseudo)throws DALException;
+	
+
 }

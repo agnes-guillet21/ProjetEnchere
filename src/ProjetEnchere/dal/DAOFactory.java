@@ -10,4 +10,9 @@ public abstract class DAOFactory {
 		UtilisateurDAO utilisateurDAO= new UtilisateurDAOJdbcImpl();
 		return utilisateurDAO;
 }
+
+//	protected  UtilisateurDAO insert() {
+//		UtilisateurDAO utilisateurDAO = new UtilisateurDAOJdbcImpl();
+//		return utilisateurDAO;
+//	};
 }
