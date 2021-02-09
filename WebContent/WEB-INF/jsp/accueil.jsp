@@ -14,24 +14,12 @@
             <h3>Liste des enchères</h3>
         <div>
             <p>Filtres : </p>
-            <form class="rechercher" method="post" action=""><!-- nom de servlet  -->
+            <form class="rechercher" method="post" action="/ProjetEnchere"><!-- nom de servlet  -->
                 <p>
-                    <input type="search" placeholder="le nom de l'article contient" name="srecherche" id="lookup" />
-                    <button id="loupe" type="submit" class="icone-loupe" type="submit">
-                        <!-- manque cette fucking  loupe   -->
-                    </button>
-                </p>
-            </form>
-        </div>
-        <div>
-            <form action="" method="post"><!-- remplir l url action mais je ne sais pas quoi   -->
-                 <input type="text" name="sbarrerecherche" value="Recherche">
-                 <!-- en css on aura une shadow sur cette div    -->
-            </form>
-        </div>
-        <br>
-        <div>
-            <label for="catégorie" method="get">Catégorie : </label>
+                    <input type="search" placeholder="le nom de l'article contient" name="srecherche" id="lookup" /><br><br>
+                 	<input type="text" name="sbarrerecherche" value="Recherche"><br><br>
+                 	<!-- en css on aura une shadow sur cette div    -->
+            	<label for="catégorie" method="get">Catégorie : </label>
                 <select name="scategorie" id="categorie">   
                     <option value="">Toutes</option>
                     <option value="informatique">Informatique</option>
@@ -39,8 +27,14 @@
                     <option value="vetement">Vetement</option>
                     <option value="sport&loisir">Sport Loisirs</option>
                     <!-- il y a "&" entre sport et loisir   --> 
-                </select>
+                </select><br><br>
+ 				<button id="loupe" type="submit" class="icone-loupe" type="submit">
+                        Rechercher<!-- manque cette fucking  loupe   -->
+                </button>
+                </p>
+            </form>
         </div>
+        
         <div>
            <!-- il y aura un article  --> 
            <p>ArticleVendu</p>

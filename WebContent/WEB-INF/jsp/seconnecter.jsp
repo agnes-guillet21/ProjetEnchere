@@ -50,7 +50,13 @@
 
 			</div>
 		</form>
-
+	<div>
+	    <form action="/ProjetEnchere">
+	    	<button>Annuler</button>
+	    </form>
+	
+	    <!--redirection sur page d accueil page 1 du pdf -->
+    </div> 
 	</div>
 </body>
 </html>

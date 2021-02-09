@@ -11,7 +11,7 @@
         <h3>Mon profil</h3>   
     </header>
 
-    <form action="" method="post">
+    <form action="inscription.html" method="post">
         <div>
             <label for="pseudo">Pseudo :</label>
             <input type="text" id="name" name="userpseudo">
@@ -83,7 +83,10 @@
     </br>
 
     <div>
-    <input type="submit" value="Annuler" >
+    <form action="/ProjetEnchere">
+    	<button>Annuler</button>
+    </form>
+
     <!--redirection sur page d accueil page 1 du pdf -->
     </div> 
 </body>
