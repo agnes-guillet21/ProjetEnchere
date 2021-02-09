@@ -1,0 +1,85 @@
+module AcceuilServlet {
+	
+	
+	package ; // a renseigner
+
+	import java.io.IOException;
+	import java.sql.Date;
+	import java.time.LocalDate;
+	import java.time.LocalDateTime;
+	import java.util.ArrayList;
+	import java.util.List;
+
+	import javax.servlet.RequestDispatcher;
+	import javax.servlet.ServletException;
+	import javax.servlet.annotation.WebServlet;
+	import javax.servlet.http.HttpServlet;
+	import javax.servlet.http.HttpServletRequest;
+	import javax.servlet.http.HttpServletResponse;
+	import javax.servlet.http.HttpSession;
+
+
+	import fr.eni.encheres.bll.CategorieManager;
+	import fr.eni.encheres.bll.EnchereManager;
+	import fr.eni.encheres.bll.UtilisateurManager;
+	import fr.eni.encheres.bo.Categorie;
+	import fr.eni.encheres.bo.Enchere;
+	import fr.eni.encheres.bo.Utilisateur;
+
+	
+
+	
+	public class AcceuilServlet extends HttpServlet {
+		
+
+		String recherche = null;
+		String categorie = "Toutes";
+		String choix = "Tous";
+		String filtreChoix = "EnCours";
+
+		UtilisateurManager utilisateurManager = UtilisateurManager.getInstance();
+		EnchereManager enchereManager = EnchereManager.getEnchereManager();
+		CategorieManager categorieManager = CategorieManager.getCategorieManager();
+
+	
+		public AccueilServlet() {
+			super();
+			
+		}
+
+			// afficher
+		
+		protected void doGet(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+
+			// Init. des messages
+			List<Integer> listeCodeSuccess = new ArrayList<>();
+			if (listeCodeSuccess.size() > 0) {
+				request.setAttribute("listeCodesSuccess", listeCodeSuccess);
+			}
+
+			if (choix == null) {
+				choix = "Tous";
+			}
+
+			request.setCharacterEncoding("UTF-8");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/Accueil.jsp");
+
+			List<Categorie> listCat = categorieManager.getCategories();
+			List<Enchere> listEnchere = enchereManager.getEncheres();
+
+			List<Enchere> processEnchere = new ArrayList<>();
+
+			HttpSession session = request.getSession();
+			
+			
+			for (int i = 0; i < listEnchere.size(); i++) {
+				if (listEnchere.get(i).getUnArticleVendu().getDateDebutEncheres().before(Date.valueOf(LocalDate.now().plusDays(1)))) {
+					processEnchere.add(listEnchere.get(i));
+
+				}
+			}
+			
+
+			
+			
