@@ -40,7 +40,7 @@ public class Utilisateur {
 		this.codepostal = codepostal;
 		this.ville = ville;
 		this.motDePasse = motDePasse;
-		this.credit = 0;
+		this.credit = credit;
 	}
 
 	// getter/setter 
