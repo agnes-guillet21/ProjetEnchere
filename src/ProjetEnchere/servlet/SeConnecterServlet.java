@@ -1,11 +1,18 @@
 package ProjetEnchere.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import ProjetEnchere.bll.UtilisateurManager; // rajout import 
+import ProjetEnchere.bo.Utilisateur;
 
 /**
  * Servlet implementation class SeConnecterServlet
@@ -33,8 +40,34 @@ public class SeConnecterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+	
+		
+		
+		// info formulaire
+		String login = request.getParameter("Identifiant");
+		String pass = Utils.toMD5(request.getParameter("MotDePasse")); // à creer utils !?
 
+		UtilisateurManager userManager = UtilisateurManager.getInstance();
+
+		try {
+			Utilisateur user = userManager.getUtilisateurByPseudoPassword(login, pass); // verif utilisateur
+			
+			// session utilis.
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			
+		} catch (Exception e) { // a créer pour gerer les erreurs !?
+			errors = true;
+			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+		}
+		
+		// si erreur retour vers formulaire login
+		if(errors) {
+			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp").forward(request, response);
+	}
+		// retour acceuil
+		}else{
+				this.getServletContext().getRequestDispatcher("/ProjetEnchere").forward(request, response);
+				
+		}
 }
