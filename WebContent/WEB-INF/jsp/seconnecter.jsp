@@ -11,7 +11,7 @@
 	<div id="container">
 		<!-- zone de connexion -->
 
-		<form action="verification.php" method="POST">
+		<form action="connexion.html" method="POST">
 			<div>
 				<label>Identifiant</label> <input type="text"
 					placeholder="Entrer le nom d'utilisateur" name="susername" required>

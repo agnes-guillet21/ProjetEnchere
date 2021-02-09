@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Modifier mon profil</title>
 </head>
 <body>
 	<header>
@@ -26,7 +26,7 @@
 		</br>
 
 		<div>
-			<label for="prenom">Prenom :</label> <input id="prenom"
+			<label for="prenom">Prénom :</label> <input id="prenom"
 				name="userfirstname"></input>
 		</div>
 		</br>
