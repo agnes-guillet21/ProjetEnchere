@@ -1,7 +1,7 @@
 module AcceuilServlet {
 	
 	
-	package ; // a renseigner
+	package ; // a renseigner hoooooooo
 
 	import java.io.IOException;
 	import java.sql.Date;
