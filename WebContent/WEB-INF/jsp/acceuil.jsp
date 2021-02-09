@@ -24,20 +24,21 @@
             </form>
         </div>
         <div>
-            <form action="" methode="GET"><!-- remplir l url action mais je ne sais pas quoi   -->
+            <form action="" method="post"><!-- remplir l url action mais je ne sais pas quoi   -->
                  <input type="text" name="sbarrerecherche" value="Recherche">
                  <!-- en css on aura une shadow sur cette div    -->
             </form>
         </div>
         <br>
         <div>
-            <label for="catégorie" methode="">Catégorie : </label>
+            <label for="catégorie" method="get">Catégorie : </label>
                 <select name="scategorie" id="categorie">   
                     <option value="">Toutes</option>
                     <option value="informatique">Informatique</option>
                     <option value="ameublement">Ameublement </option>
                     <option value="vetement">Vetement</option>
-                    <option value="sport&loisir">Sport & Loisirs</option>
+                    <option value="sport&loisir">Sport Loisirs</option>
+                    <!-- il y a "&" entre sport et loisir   --> 
                 </select>
         </div>
         <div>
