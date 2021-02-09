@@ -13,4 +13,8 @@ public class EnchereManager {
 		return null;
 	}
 
+	public static EnchereManager getEnchereManager() {
+		return null;
+	}
+
 }

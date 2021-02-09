@@ -13,4 +13,8 @@ public class CategorieManager {
 		return null;
 	}
 
+	public static CategorieManager getCategorieManager() {
+		return null;
+	}
+
 }
