@@ -32,9 +32,9 @@ public class AccueilServlet extends HttpServlet {
 	String choix = "Tous";
 	String filtreChoix = "EnCours";
 
-	UtilisateurManager utilisateurManager = UtilisateurManager.getInstance();
-	EnchereManager enchereManager = EnchereManager.getEnchereManager();
-	CategorieManager categorieManager = CategorieManager.getCategorieManager();
+//	UtilisateurManager utilisateurManager = UtilisateurManager.getInstance();
+//	EnchereManager enchereManager = EnchereManager.getEnchereManager();
+//	CategorieManager categorieManager = CategorieManager.getCategorieManager();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -51,32 +51,33 @@ public class AccueilServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		// Init. des messages
-		List<Integer> listeCodeSuccess = new ArrayList<>();
-		if (listeCodeSuccess.size() > 0) {
-			request.setAttribute("listeCodesSuccess", listeCodeSuccess);
-		}
-
-		if (choix == null) {
-			choix = "Tous";
-		}
-
-		request.setCharacterEncoding("UTF-8");
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/Accueil.jsp");
-
-		List<Categorie> listCat = CategorieManager.getCategories();
-		List<Enchere> listEnchere = EnchereManager.getEncheres();
-
-		List<Enchere> processEnchere = new ArrayList<>();
-
-		HttpSession session = request.getSession();
-
-
-		for (int i = 0; i < listEnchere.size(); i++) {
-			if (listEnchere.get(i).getArticleVendu().getDateDebutEncheres().before(Date.valueOf(LocalDate.now().plusDays(1))))
-			{
-				processEnchere.add(listEnchere.get(i));
-			}
-		}
+//		List<Integer> listeCodeSuccess = new ArrayList<>();
+//		if (listeCodeSuccess.size() > 0) {
+//			request.setAttribute("listeCodesSuccess", listeCodeSuccess);
+//		}
+//
+//		if (choix == null) {
+//			choix = "Tous";
+//		}
+//
+//		request.setCharacterEncoding("UTF-8");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+//
+//		List<Categorie> listCat = CategorieManager.getCategories();
+//		List<Enchere> listEnchere = EnchereManager.getEncheres();
+//
+//		List<Enchere> processEnchere = new ArrayList<>();
+//
+//		HttpSession session = request.getSession();
+//
+//
+//		for (int i = 0; i < listEnchere.size(); i++) {
+//			if (listEnchere.get(i).getArticleVendu().getDateDebutEncheres().before(Date.valueOf(LocalDate.now().plusDays(1))))
+//			{
+//				processEnchere.add(listEnchere.get(i));
+//			}
+//		}
+		rd.forward(request, response);
 	}
 
 	/**

@@ -9,8 +9,8 @@
 <body>
              
              <p>ENI-Encheres</p><!-- insertion fragments header  Eni-enchere-->
-             <a href="">S'inscrire </a><!-- mettre l url de la jsp create login-->
-             <a href="">Se connecter </a><!-- mettre l url de la jsp  -->
+             <a href="inscription.html">S'inscrire </a><!-- mettre l url de la jsp create login-->
+             <a href="connexion.html">Se connecter </a><!-- mettre l url de la jsp  -->
             <h3>Liste des enchères</h3>
         <div>
             <p>Filtres : </p>

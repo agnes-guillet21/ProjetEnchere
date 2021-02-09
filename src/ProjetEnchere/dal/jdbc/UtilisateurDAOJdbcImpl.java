@@ -1,13 +1,16 @@
 package ProjetEnchere.dal.jdbc;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+
 
 import ProjetEnchere.bo.Utilisateur;
 import ProjetEnchere.dal.UtilisateurDAO;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
+
 
 
 
@@ -37,8 +40,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}else {
 			stmt.setBoolean(10, u1.isAdministrateur()==false);
 		}
-
-
 	}
 
 
@@ -47,4 +48,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	public Utilisateur selectByPseudo(String pseudo) throws DALException {
 		return null;
 	}
+
+
 }
