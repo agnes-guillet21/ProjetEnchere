@@ -1,4 +1,4 @@
-package ProjetEnchere.dal.jdbc;
+package ProjetEnchere.dal.jdbc; // modif pour pouvoir l'envoyer
 
 import java.sql.Connection;
 import java.sql.SQLException;
