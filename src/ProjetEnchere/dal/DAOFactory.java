@@ -1,5 +1,13 @@
 package ProjetEnchere.dal;
 
-public class DAOFactory {
+import ProjetEnchere.dal.jdbc.UtilisateurDAOJdbcImpl;
 
+public abstract class DAOFactory {
+
+	public static UtilisateurDAO getUtilisateurDAO() {
+		//creer une instance de stagiaire dao imp et la stocker ds stagiaire dao
+		
+		UtilisateurDAO utilisateurDAO= new UtilisateurDAOJdbcImpl();
+		return utilisateurDAO;
+}
 }
