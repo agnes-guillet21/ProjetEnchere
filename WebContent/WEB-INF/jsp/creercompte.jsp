@@ -14,63 +14,63 @@
     <form action="inscription.html" method="post">
         <div>
             <label for="pseudo">Pseudo :</label>
-            <input type="text" id="name" name="userpseudo">
+            <input type="text" id="pseudo" name="userpseudo" value="" size="30" maxlength="30">
              <!--le pseudo doit etre unique & n'accepte que des caracteres alaphanumerique -->
         </div>
         </br>
 
         <div>
             <label for="name">Nom :</label>
-            <input type="text" id="name" name="username">
+            <input type="text" id="name" name="username" value="" size="30" maxlength="30">
         </div>
         </br>
 
         <div>
             <label for="prenom">Prenom :</label>
-            <input id="prenom" name="userfirstname"></input>
+            <input id="prenom" name="userfirstname" value="" size="30" maxlength="30"></input>
         </div>
         </br>
 
         <div>
             <label for="mail">e-mail :</label>
-            <input type="email" id="mail" name="usermail">
+            <input type="email" id="mail" name="usermail" value="" size="30" maxlength="100">
             <!--doit etre unique-->
         </div>
         </br>
 
         <div>
             <label for="tel">Téléphone :</label>
-            <input type="text" id="tel" name="userphone">
+            <input type="text" id="tel" name="userphone"value="" size="20" maxlength="15">
         </div>
         </br>
 
         <div>
             <label for="rue">Rue :</label>
-            <input type="text" id="rue" name="user_street">
+            <input type="text" id="rue" name="user_street"value="" size="30" maxlength="50">
         </div>
         </br>
 
         <div>
             <label for="codePostal">Code Postal :</label>
-            <input type="text" id="cp" name="usercp">
+            <input type="text" id="cp" name="usercp" value="" size="30" maxlength="10">
         </div>
         </br>
 
         <div>
             <label for="ville">Ville:</label>
-            <input type="text" id="ville" name="city">
+            <input type="text" id="ville" name="city" value="" size="30" maxlength="30">
         </div>
         </br>
 
         <div>
             <label for="password">Mot de passe:</label>
-            <input type="text" id="s_password" name="spassword">
+            <input type="text" id="s_password" name="spassword" size="30" value="" size="30" maxlength="30">
         </div>
         </br>
 
         <div>
-            <label for="ConfirPassword">Confirmation:</label>
-            <input type="text" id="s_password" name="spassword2">
+            <label for="ConfirPassword">Confirmation du mot de passe:</label>
+            <input type="text" id="s_password" name="spassword2" value=""  size="30" maxlength="30" required>
         </div>
         </br>
     </form>

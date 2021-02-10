@@ -33,12 +33,12 @@ public class UtilisateurManager {
 //methode qui va appeler l inster de ma dal
 	 public void InsertUtilisateur(Utilisateur u1) {
 		 //aappelle a ma methode  insert via ma daofactory
-		 UtilisateurDAO  user = DAOFactory.getUtilisateurDAO();
+		 //UtilisateurDAO  user = DAOFactory.getUtilisateurDAO();
 		 //j ai creer mon instance d utilisateur dao , je peux directmt appeler ma methode insert
 		 //mtnt il faut que j appeler a partir d user
 		 
 		 try {
-			user.insert(u1);//methode que j ai creer en daojdbcimpl
+			utilisateurDAO.insert(u1);//methode que j ai creer en daojdbcimpl
 		} catch (DALException e) {
 			e.printStackTrace();//personnalisation de l erreur a faire
 		}

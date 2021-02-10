@@ -43,32 +43,32 @@ public class SInscrireServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//recuperer ts les infos ds les champs du formulaire
 		String pseudo=request.getParameter("userpseudo");
-		boolean valid = (pseudo!=null)&& pseudo.matches("[a-zA-Z0-9]+");//alphanumeric
-		if("pseudo".equals("pseudo from Utilisateurs where pseudo = pseudo")){
-			System.out.println("un compte avec cet email existe deja");
-		}else{
-			request.getParameter("pseudo");
-			}
-		
+		//		boolean valid = (pseudo!=null)&& pseudo.matches("[a-zA-Z0-9]+");//alphanumeric
+		//		if("pseudo".equals("pseudo from Utilisateurs where pseudo = pseudo")){
+		//			System.out.println("un compte avec cet email existe deja");
+		//		}else{
+		//			request.getParameter("pseudo");
+		//			}
+		//		
 		String nom=request.getParameter("username");
 		String prenom=request.getParameter("userfirstname");
 		String email=request.getParameter("usermail");
-		if("email".equals("email from Utilisateurs where email = email")){
-			System.out.println("un compte avec cet email existe deja");
-		}else{
-			request.getParameter("usermail");
-			}
+		//		if("email".equals("email from Utilisateurs where email = email")){
+		//			System.out.println("un compte avec cet email existe deja");
+		//		}else{
+		//			request.getParameter("usermail");
+		//			}
 		String tel=request.getParameter("userphone");
 		String rue=request.getParameter("user_street");
 		String cp=request.getParameter("usercp");
 		String ville=request.getParameter("city");
 		String motDePasse=request.getParameter("spassword");
 		String confirMP=request.getParameter("spassword2");
-		if(motDePasse == confirMP) {
-			request.getParameter("spassword");
-		}else {
-			System.out.println("les deux mots de passes ne sont pas identiques");
-		}
+		//		if(motDePasse.equals(confirMP) {
+		//			request.getParameter("spassword");
+		//		}else {
+		//			System.out.println("les deux mots de passes ne sont pas identiques");
+		//		}
 		request.setCharacterEncoding("UTF-8");
 
 		/*
@@ -85,24 +85,24 @@ public class SInscrireServlet extends HttpServlet {
 		 *  si request.getParameter("userpseudo")== select pseudo , email from Utilisateurs where pseudo = pseudo,
 		 */
 		//pseudo caractere alphanumerique:
-//			if(request.getParameter("userpseudo"){
-//				request.getParameter("userpseudo");
-//		}else {
-//			System.out.println("Caractères non autorisés pour le pseudo");
-//		}
-//	
-
-		
+		//			if(request.getParameter("userpseudo"){
+		//				request.getParameter("userpseudo");
+		//		}else {
+		//			System.out.println("Caractères non autorisés pour le pseudo");
+		//		}
+		//	
 
 
 
 
-				//faire appelle a mon truc qui permet d enregistrer en base
-				//	methode insert exist ds ma dal  masi on ne veut pas l appeler directmt
-				// utiliser l utilisateurmanager
 
-				// on utilise tt par l utilisateurDAOJdbcimpl
-				Utilisateur u1 = new Utilisateur(pseudo,nom,prenom,email,tel,rue,cp,ville,motDePasse,0);
+
+		//faire appelle a mon truc qui permet d enregistrer en base
+		//	methode insert exist ds ma dal  masi on ne veut pas l appeler directmt
+		// utiliser l utilisateurmanager
+
+		// on utilise tt par l utilisateurDAOJdbcimpl
+		Utilisateur u1 = new Utilisateur(pseudo,nom,prenom,email,tel,rue,cp,ville,motDePasse,0);
 		UtilisateurManager.getInstance().InsertUtilisateur(u1);
 
 		//test methode insert
@@ -111,12 +111,12 @@ public class SInscrireServlet extends HttpServlet {
 		System.out.println("Utilisateur ajoute  : " + u1.toString() );
 
 
+		request.getRequestDispatcher("/WEB-INF/jsp/acceuil.jsp").forward(request, response);
 
 
 
 
 
-		
 
 
 	}
