@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Enchere {
 
 ///////////////// ATTRIBUTS //////////////////////////////
-	private int noEnchere;//Auto générée par la BDD
+	private int noEnchere;//Auto généré par la BDD
 	private LocalDate dateEnchere;
 	private int montantEnchere;
 	private ArticleVendu articleVendu;

@@ -1,5 +1,10 @@
 package ProjetEnchere.bll;
 
+/**
+ * Classe gérant les messages d'erreurs survenant dans la couche BLL 
+ * @author Team F
+ *
+ */
 public class BLLException extends Exception {
 
 	//Constructeurs
@@ -15,7 +20,6 @@ public class BLLException extends Exception {
 		super(message, exception);
 	}
 
-	//MÃ©thodes
 	@Override
 	public String getMessage() {
 		StringBuffer sb = new StringBuffer("Couche BLL - ");

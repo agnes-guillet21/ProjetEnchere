@@ -11,7 +11,7 @@
         <h3>Mon profil</h3>   
     </header>
 
-    <form action="/ProjetEnchere/inscription.html" method="post">
+    <form action="inscription.html" method="post">
         <div>
             <label for="pseudo">Pseudo :</label>
             <input type="text" id="pseudo" name="userpseudo" value="" size="30" maxlength="30">
@@ -75,13 +75,12 @@
         </br>
     
     </br>
-
     <div>
         <input type="submit" value="Creer">
         <!--redirection sur page liste d enchere en log IN page 4  du pdf -->
     </div> 
     </br>
-	</form>
+</form>
     <div>
     <form action="/ProjetEnchere">
     	<button>Annuler</button>

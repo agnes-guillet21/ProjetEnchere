@@ -91,12 +91,6 @@ public class SInscrireServlet extends HttpServlet {
 		//			System.out.println("Caractères non autorisés pour le pseudo");
 		//		}
 		//	
-
-
-
-
-
-
 		//faire appelle a mon truc qui permet d enregistrer en base
 		//	methode insert exist ds ma dal  masi on ne veut pas l appeler directmt
 		// utiliser l utilisateurmanager
