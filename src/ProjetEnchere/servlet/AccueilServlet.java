@@ -14,8 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ProjetEnchere.bll.ArticleVenduManager;
+import ProjetEnchere.bll.BLLException;
 import ProjetEnchere.bll.CategorieManager;
 import ProjetEnchere.bll.EnchereManager;
+import ProjetEnchere.bo.ArticleVendu;
 import ProjetEnchere.bo.Categorie;
 import ProjetEnchere.bo.Enchere;
 
@@ -50,6 +53,7 @@ public class AccueilServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		List<ArticleVendu> listeEncheres = new ArrayList<>();
 		// Init. des messages
 //		List<Integer> listeCodeSuccess = new ArrayList<>();
 //		if (listeCodeSuccess.size() > 0) {
@@ -60,11 +64,15 @@ public class AccueilServlet extends HttpServlet {
 //			choix = "Tous";
 //		}
 //
-//		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 //
 //		List<Categorie> listCat = CategorieManager.getCategories();
-//		List<Enchere> listEnchere = EnchereManager.getEncheres();
+		try {
+			listeEncheres = ArticleVenduManager.getInstance().listerToutesLesVentes();
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
 //
 //		List<Enchere> processEnchere = new ArrayList<>();
 //
@@ -77,6 +85,7 @@ public class AccueilServlet extends HttpServlet {
 //				processEnchere.add(listEnchere.get(i));
 //			}
 //		}
+		request.setAttribute("listeEncheres", listeEncheres);
 		rd.forward(request, response);
 	}
 

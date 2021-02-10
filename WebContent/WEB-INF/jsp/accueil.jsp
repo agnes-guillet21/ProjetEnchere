@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="ProjetEnchere.bo.ArticleVendu"  %>
+<%@ page import="java.util.List"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +42,11 @@
         <div>
            <!-- il y aura un article  --> 
            <p>ArticleVendu</p>
+ 
+            <c:forEach items="${ListeEncheres}" var="item">
+                ${item.}
+           </c:forEach>
+           
         </div>
         </body>
 </html>
