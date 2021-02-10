@@ -45,7 +45,7 @@ public class SeConnecterServlet extends HttpServlet {
 		
 		// info formulaire
 		String login = request.getParameter("Identifiant");
-		String pass = Utils.toMD5(request.getParameter("MotDePasse")); // à creer utils !?
+		String pass = request.getParameter("MotDePasse"));
 
 		UtilisateurManager userManager = UtilisateurManager.getInstance();
 
