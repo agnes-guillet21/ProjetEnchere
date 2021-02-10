@@ -90,7 +90,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	}
 
 
-
+public Utilisateur selectByEmail(String email) throws DALException{
+	Utilisateur user = null;
+	Connection cnx=null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	return user;
+	
+}
 
 
 
