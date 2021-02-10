@@ -37,16 +37,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 				+ "code_postal,ville,mot_de_passe,credit,administrateur)"
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?);";
 
-		//		pstmt=  cnx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		//		pstmt.setString(1, u1.getPseudo());
-		//		pstmt.setString(2, u1.getNom());
-		//		pstmt.setString(3, u1.getPrenom());
-		//		pstmt.setString(4, u1.getEmail());
-		//		pstmt.setString(5, u1.getTelephone());
-		//		pstmt.setString(6, u1.getCodepostal());
-		//		pstmt.setString(7, u1.getVille());
-		//		pstmt.setString(8, u1.getMotDePasse());
-		//		pstmt.setInt(9, u1.getCredit());
 
 		// desactivation de l autocommit (mode transactionnel)
 		try {
