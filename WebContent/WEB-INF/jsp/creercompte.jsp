@@ -73,15 +73,14 @@
             <input type="text" id="s_password" name="spassword2" value=""  size="30" maxlength="30" required>
         </div>
         </br>
-    </form>
+   
     </br>
-
     <div>
         <input type="submit" value="Creer">
         <!--redirection sur page liste d enchere en log IN page 4  du pdf -->
     </div> 
     </br>
-
+ </form>
     <div>
     <form action="/ProjetEnchere">
     	<button>Annuler</button>

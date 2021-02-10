@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import ProjetEnchere.bo.Utilisateur;
 import ProjetEnchere.dal.jdbc.DALConnectionProvider;
+import ProjetEnchere.dal.jdbc.DALException;
 
 /**
  * Servlet implementation class TestDAL
@@ -31,20 +33,41 @@ public class ServletTestDAL extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 //////////// TEST CONNEXION /////////////
-		PrintWriter out = response.getWriter();
+//		PrintWriter out = response.getWriter();
+//		
+//		try {
+//			Connection cnx = DALConnectionProvider.getConnection();
+//			out.print("La connexion est " + (cnx.isClosed()?"fermée":"ouverte") + ".");
+//			
+//			cnx.close();
+//			out.print("La connexion est " + (cnx.isClosed()?"fermée":"ouverte") + ".");
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+		String pseudo = "Mamou";
+		String nom = "Prevost";
+		String prenom = "Amaury";
+		String email = "amauryprevost@hotmail.fr";
+		String telephone = "0631681002";
+		String rue = "4 allée Richemont";
+		String codepostal = "44000";
+		String ville = "NANTES";
+		String motDePasse = "mdp";
+		int credit = 100;
 		
+		Utilisateur u1 = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
+		UtilisateurDAO uDAO = DAOFactory.getUtilisateurDAO();
 		try {
-			Connection cnx = DALConnectionProvider.getConnection();
-			out.print("La connexion est " + (cnx.isClosed()?"fermée":"ouverte") + ".");
-			
-			cnx.close();
-			out.print("La connexion est " + (cnx.isClosed()?"fermée":"ouverte") + ".");
-
-		} catch (SQLException e) {
+			uDAO.insert(u1);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+}
 		
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
