@@ -90,6 +90,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			}
 		}
 	}	
+	//methode select all
+	
+	
 
 	@Override
 	public Utilisateur selectByPseudo(String pseudo) throws DALException {
