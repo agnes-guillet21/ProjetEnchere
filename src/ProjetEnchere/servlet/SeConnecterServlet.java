@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import ProjetEnchere.bll.UtilisateurManager; // rajout import 
 import ProjetEnchere.bo.Utilisateur;
-// pour git
+// pour git !
 /**
  * Servlet implementation class SeConnecterServlet
  */
