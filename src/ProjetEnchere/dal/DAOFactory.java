@@ -19,4 +19,9 @@ public abstract class DAOFactory {
 		return articleVenduDAO;
 }
 	
+
+//	protected  UtilisateurDAO insert() {
+//		UtilisateurDAO utilisateurDAO = new UtilisateurDAOJdbcImpl();
+//		return utilisateurDAO;
+//	};
 }

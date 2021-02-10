@@ -1,7 +1,9 @@
 package ProjetEnchere.dal.jdbc; // modif pour pouvoir l'envoyer
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -11,7 +13,7 @@ import javax.sql.DataSource;
 public abstract class DALConnectionProvider {
 	
 	private static DataSource dataSource;
-	
+	// connecter  la dal a la BDD
 	static
 	{
 		Context context;

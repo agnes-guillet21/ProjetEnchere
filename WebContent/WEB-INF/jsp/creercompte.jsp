@@ -70,7 +70,7 @@
 
         <div>
             <label for="ConfirPassword">Confirmation:</label>
-            <input type="text" id="s_password" name="spassword">
+            <input type="text" id="s_password" name="spassword2">
         </div>
         </br>
     </form>
