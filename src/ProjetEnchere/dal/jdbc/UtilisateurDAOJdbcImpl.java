@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import ProjetEnchere.bo.Utilisateur;
 import ProjetEnchere.dal.UtilisateurDAO;
 
@@ -28,7 +30,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		try {
 			cnx = DALConnectionProvider.getConnection();
 		} catch (SQLException e2) {
-			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
 
@@ -90,14 +91,40 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	}
 
 
-public Utilisateur selectByEmail(String email) throws DALException{
-	Utilisateur user = null;
-	Connection cnx=null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-	return user;
-	
-}
+	public Utilisateur selectByEmail(String email) throws DALException{
+		Utilisateur user;
+		Connection cnx=null;
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		if(user == null) {
+			throw new DALException("Pas d'utilisateur creer en parametre de ma methode selectByEmail");
+		}
+		//connection
+		try {
+			cnx = DALConnectionProvider.getConnection();
+		} catch (SQLException e2) {	
+			e2.printStackTrace();
+		}
+		//requete sql
+
+		String sql="select email from UTILISATEURS where email=?;";
+		try {
+			stmt = cnx.prepareStatement(sql);
+			stmt.setString(1,user.getEmail());
+			rs = stmt.executeQuery(sql);
+			if(rs.getString("email")!=null) {
+				
+				
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return user;
+
+	}
 
 
 
