@@ -29,7 +29,7 @@ public class Utilisateur {
 	}
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codepostal, String ville, String motDePasse, int credit) {
+			String codepostal, String ville, String motDePasse, int credit, boolean administrateur) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -41,23 +41,10 @@ public class Utilisateur {
 		this.ville = ville;
 		this.motDePasse = motDePasse;
 		this.credit = credit;
+		this.administrateur=false;
 	}
 
 	// getter/setter 
-	
-	public Utilisateur(String pseudo, String nom, String prenom, String email, String tel, String rue, String cp,
-			String ville, String motDePasse, String confirMP, int credit) {
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = tel;
-		this.rue = rue;
-		this.codepostal = cp;
-		this.ville = ville;
-		this.motDePasse = motDePasse;
-		this.credit = credit;
-	}
 
 	public ArrayList<ArticleVendu> getVente() {
 		return vente;
