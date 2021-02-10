@@ -11,7 +11,7 @@
         <h3>Mon profil</h3>   
     </header>
 
-    <form action="inscription.html" method="post">
+    <form action="/ProjetEnchere/inscription.html" method="post">
         <div>
             <label for="pseudo">Pseudo :</label>
             <input type="text" id="pseudo" name="userpseudo" value="" size="30" maxlength="30">
@@ -73,7 +73,7 @@
             <input type="text" id="s_password" name="spassword2" value=""  size="30" maxlength="30" required>
         </div>
         </br>
-    </form>
+    
     </br>
 
     <div>
@@ -81,7 +81,7 @@
         <!--redirection sur page liste d enchere en log IN page 4  du pdf -->
     </div> 
     </br>
-
+	</form>
     <div>
     <form action="/ProjetEnchere">
     	<button>Annuler</button>

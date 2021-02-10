@@ -32,9 +32,16 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			e2.printStackTrace();
 		}
 
+		try {
+			System.out.println("La connexion est " + (cnx.isClosed()?"fermée":"ouverte") + ".");
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
 		//test requete sql
 		String sql ="INSERT INTO dbo.UTILISATEURS(pseudo,nom,prenom,email,telephone,"
-				+ "(code_postal,ville,mot_de_passe,credit,administrateur)"
+				+ "code_postal,ville,mot_de_passe,credit,administrateur)"
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?);";
 
 		//		pstmt=  cnx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -50,7 +57,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 		// desactivation de l autocommit (mode transactionnel)
 		try {
-			cnx.setAutoCommit(false);
+//			cnx.setAutoCommit(false);
 			pstmt = cnx.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, u1.getPseudo());
 			pstmt.setString(2, u1.getNom());
@@ -61,29 +68,24 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			pstmt.setString(7, u1.getVille());
 			pstmt.setString(8, u1.getMotDePasse());
 			pstmt.setInt(9, u1.getCredit());
-			pstmt.setBoolean(10, u1.isAdministrateur());
+			pstmt.setInt(10, 0);
 					
 			//execution de la requete
 			pstmt.executeUpdate();
 			//recuperer l  identity ay travers du resultset 
-			rs = pstmt.getGeneratedKeys();
-			if(rs.next()) {
-				u1.setNoUtilisateur(rs.getInt(1));
-			}
+//			rs = pstmt.getGeneratedKeys();
+//			if(rs.next()) {
+//				u1.setNoUtilisateur(rs.getInt(1));
+//			}
 			pstmt.close();
-			cnx.commit();
+//			cnx.commit();
 			// a voir faire un appel de methode se deco
 			// 
 			
 		}catch(SQLException e) {
-			try {
-				cnx.rollback();
-			}catch (SQLException e1) {
-				throw new DALException(e1.getMessage());
-			}
 		}finally {
 			try {
-				cnx.setAutoCommit(true);
+//				cnx.setAutoCommit(true);
 				cnx.close();
 			}catch (SQLException e) {
 				throw new DALException(e.getLocalizedMessage());

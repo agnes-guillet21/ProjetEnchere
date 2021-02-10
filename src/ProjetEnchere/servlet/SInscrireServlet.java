@@ -111,7 +111,7 @@ public class SInscrireServlet extends HttpServlet {
 		System.out.println("Utilisateur ajoute  : " + u1.toString() );
 
 
-		request.getRequestDispatcher("/WEB-INF/jsp/acceuil.jsp").forward(request, response);
+		request.getRequestDispatcher("/ProjetEnchere").forward(request, response);
 
 
 

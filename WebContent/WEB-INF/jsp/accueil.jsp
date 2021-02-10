@@ -42,8 +42,8 @@
         <div>
            <!-- il y aura un article  --> 
            <p>ArticleVendu</p>
- 
-            
+ 		
+ 		            
            
         </div>
         </body>

@@ -29,7 +29,7 @@ public class Utilisateur {
 	}
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codepostal, String ville, String motDePasse, int credit, boolean administrateur) {
+			String codepostal, String ville, String motDePasse, int credit) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
