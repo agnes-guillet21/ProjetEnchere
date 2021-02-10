@@ -11,10 +11,10 @@ import ProjetEnchere.dal.UtilisateurDAO;
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 
-//	public UtilisateurDAOJdbcImpl(String pseudo, String nom, String prenom, String email, String tel, String rue,
-//			String cp, String ville, String motDePasse, String confirMP, int i) {
-//		// TODO Auto-generated constructor stub
-//	}
+	//	public UtilisateurDAOJdbcImpl(String pseudo, String nom, String prenom, String email, String tel, String rue,
+	//			String cp, String ville, String motDePasse, String confirMP, int i) {
+	//		// TODO Auto-generated constructor stub
+	//	}
 
 	public void insert ( Utilisateur u1) throws DALException{
 		Connection cnx=null;
@@ -24,7 +24,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		if(u1 == null) {
 			throw new DALException("Pas d'utilisateur creer en parametre de ma methode inserer");
 		}
-		
+
 		try {
 			cnx = DALConnectionProvider.getConnection();
 		} catch (SQLException e2) {
@@ -36,7 +36,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		String sql ="INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,"
 				+ "code_postal,ville,mot_de_passe,credit,administrateur)"
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?);";
-
 
 		// desactivation de l autocommit (mode transactionnel)
 		try {
@@ -52,19 +51,19 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			pstmt.setString(8, u1.getMotDePasse());
 			pstmt.setInt(9, u1.getCredit());
 			pstmt.setInt(10, 0);
-					
+
 			//execution de la requete
 			pstmt.executeUpdate();
 			//recuperer l  identity ay travers du resultset 
-//			rs = pstmt.getGeneratedKeys();
-//			if(rs.next()) {
-//				u1.setNoUtilisateur(rs.getInt(1));
-//			}
+			//			rs = pstmt.getGeneratedKeys();
+			//			if(rs.next()) {
+			//				u1.setNoUtilisateur(rs.getInt(1));
+			//			}
 			//pstmt.close();
 			//cnx.commit();
 			// a voir faire un appel de methode se deco
 			// 
-			
+
 		}catch(SQLException e) {
 			throw new DALException("erreur de lors de l'insertion d'un nouvel utilisateur" + u1, e);
 		}finally {
@@ -75,45 +74,45 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 				if(cnx!=null) {
 					cnx.close();
 				}
-		
+
 			}catch(SQLException e) {
 				throw new DALException("erreur de lors de l'insertion d'un nouvel utilisateur" + u1);
 			}
 		}
 	}
-	
-	
+
+
 
 	@Override
 	public Utilisateur selectByPseudo(String pseudo) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-			
-			
-			
-			
-			
-			
-			
-//			
-//			try {
-//				cnx.rollback();
-//			}catch (SQLException e1) {
-//				throw new DALException(e1.getMessage());
-//			}
-//		}finally {
-//			try {
-//				cnx.setAutoCommit(true);
-//				cnx.close();
-//			}catch (SQLException e) {
-//				throw new DALException(e.getLocalizedMessage());
-//			}
-//		}
-//	}	
+
+
+
+
+
+
+
+	//			
+	//			try {
+	//				cnx.rollback();
+	//			}catch (SQLException e1) {
+	//				throw new DALException(e1.getMessage());
+	//			}
+	//		}finally {
+	//			try {
+	//				cnx.setAutoCommit(true);
+	//				cnx.close();
+	//			}catch (SQLException e) {
+	//				throw new DALException(e.getLocalizedMessage());
+	//			}
+	//		}
+	//	}	
 	//methode select all
-	
-	
+
+
 
 
 
