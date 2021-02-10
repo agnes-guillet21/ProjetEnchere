@@ -43,9 +43,7 @@
            <!-- il y aura un article  --> 
            <p>ArticleVendu</p>
  
-            <c:forEach items="${ListeEncheres}" var="item">
-                ${item.}
-           </c:forEach>
+            
            
         </div>
         </body>

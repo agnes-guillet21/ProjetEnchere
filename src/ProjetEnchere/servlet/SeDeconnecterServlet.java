@@ -16,7 +16,7 @@ public class SeDeconnecterServlet extends HttpServlet {
 	 public SeDeconnecterServlet() {
 	        super();
 	        // TODO Auto-generated constructor stub
-}
+	 }
 	 
 	 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 
@@ -28,7 +28,7 @@ public class SeDeconnecterServlet extends HttpServlet {
 		
 		// retour acceuil
 		this.getServletContext().getRequestDispatcher("/ProjetEnchere").forward(request, response); 
-}
+	 }
 
 
 	 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

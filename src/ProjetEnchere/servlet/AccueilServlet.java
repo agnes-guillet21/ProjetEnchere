@@ -67,25 +67,25 @@ public class AccueilServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 //
-//		List<Categorie> listCat = CategorieManager.getCategories();
-		try {
-			listeEncheres = ArticleVenduManager.getInstance().listerToutesLesVentes();
-		} catch (BLLException e) {
-			e.printStackTrace();
-		}
-//
-//		List<Enchere> processEnchere = new ArrayList<>();
-//
-//		HttpSession session = request.getSession();
-//
-//
-//		for (int i = 0; i < listEnchere.size(); i++) {
-//			if (listEnchere.get(i).getArticleVendu().getDateDebutEncheres().before(Date.valueOf(LocalDate.now().plusDays(1))))
-//			{
-//				processEnchere.add(listEnchere.get(i));
-//			}
+////		List<Categorie> listCat = CategorieManager.getCategories();
+//		try {
+//			listeEncheres = ArticleVenduManager.getInstance().listerToutesLesVentes();
+//		} catch (BLLException e) {
+//			e.printStackTrace();
 //		}
-		request.setAttribute("listeEncheres", listeEncheres);
+////
+////		List<Enchere> processEnchere = new ArrayList<>();
+////
+////		HttpSession session = request.getSession();
+////
+////
+////		for (int i = 0; i < listEnchere.size(); i++) {
+////			if (listEnchere.get(i).getArticleVendu().getDateDebutEncheres().before(Date.valueOf(LocalDate.now().plusDays(1))))
+////			{
+////				processEnchere.add(listEnchere.get(i));
+////			}
+////		}
+//		request.setAttribute("listeEncheres", listeEncheres);
 		rd.forward(request, response);
 	}
 
