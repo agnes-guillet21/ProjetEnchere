@@ -76,7 +76,7 @@ public class AccueilServlet extends HttpServlet {
 ////		}
 		request.setAttribute("listeEncheres", listeEncheres);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
-		System.out.println(listeEncheres);
+
 		rd.forward(request, response);
 	}
 

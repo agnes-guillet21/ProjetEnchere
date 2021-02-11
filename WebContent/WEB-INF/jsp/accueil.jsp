@@ -20,16 +20,22 @@
 	<div class="container-fluid">
 		<header class="header">
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<p>ENI-Encheres</p>
 					<!-- insertion fragments header  Eni-enchere-->
 				</div>
-				<div class="col-md-6"></div>
-				<div class="col-md-2">
-					<a href="">S'inscrire </a>
-					<!-- mettre l url de la jsp create login-->
-					<a href="">Se connecter </a>
-					<!-- mettre l url de la jsp  -->
+				<div class="col-md-5"></div>
+				<div class="col-md-4">
+					<c:if test="${empty user}">
+					<a href="inscription.html">S'inscrire </a>
+					<a href="connexion.html">Se connecter </a>
+					</c:if>
+					<c:if test="${!empty user}">
+						<a href="/ProjetEnchere">Enchères</a>
+						<a href="vendre.html">Vendre un article</a>
+						<a href="profil.html">Mon Profil</a>
+						<a href="deconnexion.html">Déconnexion</a>
+					</c:if>
 				</div>
 			</div>
 		</header>
@@ -88,9 +94,12 @@
 			
 			<p>Il y a ${listeEncheres.size()} ventes.</p>				
 				<c:forEach var="v" items="${listeEncheres}">
-					<li>
-						${v.toString()}
-					</li>
+					<div>
+						<p>${v.nomArticle}</p>
+						<p>Prix : ${v.prixVente} points</p>
+						<p>Fin de l'enchère : ${v.dateFinEncheres}</p>
+						<p>Vendeur : ${v.utilisateurVendeur}</p>
+					</div><br>
 				</c:forEach>					
 
 		</div>
