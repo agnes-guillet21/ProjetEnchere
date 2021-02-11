@@ -35,7 +35,6 @@ public class AccueilServlet extends HttpServlet {
 	String choix = "Tous";
 	String filtreChoix = "EnCours";
 
-//	UtilisateurManager utilisateurManager = UtilisateurManager.getInstance();
 //	EnchereManager enchereManager = EnchereManager.getEnchereManager();
 //	CategorieManager categorieManager = CategorieManager.getCategorieManager();
 
