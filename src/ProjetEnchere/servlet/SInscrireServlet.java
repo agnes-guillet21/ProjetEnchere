@@ -1,6 +1,7 @@
 package ProjetEnchere.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
@@ -97,7 +98,12 @@ public class SInscrireServlet extends HttpServlet {
 
 		// on utilise tt par l utilisateurDAOJdbcimpl
 		Utilisateur u1 = new Utilisateur(pseudo,nom,prenom,email,tel,rue,cp,ville,motDePasse,0);
-		UtilisateurManager.getInstance().InsertUtilisateur(u1);
+		try {
+			UtilisateurManager.getInstance().InsertUtilisateur(u1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		//test methode insert
 		System.out.println("Ajout d'un utilisateur... ");
