@@ -70,6 +70,7 @@ public class UtilisateurManager {
 		}else {
 			ConnectionOK = false;
 			return null;
+			//TODO prepare message à envoyer en param à la jsp
 		}
 		
 	}

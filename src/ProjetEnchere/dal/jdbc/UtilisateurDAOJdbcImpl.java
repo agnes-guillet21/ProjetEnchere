@@ -130,7 +130,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 			u = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
 			u.setNoUtilisateur(rs.getInt(1));
-
+			
+			stmt.close();
 			cnx.close();
 
 		} catch (SQLException e) {
