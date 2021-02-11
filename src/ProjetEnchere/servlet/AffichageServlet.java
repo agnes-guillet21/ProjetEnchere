@@ -2,6 +2,11 @@ package ProjetEnchere.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import ProjetEnchere.bll.UtilisateurManager; // import à completer
 import ProjetEnchere.bo.Utilisateur;
@@ -13,7 +18,7 @@ public class AffichageServlet extends HttpServlet {
     public AffichageServlet() {
         super();
         // TODO Auto-generated constructor stub
-        
+    }
     	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     			// Initialisation erreurs
@@ -44,7 +49,7 @@ public class AffichageServlet extends HttpServlet {
     		
     		// retour page profil
     		this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/.jsp").forward(request, response); // a renseigner
-    	
+    	}
     		
     		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     			//TODO Auto-generated method stub
