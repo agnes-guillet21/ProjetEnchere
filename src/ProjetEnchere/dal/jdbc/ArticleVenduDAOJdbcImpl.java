@@ -13,24 +13,14 @@ import ProjetEnchere.dal.ArticleVenduDAO;
 
 public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 
-	private static final String SELECT_ALL="SELECT no_Article, "
-												+ "nom_article,"
-												+ "description,"
-												+ "date_debut_encheres,"
-												+ "date_fin_encheres,"
-												+ "prix_initial,"
-												+ "prix_vente,"
-												+ "no_utilisateur,"
-												+ "no_categorie"
-												+ ",no_retrait"
-												+ "FROM ARTICLES_VENDUS;";
+	private static final String SELECT_ALL="SELECT no_article, nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie,no_retrait FROM ARTICLES_VENDUS;";
+	private static UtilisateurDAOJdbcImpl utilisateur = new UtilisateurDAOJdbcImpl();
 	
 	@Override
 	public List<ArticleVendu> listerToutesLesVentes() throws DALException {
 		Connection cnx = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		ArticleVendu articleVendu = new ArticleVendu();
 		List<ArticleVendu> listeVentes = new ArrayList<ArticleVendu>();
 	
 		try {
@@ -39,7 +29,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 			rs = stmt.executeQuery(SELECT_ALL);
 			
 			while (rs.next()) {
-				if (rs.next()) {
+				ArticleVendu articleVendu = new ArticleVendu();
 					articleVendu.setNoArticle(rs.getInt("no_article"));
 					articleVendu.setNomArticle(rs.getString("nom_article"));
 					articleVendu.setDescription(rs.getString("description"));
@@ -48,12 +38,11 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 					articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
 					articleVendu.setPrixVente(rs.getInt("prix_vente"));
 					//TODO Revoir la récupération des Objets liés à ArticleVendu
-//				articleVendu.setUtilisateurVendeur(UtilisateurDAOJdbcImpl.SelectById(rs.getInt("no_utilisateur"));
+					articleVendu.setUtilisateurVendeur(utilisateur.getUserById(rs.getInt("no_utilisateur")));
 //				articleVendu.setCategorieArticle(CategorieDAOJdbcImpl.SelectById(rs.getInt("no_categorie"));
 //				articleVendu.setLieuRetrait(RetraitDAOJdbcImpl.SelectById(rs.getInt("no_retrait"));
-					
 					listeVentes.add(articleVendu);
-				}
+				
 			}
 		} catch (SQLException e) {
 			throw new DALException("listerToutesLesVentes() Echec");

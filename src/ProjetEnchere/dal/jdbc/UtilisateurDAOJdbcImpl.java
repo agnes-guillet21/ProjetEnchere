@@ -200,6 +200,50 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}
 		return user;
 	}
+
+
+	/**
+	 * Méthode permettant de récupérer un utilisateur de la BDD grace à son numméro utilisateur
+	 * @param noUtilisateur id
+	 * @return Utilisateur
+	 * @throws DALException
+	 */
+	public Utilisateur getUserById(int id)  throws DALException{
+
+		Utilisateur u = null;
+		String sql = "SELECT no_utilisateur,pseudo, nom, prenom ,email ,telephone, rue, code_postal,ville ,mot_de_passe,credit ,administrateur FROM UTILISATEURS WHERE no_utilisateur=";
+		sql = sql +id+";";
+		Statement stmt;
+
+		try {
+			Connection cnx = DALConnectionProvider.getConnection();
+
+			stmt = cnx.createStatement();
+
+			ResultSet rs = stmt.executeQuery(sql);
+			rs.next();
+			String pseudo = rs.getString("pseudo");
+			String nom = rs.getString("nom");
+			String prenom = rs.getString("prenom");
+			String email = rs.getString("email");
+			String telephone = rs.getString("telephone");
+			String rue = rs.getString("rue");
+			String codepostal = rs.getString("code_postal");
+			String ville = rs.getString("ville");
+			String motDePasse = rs.getString("mot_de_passe");
+			int credit = rs.getInt("credit");
+
+			u = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
+			u.setNoUtilisateur(id);
+			
+			stmt.close();
+			cnx.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return u;
+	}
 }
 
 

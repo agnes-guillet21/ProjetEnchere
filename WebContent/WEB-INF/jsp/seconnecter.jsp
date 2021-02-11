@@ -37,19 +37,18 @@
 				<label for="se souvenir de moi ">Se souvenir de moi </label>
 			</div>
 			</br>
-
+		</form>	
 			<div>
 				<a href="">Mot de passe oublié</a>
 			</div>
 			</br>
 
 			<div>
-				<!-- ou lien vers page mon profil-->
-				<input type="submit" value="creer un compte" name="screer">
-				
-
+				<form action="inscription.html">
+					<button type="Submit" >Créer un compte</button>
+				</form>
 			</div>
-		</form>
+		
 	<div>
 	    <form action="/ProjetEnchere">
 	    	<button>Annuler</button>

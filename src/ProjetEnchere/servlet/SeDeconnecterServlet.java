@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/SeDeconnecterServlet")
+@WebServlet("/deconnexion.html")
 public class SeDeconnecterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -23,7 +23,7 @@ public class SeDeconnecterServlet extends HttpServlet {
 		 
 	 // suppression session 
 	 HttpSession session = request.getSession();
-		session.removeAttribute("Utilisateur");
+		session.removeAttribute("User");
 		session.invalidate();
 		
 		// retour acceuil

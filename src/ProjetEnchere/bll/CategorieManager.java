@@ -18,7 +18,7 @@ public class CategorieManager {
 	
 	/**
 	 * Méthode permettant d'afficher la liste des catégories
-	 * @return Une liste d'onjet de type Categorie
+	 * @return Une liste d'objets de type Categorie
 	 */
 	public static List<Categorie> getCategories() {
 		return null;

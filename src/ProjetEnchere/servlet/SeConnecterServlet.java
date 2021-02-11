@@ -52,14 +52,14 @@ public class SeConnecterServlet extends HttpServlet {
 		if (user == null) {
 			request.setAttribute("messageErreur", "Le compte n'existe pas");
 			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp").forward(request, response);
-		}
+		}else {
 		// session utilis.
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
-				
-		// retour accueil
 		this.getServletContext().getRequestDispatcher("/ProjetEnchere").forward(request, response);
-				
+		// retour accueil
+		}
+						
 		}
 	}
 

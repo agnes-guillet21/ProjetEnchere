@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="ProjetEnchere.bo.ArticleVendu"%>
-<%@ page import="java.util.List"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -21,16 +20,21 @@
 	<div class="container-fluid">
 		<header class="header">
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<p>ENI-Encheres</p>
 					<!-- insertion fragments header  Eni-enchere-->
 				</div>
-				<div class="col-md-6"></div>
-				<div class="col-md-2">
-					<a href="">S'inscrire </a>
-					<!-- mettre l url de la jsp create login-->
-					<a href="">Se connecter </a>
-					<!-- mettre l url de la jsp  -->
+				<div class="col-md-5"></div>
+				<div class="col-md-4">
+					<c:if test="${empty user}">
+					<a href="connexion.html">S'inscrire - Se connecter </a>
+					</c:if>
+					<c:if test="${!empty user}">
+						<a href="/ProjetEnchere">Enchères</a>
+						<a href="vendre.html">Vendre un article</a>
+						<a href="profil.html">Mon Profil</a>
+						<a href="deconnexion.html">Déconnexion</a>
+					</c:if>
 				</div>
 			</div>
 		</header>
@@ -82,8 +86,20 @@
 		<div>
 			<!-- il y aura un article  -->
 			<p>ArticleVendu</p>
-
-
+			
+			<c:if test="${empty listeEncheres.size()}">				
+				<p>Aucune vente en cours</p>		
+			</c:if>
+			
+			<p>Il y a ${listeEncheres.size()} ventes.</p>				
+				<c:forEach var="v" items="${listeEncheres}">
+					<div>
+						<p>${v.nomArticle}</p>
+						<p>Prix : ${v.prixVente} points</p>
+						<p>Fin de l'enchère : ${v.dateFinEncheres}</p>
+						<p>Vendeur : ${v.utilisateurVendeur.getPseudo()}</p>
+					</div><br>
+				</c:forEach>					
 
 		</div>
 	</div>
