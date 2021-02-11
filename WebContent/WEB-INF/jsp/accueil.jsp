@@ -27,8 +27,7 @@
 				<div class="col-md-5"></div>
 				<div class="col-md-4">
 					<c:if test="${empty user}">
-					<a href="inscription.html">S'inscrire </a>
-					<a href="connexion.html">Se connecter </a>
+					<a href="connexion.html">S'inscrire - Se connecter </a>
 					</c:if>
 					<c:if test="${!empty user}">
 						<a href="/ProjetEnchere">Enchères</a>
