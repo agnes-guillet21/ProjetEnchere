@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="ProjetEnchere.bo.ArticleVendu"%>
-<%@ page import="java.util.List"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -82,8 +81,17 @@
 		<div>
 			<!-- il y aura un article  -->
 			<p>ArticleVendu</p>
-
-
+			
+			<c:if test="${empty listeEncheres.size()}">				
+				<p>Aucune vente en cours</p>		
+			</c:if>
+			
+			<p>Il y a ${listeEncheres.size()} ventes.</p>				
+				<c:forEach var="v" items="${listeEncheres}">
+					<li>
+						${v.toString()}
+					</li>
+				</c:forEach>					
 
 		</div>
 	</div>

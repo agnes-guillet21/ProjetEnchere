@@ -54,38 +54,29 @@ public class AccueilServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		List<ArticleVendu> listeEncheres = new ArrayList<>();
-		// Init. des messages
-//		List<Integer> listeCodeSuccess = new ArrayList<>();
-//		if (listeCodeSuccess.size() > 0) {
-//			request.setAttribute("listeCodesSuccess", listeCodeSuccess);
-//		}
-//
-//		if (choix == null) {
-//			choix = "Tous";
-//		}
-//
+		ArticleVenduManager aVManager = ArticleVenduManager.getInstance();
+		
 		request.setCharacterEncoding("UTF-8");
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+		
 //
 ////		List<Categorie> listCat = CategorieManager.getCategories();
-//		try {
-//			listeEncheres = ArticleVenduManager.getInstance().listerToutesLesVentes();
-//		} catch (BLLException e) {
-//			e.printStackTrace();
-//		}
-////
-////		List<Enchere> processEnchere = new ArrayList<>();
-////
-////		HttpSession session = request.getSession();
-////
-////
+
+			try {
+				listeEncheres = aVManager.listerToutesLesVentes();
+			} catch (BLLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 ////		for (int i = 0; i < listEnchere.size(); i++) {
 ////			if (listEnchere.get(i).getArticleVendu().getDateDebutEncheres().before(Date.valueOf(LocalDate.now().plusDays(1))))
 ////			{
 ////				processEnchere.add(listEnchere.get(i));
 ////			}
 ////		}
-//		request.setAttribute("listeEncheres", listeEncheres);
+		request.setAttribute("listeEncheres", listeEncheres);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+		System.out.println(listeEncheres);
 		rd.forward(request, response);
 	}
 
