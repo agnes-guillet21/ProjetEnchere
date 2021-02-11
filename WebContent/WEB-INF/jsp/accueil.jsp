@@ -97,7 +97,7 @@
 						<p>${v.nomArticle}</p>
 						<p>Prix : ${v.prixVente} points</p>
 						<p>Fin de l'enchère : ${v.dateFinEncheres}</p>
-						<p>Vendeur : ${v.utilisateurVendeur}</p>
+						<p>Vendeur : ${v.utilisateurVendeur.getPseudo()}</p>
 					</div><br>
 				</c:forEach>					
 
