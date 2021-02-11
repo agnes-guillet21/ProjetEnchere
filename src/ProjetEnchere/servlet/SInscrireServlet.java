@@ -47,13 +47,11 @@ public class SInscrireServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//  creation hasmap pr les erreurs
 		//Map<String, String> erreurs = new HashMap<String, String>();
-		
-		
+
+
 		//appel a mes methode de validation de formulaire
-//		validationMP(motDePasse, confirMP );
-//		validationFormulaire();
-//		verificationEmail();
-		
+
+
 		//recuperer ts les infos ds les champs du formulaire
 		String pseudo=request.getParameter("userpseudo");
 		String nom=request.getParameter("username");
@@ -66,6 +64,10 @@ public class SInscrireServlet extends HttpServlet {
 		String motDePasse=request.getParameter("spassword");
 		String confirMP=request.getParameter("spassword2");
 
+		//validationMP(motDePasse, confirMP);
+		//validationFormulaire(pseudo, nom, prenom, email, tel, rue, cp, ville);
+		//UtilisateurManager u1 = UtilisateurManager.getInstance().verificationEmail(email);
+		
 		request.setCharacterEncoding("UTF-8");
 		//faire appelle a mon truc qui permet d enregistrer en base
 		//	methode insert exist ds ma dal  mais on ne veut pas l appeler directmt
@@ -102,35 +104,35 @@ public class SInscrireServlet extends HttpServlet {
 			throw new Exception("Merci de saisir et de confirmer votre mot de passe");
 		}
 	}
-	private void validationFormulaire(String pseudo, String nom, String prenom,String email,String tel,String rue, String cp,String ville ) throws Exception {
+	private void validationFormulaire(String pseudo, String nom, String prenom,String email,String tel,String rue, String cp,String ville) throws Exception {
 		if(pseudo != null && !pseudo.matches("[A-Za-z0-9_]+")){
 			throw new Exception("caractere incorrectes, merci de saisir un autre pseudo");
 		}
-//		if(nom != null && nom.trim().length()>30) {
-//			throw new Exception("le nom ne doit pas dépasser 30 caracteres, merci de saisir un autre nom");
-//		}
-//		if(prenom != null && prenom.trim().length()>30) {
-//			throw new Exception("le prénom ne doit pas dépasser 30 caracteres, merci de saisir un autre prenom");
-//		}
-//		if(email != null && email.trim().length()>100) {
-//			if(!email.matches("([^.@]+)(\\\\.[^.@]+)*@([^.@]+\\\\.)+([^.@]+)")) {
-//				throw new Exception(" Merci de saisir une adresse mail valide.");
-//			}
-//		}else {
-//			throw new Exception("l'email ne doit pas dépasser 20 caracteres");
-//		}
-//		if (tel != null && !tel.matches("\\+?[0-9][0-9][0-9]([0-9][0-9])+")){ // pas sur de ce regex
-//			throw new Exception("Merci de saisir un numéro de téléphone valide.");
-//		}
-//		if(rue != null && rue.trim().length()>50) {
-//			throw new Exception("Merci de saisir un nom de rue valide.");
-//		}
-//		if(cp != null && rue.trim().length()>50) {
-//			throw new Exception("Merci de saisir un code postal valide.");
-//		}
-//		if(ville != null && ville.trim().length()>30) {
-//			throw new Exception("Merci de saisir un nom de ville valide.");
-//		}
+		if(nom != null && nom.trim().length()>30) {
+			throw new Exception("le nom ne doit pas dépasser 30 caracteres, merci de saisir un autre nom");
+		}
+		if(prenom != null && prenom.trim().length()>30) {
+			throw new Exception("le prénom ne doit pas dépasser 30 caracteres, merci de saisir un autre prenom");
+		}
+		if(email != null && email.trim().length()>100) {
+			if(!email.matches("([^.@]+)(\\\\.[^.@]+)*@([^.@]+\\\\.)+([^.@]+)")) {
+				throw new Exception(" Merci de saisir une adresse mail valide.");
+			}
+		}else {
+			throw new Exception("l'email ne doit pas dépasser 20 caracteres");
+		}
+		if (tel != null && !tel.matches("\\+?[0-9][0-9][0-9]([0-9][0-9])+")){ // pas sur de ce regex
+			throw new Exception("Merci de saisir un numéro de téléphone valide.");
+		}
+		if(rue != null && rue.trim().length()>50) {
+			throw new Exception("Merci de saisir un nom de rue valide.");
+		}
+		if(cp != null && rue.trim().length()>50) {
+			throw new Exception("Merci de saisir un code postal valide.");
+		}
+		if(ville != null && ville.trim().length()>30) {
+			throw new Exception("Merci de saisir un nom de ville valide.");
+		}
 
 	}
 }
