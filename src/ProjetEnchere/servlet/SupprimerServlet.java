@@ -1,7 +1,15 @@
 package ProjetEnchere.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ProjetEnchere.bll.UtilisateurManager;
 import ProjetEnchere.bo.Utilisateur;
@@ -12,9 +20,24 @@ public class SupprimerServlet extends HttpServlet {
 
 	  public SupprimerServlet() {
 	        super();
-	
+	  }
 	   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		   //en jsp
+//		   <form method="get" action="Test" >
+//
+//		   <p><input type="submit"  value="Delete" /></p>
+//
+//		   </form>
+//
+//		   
 		   
+		  // UtilisateurManager user = UtilisateurManager.getInstance();
+		    //userDelete = request.getParameterValues("delete");
+		   
+		   
+		   
+		   
+	
 		   // initialisation erreur
 		   
 			List<Integer> listeCodesErreur = new ArrayList<>();
@@ -26,9 +49,10 @@ public class SupprimerServlet extends HttpServlet {
 
 			//Suppression utilisateur
 			
-			UtilisateurManager userManager = UtilisateurManager.getInstance();
+			
+			user.getUserByPseudoPassword(login, pass)
 			try {
-				userManager.deleteUtilisateur(currentUser);
+				userManager.deleteUser(currentUser, pseudo);
 			} catch (  e) { // a renseigner !?
 				listeCodesErreur.addAll( e.getListeCodesErreur());
 			}
@@ -61,4 +85,5 @@ public class SupprimerServlet extends HttpServlet {
 			doGet(request, response);
 	   
 	   }
+	  }
 // test envoie git

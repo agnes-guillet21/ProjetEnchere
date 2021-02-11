@@ -47,10 +47,18 @@ public class UtilisateurManager {
 		 try {
 			utilisateurDAO.insert(u1);//Méthode présente dans la DAL
 		} catch (DALException e) {
-			//TODO PERSONNALISATION DE L'ERREUR
 			e.printStackTrace();
 		}		 
 	 }
+public void deleteUser(Utilisateur user, String pseudo) throws SQLException {
+	try {
+		utilisateurDAO.deleteUser(user, pseudo);
+	} catch (DALException e) {
+		e.printStackTrace();
+	}
+}
+
+
 
 	public Utilisateur getUserByPseudoPassword(String login, String pass) {
 		
@@ -93,15 +101,5 @@ public class UtilisateurManager {
 	}
 	
 
-	/*pseudo caractere alphanumerique:
-	 * for ( email : i
-	 * 
-	 * 
-	 *  pseudo et email doivent etre unique 
-	 *  
-	 *  dc si present ds laBDD => pas bon  
-	 *  select , email from Utilisateurs where email = email;
-	 *  si request.getParameter("userpseudo")== select pseudo , email from Utilisateurs where pseudo = pseudo,
-	 */
 	
 }

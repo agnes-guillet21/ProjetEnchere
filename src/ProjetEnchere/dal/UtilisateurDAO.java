@@ -18,4 +18,6 @@ public interface UtilisateurDAO {
 	Utilisateur getUserByPseudo(String pseudo)throws DALException;
 
 	Utilisateur getUserByEmail(String email) throws DALException;
+	
+	void deleteUser(Utilisateur user, String pseudo)throws DALException, SQLException;
 }

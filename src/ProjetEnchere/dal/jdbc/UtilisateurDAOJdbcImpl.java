@@ -130,7 +130,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 			u = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
 			u.setNoUtilisateur(rs.getInt(1));
-			
+
 			stmt.close();
 			cnx.close();
 
@@ -191,15 +191,66 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 			user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
 			user.setNoUtilisateur(rs.getInt(1));
-			
+
 			stmt.close();
 			cnx.close();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return user;
 	}
+
+	public void deleteUser(Utilisateur user,String pseudo) throws DALException {
+
+		 user =null;
+		PreparedStatement pstmt=null;
+		Connection cnx=null;
+		ResultSet rs=null;
+
+		if(user == null) {
+			throw new DALException("Pas d'utilisateur supprimer dans ma methode delete");
+		}
+
+		try {
+			cnx = DALConnectionProvider.getConnection();
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+
+		try {
+			System.out.println("La connexion est " + (cnx.isClosed()?"fermée":"ouverte") + ".");
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+
+		String delete = "DELETE from UTILISATEURS where pseudo ='?';";
+		delete = delete + "'"+pseudo+"';";
+
+		try {
+			pstmt = cnx.prepareStatement(delete);
+			pstmt.setString(1, user.getPseudo());
+			//execution de la requete
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException("erreur de la suppression de l 'utilisateur: ",e);
+		}finally {//fermeture des ressources
+			try {
+				if(pstmt!=null){
+					pstmt.close();
+				}
+				if(cnx !=null) {
+					cnx.close();
+				}
+			}catch (SQLException e) {
+				throw new DALException("erreur lors de la suppresssio de l'utilisateur :",e);
+			}
+
+		}
+	}
+
+
+
 
 
 	/**
@@ -235,7 +286,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 			u = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
 			u.setNoUtilisateur(id);
-			
+
 			stmt.close();
 			cnx.close();
 
