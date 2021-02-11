@@ -6,11 +6,11 @@ import java.util.List;
 import ProjetEnchere.bll.UtilisateurManager;
 import ProjetEnchere.bo.Utilisateur;
 
-@WebServlet("/ServletSuppressionCompte")
+@WebServlet("/SupprimerServlet")
 public class SupprimerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	  public ServletSuppressionCompte() {
+	  public SupprimerServlet() {
 	        super();
 	
 	   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,7 +51,7 @@ public class SupprimerServlet extends HttpServlet {
 				List<Integer> listeCodeSuccess = new ArrayList<>();
 				listeCodeSuccess.add(/*a renseigner*/.SUPPRESSION_REUSSIE);
 				request.setAttribute("listeCodesSuccess",listeCodeSuccess);
-				this.getServletContext().getRequestDispatcher("/Index").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/ProjetEnchere").forward(request, response);
 			
 			}
 	   }
