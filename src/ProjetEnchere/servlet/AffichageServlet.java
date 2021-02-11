@@ -1,4 +1,4 @@
-package ProjetEnchere.servlets;
+package ProjetEnchere.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public class AffichageServlet extends HttpServlet {
     	}
     		
     		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    			//TODO Auto-generated method stub
+
     			doGet(request, response);
 	}
 

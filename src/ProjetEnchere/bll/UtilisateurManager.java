@@ -99,6 +99,10 @@ public void deleteUser(Utilisateur user, String pseudo) throws SQLException {
 			return null;
 		}	
 	}
+
+	public Utilisateur getUtilisateurById(int id) {
+		return null;
+	}
 	
 
 	
