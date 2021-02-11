@@ -16,6 +16,7 @@ import ProjetEnchere.dal.DAOFactory;
 import ProjetEnchere.dal.UtilisateurDAO;
 import ProjetEnchere.dal.jdbc.DALException;
 import ProjetEnchere.dal.jdbc.UtilisateurDAOJdbcImpl;
+import sun.security.util.Length;
 
 /**
  * Servlet implementation class SInscrireServlet
@@ -83,13 +84,18 @@ public class SInscrireServlet extends HttpServlet {
 
 
 		request.getRequestDispatcher("/ProjetEnchere").forward(request, response);
-
-
-
-
-
-
-
 	}
-
+	private void validationMP(String motDePasse, String confirMP)throws Exception{
+		if(motDePasse !=null && motDePasse.trim().length() !=0 && confirMP != null &&
+				confirMP.trim().length()!=0) {
+			if(!motDePasse.equals(confirMP)) {
+				throw new Exception("Les mots de passe entrés sont différents, merci de les saisir à nouveau.");
+			}
+		}else {
+			throw new Exception("Merci de saisir et de confirmer votre mot de passe");
+		}
+	}
+	private void validationEmail(String email) {
+		
+	}
 }

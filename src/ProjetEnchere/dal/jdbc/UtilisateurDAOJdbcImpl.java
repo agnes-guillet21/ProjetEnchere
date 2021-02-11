@@ -190,9 +190,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 			user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
 			user.setNoUtilisateur(rs.getInt(1));
-
-			cnx.close();
+			
 			stmt.close();
+			cnx.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
