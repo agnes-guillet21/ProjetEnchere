@@ -1,6 +1,7 @@
 package ProjetEnchere.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
@@ -91,19 +92,18 @@ public class SInscrireServlet extends HttpServlet {
 		//			System.out.println("Caractères non autorisés pour le pseudo");
 		//		}
 		//	
-
-
-
-
-
-
 		//faire appelle a mon truc qui permet d enregistrer en base
 		//	methode insert exist ds ma dal  masi on ne veut pas l appeler directmt
 		// utiliser l utilisateurmanager
 
 		// on utilise tt par l utilisateurDAOJdbcimpl
 		Utilisateur u1 = new Utilisateur(pseudo,nom,prenom,email,tel,rue,cp,ville,motDePasse,0);
-		UtilisateurManager.getInstance().InsertUtilisateur(u1);
+		try {
+			UtilisateurManager.getInstance().InsertUtilisateur(u1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		//test methode insert
 		System.out.println("Ajout d'un utilisateur... ");
@@ -111,7 +111,7 @@ public class SInscrireServlet extends HttpServlet {
 		System.out.println("Utilisateur ajoute  : " + u1.toString() );
 
 
-		request.getRequestDispatcher("/WEB-INF/jsp/acceuil.jsp").forward(request, response);
+		request.getRequestDispatcher("/ProjetEnchere").forward(request, response);
 
 
 
