@@ -54,46 +54,17 @@ public class SInscrireServlet extends HttpServlet {
 		String nom=request.getParameter("username");
 		String prenom=request.getParameter("userfirstname");
 		String email=request.getParameter("usermail");
-		//		if("email".equals("email from Utilisateurs where email = email")){
-		//			System.out.println("un compte avec cet email existe deja");
-		//		}else{
-		//			request.getParameter("usermail");
-		//			}
 		String tel=request.getParameter("userphone");
 		String rue=request.getParameter("user_street");
 		String cp=request.getParameter("usercp");
 		String ville=request.getParameter("city");
 		String motDePasse=request.getParameter("spassword");
 		String confirMP=request.getParameter("spassword2");
-		//		if(motDePasse.equals(confirMP) {
-		//			request.getParameter("spassword");
-		//		}else {
-		//			System.out.println("les deux mots de passes ne sont pas identiques");
-		//		}
+
 		request.setCharacterEncoding("UTF-8");
 
-		/*
-		 * if("email".equals(email from Utilisateurs where email = email){
-		 * System.out.println("un compte avec cet email existe deja");
-		 * }else{
-		 * request.getParameter("usermail");
-		 * }
-		 * 
-		 *  pseudo et email doivent etre unique 
-		 *  
-		 *  dc si present ds laBDD => pas bon  
-		 *  select , email from Utilisateurs where email = email;
-		 *  si request.getParameter("userpseudo")== select pseudo , email from Utilisateurs where pseudo = pseudo,
-		 */
-		//pseudo caractere alphanumerique:
-		//			if(request.getParameter("userpseudo"){
-		//				request.getParameter("userpseudo");
-		//		}else {
-		//			System.out.println("Caractères non autorisés pour le pseudo");
-		//		}
-		//	
 		//faire appelle a mon truc qui permet d enregistrer en base
-		//	methode insert exist ds ma dal  masi on ne veut pas l appeler directmt
+		//	methode insert exist ds ma dal  mais on ne veut pas l appeler directmt
 		// utiliser l utilisateurmanager
 
 		// on utilise tt par l utilisateurDAOJdbcimpl
