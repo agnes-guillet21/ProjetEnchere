@@ -45,7 +45,7 @@ Page d'acceuil
 		    <div class="col-md-4">
 		    </div>
 		    <div class="col-md-4">
-                 <h3>Liste des enchères</h3>
+                 <h3>Nouvelle Vente</h3>
 		    </div>
 		    <div class="col-md-4">
 		    </div>

@@ -35,4 +35,9 @@ public class CategorieManager {
 		return instance;
 	}
 
+	public Categorie selectByName(String parameter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
