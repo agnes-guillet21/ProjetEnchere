@@ -8,20 +8,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
-<title>
-Page d'acceuil
-</title>
+<title>Page d'acceuil</title>
 </head>
 <body>
 
 	<div class="container-fluid">
 		<header class="header">
-
 			<div class="row">
 				<div class="col-md-3">
 					<p>ENI-Encheres</p>
@@ -56,7 +53,7 @@ Page d'acceuil
                         <p>Filtres :</p>
             <form class="rechercher" method="post" action="/ProjetEnchere">
                 
-                    <input type="search" placeholder="le nom de l'article contient"name="srecherche" size="25" id="lookup" /><br>
+                    <input type="search" placeholder="le nom de l'article contient"name="srecherche" id="lookup" /><br>
                     </div>
                     <div class="col-md-5">
                          <input type="text" name="sbarrerecherche" value="Recherche">
