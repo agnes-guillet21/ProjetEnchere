@@ -50,6 +50,7 @@ public class UtilisateurManager {
 			e.printStackTrace();
 		}		 
 	 }
+
 public void deleteUser(Utilisateur user, String pseudo) throws SQLException {
 	try {
 		utilisateurDAO.deleteUser(user, pseudo);
@@ -59,6 +60,16 @@ public void deleteUser(Utilisateur user, String pseudo) throws SQLException {
 }
 
 
+
+
+	
+	/**
+	 * Méthode permettant de récupérer un Utilisateur den fontion de son pseudo et de son mot de passe
+	 * @param String login
+	 * @param String pass
+	 * @return Utilisateur user si login et mdp ok. 
+	 * @return null si le mode passe ou le login ne sont pas bons
+	 */
 
 	public Utilisateur getUserByPseudoPassword(String login, String pass) {
 		
