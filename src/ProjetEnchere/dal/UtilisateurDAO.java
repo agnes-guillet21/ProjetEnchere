@@ -11,11 +11,17 @@ import ProjetEnchere.dal.jdbc.DALException;
 public interface UtilisateurDAO {
 
 
-	//besoin d un select d un utilisateur par son pseudo 
 
-	void insert ( Utilisateur u1)throws DALException, SQLException;
+	void insert ( Utilisateur utilisateur)throws DALException, SQLException;
 
-	Utilisateur getUserByPseudo(String pseudo)throws DALException;
+	void delete(Utilisateur utilisateur) throws DALException;
+	
+	void update(Utilisateur utilisateur) throws DALException;
 
-	Utilisateur getUserByEmail(String email) throws DALException;
+	List<Utilisateur> select() throws DALException;
+	
+	Utilisateur selectConnexion(String identifiant, String password) throws DALException;
+	
+	Utilisateur selectPseudo(String pseudo) throws DALException;
+	
 }
