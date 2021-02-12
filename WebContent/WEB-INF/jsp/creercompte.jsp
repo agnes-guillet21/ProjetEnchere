@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,26 +16,28 @@
         <div>
             <label for="pseudo">Pseudo :</label>
             <input type="text" id="pseudo" name="userpseudo" value="" size="30" maxlength="30">
-             <!--le pseudo doit etre unique & n'accepte que des caracteres alaphanumerique -->
+             <span class="erreur">${erreurs['userpseudo']}</span>
         </div>
         </br>
 
         <div>
             <label for="name">Nom :</label>
             <input type="text" id="name" name="username" value="" size="30" maxlength="30">
+            <span class="erreur">${erreurs['username']}</span>
         </div>
         </br>
 
         <div>
             <label for="prenom">Prenom :</label>
             <input id="prenom" name="userfirstname" value="" size="30" maxlength="30"></input>
+            <span class="erreur">${erreurs['userfirstname']}</span>
         </div>
         </br>
 
         <div>
             <label for="mail">e-mail :</label>
             <input type="email" id="mail" name="usermail" value="" size="30" maxlength="100">
-            <!--doit etre unique-->
+           <span class="erreur">${erreurs['userfirstname']}</span>
         </div>
         </br>
 

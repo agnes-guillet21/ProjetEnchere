@@ -26,6 +26,16 @@ import ProjetEnchere.dal.jdbc.UtilisateurDAOJdbcImpl;
 @WebServlet("/inscription.html")
 public class SInscrireServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public static final String PSEUDO ="userpseudo";
+	public static final String NOM ="username";
+	public static final String PRENOM="userfirstname";
+	public static final String EMAIL = "usermail";
+	public static final String TEL="userphone";
+	public static final String RUE="user_street";
+	public static final String CP="usercp";
+	public static final String VILLE="city";
+	public static final String ATT_ERREURS="erreurs";
+	public static final String ATT_RESULTAT= "resultat";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -45,11 +55,10 @@ public class SInscrireServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String resultat;
 		//  creation hasmap pr les erreurs
-		//Map<String, String> erreurs = new HashMap<String, String>();
+		Map<String, String> erreurs = new HashMap<String, String>();
 
-
-		//appel a mes methode de validation de formulaire
 
 
 		//recuperer ts les infos ds les champs du formulaire
@@ -63,34 +72,64 @@ public class SInscrireServlet extends HttpServlet {
 		String ville=request.getParameter("city");
 		String motDePasse=request.getParameter("spassword");
 		String confirMP=request.getParameter("spassword2");
-
-		//validationMP(motDePasse, confirMP);
-		//validationFormulaire(pseudo, nom, prenom, email, tel, rue, cp, ville);
-		//UtilisateurManager u1 = UtilisateurManager.getInstance().verificationEmail(email);
 		
 		request.setCharacterEncoding("UTF-8");
 		//faire appelle a mon truc qui permet d enregistrer en base
-		//	methode insert exist ds ma dal  mais on ne veut pas l appeler directmt
-		// utiliser l utilisateurmanager
-		// on utilise tt par l utilisateurDAOJdbcimpl
-		Utilisateur u1 = new Utilisateur(pseudo,nom,prenom,email,tel,rue,cp,ville,motDePasse,0);
+				//	methode insert exist ds ma dal  mais on ne veut pas l appeler directmt
+				// utiliser l utilisateurmanager
+				// on utilise tt par l utilisateurDAOJdbcimpl
+				Utilisateur u1 = new Utilisateur(pseudo,nom,prenom,email,tel,rue,cp,ville,motDePasse,0);
+				try {
+					// besoin d une instance de mon utilisateur manager , dc vreation de variable 
+					UtilisateurManager user = new UtilisateurManager();
+					user.InsertUtilisateur(u1);
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+		//VERIFACATION 
+				
 		try {
-			UtilisateurManager.getInstance().InsertUtilisateur(u1);
-		} catch (SQLException e) {
-			e.printStackTrace();
+			validationMP(motDePasse, confirMP);
+			validationFormulaire(pseudo, nom, prenom, email, tel, rue, cp, ville);
+			UtilisateurManager utilisateur = UtilisateurManager.getInstance().verificationEmail(email);
+		}catch (Exception e) {
+			erreurs.put(PSEUDO, e.getMessage());
+			erreurs.put(NOM, e.getMessage());
+			erreurs.put(PRENOM, e.getMessage());
+			erreurs.put(EMAIL, e.getMessage());
+			erreurs.put(TEL, e.getMessage());
+			erreurs.put(RUE, e.getMessage());
+			erreurs.put(CP, e.getMessage());
+			erreurs.put(VILLE, e.getMessage());
+			//gerer les erreur de valaidation ici
 		}
+
+		
+		//initialisation du resultat global de la validation
+		if(erreurs.isEmpty()) {
+			resultat= "Succes de l'inscription.";
+		}else  {
+			resultat = "Echec de l inscription";
+		}
+
+		//Stockage du resultat et des messages d'erreur dans l objet request
+		request.setAttribute(ATT_ERREURS, erreurs);
+		request.setAttribute(ATT_RESULTAT, resultat);
 
 		//test methode insert
 		System.out.println("Ajout d'un utilisateur... ");
-		// ca c est mon insertion en base!
 		System.out.println("Utilisateur ajoute  : " + u1.toString() );
-
+		
+		
+		//redirection  sur la page d acceuil en mode connecter.
 		request.getRequestDispatcher("/ProjetEnchere").forward(request, response);
 	}
 
 
 
-	//methodes validation MP et formulaire
+	//METHODE VALIDATION FORMULAIRE a externaliser b
 
 	private void validationMP(String motDePasse, String confirMP)throws Exception{
 		if(motDePasse !=null && motDePasse.trim().length() !=0 && confirMP != null &&
@@ -104,7 +143,12 @@ public class SInscrireServlet extends HttpServlet {
 			throw new Exception("Merci de saisir et de confirmer votre mot de passe");
 		}
 	}
+	
+	
 	private void validationFormulaire(String pseudo, String nom, String prenom,String email,String tel,String rue, String cp,String ville) throws Exception {
+		//creation variable bll exception
+		//bll excpt je vais decla ma hashmap
+		//il ne faut pas que je lance une exception  , je veux juste alimenter ma mah avc mon mess correspondant 
 		if(pseudo != null && !pseudo.matches("[A-Za-z0-9_]+")){
 			throw new Exception("caractere incorrectes, merci de saisir un autre pseudo");
 		}

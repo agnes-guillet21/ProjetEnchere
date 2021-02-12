@@ -18,22 +18,22 @@ public class UtilisateurManager {
 	private UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	//charger une instance de utilisateurdaojbc impl via lafactory
 
-	private static UtilisateurManager instance;
-	//sert a pouvoir appeler des methodes  qui st des methodes ds la dal
 	
+
 	// pr obtenir une instance de utilsateur dao 
 	//qui est une instance  utilisateurdaojbc impl
+	
 	
 	/**
 	 * Méthode permettant d'obtenir une instance d'UtilisateurManager
 	 * @return une instance d'ArticleVenduManager
 	 */
-	public static UtilisateurManager getInstance() {
-		if(instance == null) {
-			instance = new UtilisateurManager();
-		}
-		return instance;
-	}
+//	public static UtilisateurManager getInstance() {
+//		if(instance == null) {
+//			instance = new UtilisateurManager();
+//		}
+//		return instance;
+//	}
 
 	/**
 	 * Méthode insert une Instance d'Utilisateur dans la base de données
