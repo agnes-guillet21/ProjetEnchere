@@ -74,6 +74,24 @@ public class UtilisateurManager {
 		}
 		
 	}
+	
+	public Utilisateur verificationEmail(String email) {
+		Utilisateur user = new Utilisateur();
+		boolean checkFormulaire;
+		
+		try {
+			user = utilisateurDAO.getUserByEmail(email);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		if(user.getEmail().isEmpty()) {
+			return user;	
+		}else {
+			checkFormulaire = false;
+			return null;
+		}	
+	}
+	
 
 	/*pseudo caractere alphanumerique:
 	 * for ( email : i

@@ -17,4 +17,5 @@ public interface UtilisateurDAO {
 
 	Utilisateur getUserByPseudo(String pseudo)throws DALException;
 
+	Utilisateur getUserByEmail(String email) throws DALException;
 }
