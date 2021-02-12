@@ -95,18 +95,18 @@
 					
 					<div>
 			            <label for="rue">Rue:</label>
-			            <input type="text" id="rue" name="rue" size="30" value="" size="30" maxlength="30" placeholder="${user.getRue() }">
+			            <input type="text" id="rue" name="rue" size="30" value="${user.getRue() }" size="30" maxlength="30" ">
 			        </div>
 		
 			        <div>
 			            <label for="codePostal">Code Postal :</label>
-			            <input type="text" id="cp" name="usercp" value="" size="30" maxlength="10" placeholder="${user.getCodepostal() }">
+			            <input type="text" id="cp" name="codePostal" value="${user.getCodepostal() }" size="30" maxlength="10">
 			        </div>
 			        </br>
 			
 			        <div>
 			            <label for="ville">Ville :</label>
-			            <input type="text" id="ville" name="city" value="" size="30" maxlength="30" placeholder="${user.getVille() }">
+			            <input type="text" id="ville" name="ville" value="${user.getVille() }" size="30" maxlength="30">
 			        </div>
 			        </br>
 			

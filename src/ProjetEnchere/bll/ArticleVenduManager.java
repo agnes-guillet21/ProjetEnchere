@@ -44,4 +44,9 @@ public class ArticleVenduManager {
 			}
 		
 	}
+
+	public void insert(ArticleVendu a) {
+		// TODO Auto-generated method stub
+		
+	}
 }
