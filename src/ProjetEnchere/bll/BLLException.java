@@ -1,5 +1,10 @@
 package ProjetEnchere.bll;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import ProjetEnchere.servlet.SInscrireServlet;
+
 /**
  * Classe gérant les messages d'erreurs survenant dans la couche BLL 
  * @author Team F
@@ -7,6 +12,11 @@ package ProjetEnchere.bll;
  */
 public class BLLException extends Exception {
 
+//  creation hasmap pr les erreurs
+	public	Map<String, String> erreurs = new HashMap<String, String>();
+		
+		
+		
 	//Constructeurs
 	public BLLException() {
 		super();
@@ -18,6 +28,7 @@ public class BLLException extends Exception {
 	
 	public BLLException(String message, Throwable exception) {
 		super(message, exception);
+		//modification
 	}
 
 	@Override
@@ -27,5 +38,18 @@ public class BLLException extends Exception {
 		
 		return sb.toString() ;
 	}
+// la je creer une methode pr personnalisation
+	public String getMessageErreur(String message) {
+		StringBuffer sb = new StringBuffer("Couche BLL - ");
+		if(message.equals("pseudo")) {
+			sb.append("caractere incorrectes, merci de saisir un autre pseudo");
+			return sb.toString() ;
+		}
+		return sb.toString() ;
+		
+		
+	}
+
+	
 }
 
