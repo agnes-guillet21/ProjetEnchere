@@ -45,8 +45,13 @@ public class ArticleVenduManager {
 		
 	}
 
+	/**
+	 * Méthode permettant d'insérer une nouvelle vente (objet de type ArticleVendu) dans la base de donnée
+	 * @param ArticleVendu a
+	 */
 	public void insert(ArticleVendu a) {
-		// TODO Auto-generated method stub
+		
+		articleVenduDAO.insert(a);
 		
 	}
 }
