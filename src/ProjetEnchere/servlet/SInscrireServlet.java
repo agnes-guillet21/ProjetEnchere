@@ -75,39 +75,53 @@ public class SInscrireServlet extends HttpServlet {
 				//	methode insert exist ds ma dal  mais on ne veut pas l appeler directmt
 				// utiliser l utilisateurmanager
 				// on utilise tt par l utilisateurDAOJdbcimpl
+		
 				Utilisateur u1 = new Utilisateur(pseudo,nom,prenom,email,tel,rue,cp,ville,motDePasse,0);
 				try {
-					// besoin d une instance de mon utilisateur manager , dc vreation de variable 
+					// besoin d une instance de mon utilisateur manager , dc creation de variable 
 					UtilisateurManager user = new UtilisateurManager();
-					user.InsertUtilisateur(u1);
-					user.validationMP(motDePasse, confirMP);
+					
+					try {
+						user.InsertUtilisateur(u1);
+					} catch (SQLException e2) {
+						e2.printStackTrace();
+					}
+					try {
+						user.validationMP(motDePasse, confirMP);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 					user.verificationEmail(email);
-					user.validationFormulaire(pseudo, nom, prenom, email, tel, rue, cp, ville);
-				} catch (BLLException e) {
-					e.erreurs.put(PSEUDO, e.getMessageErreur(PSEUDO));//.put qui alimente ma hashmap
-					e.erreurs.put(NOM, e.getMessageErreur(NOM));
-					e.erreurs.put(PRENOM, e.getMessageErreur(PRENOM));
-					e.erreurs.put(EMAIL, e.getMessageErreur(EMAIL));
-					e.erreurs.put(TEL, e.getMessageErreur(TEL));
-					e.erreurs.put(RUE, e.getMessageErreur(RUE));
-					e.erreurs.put(CP, e.getMessageErreur(CP));
-					e.erreurs.put(VILLE, e.getMessageErreur(VILLE));
+					try {
+						user.validationFormulaire(pseudo, nom, prenom, email, tel, rue, cp, ville);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+//				} catch (BLLException e) {
+//					e.erreurs.put(PSEUDO, e.getMessageErreur(PSEUDO));//.put qui alimente ma hashmap
+//					e.erreurs.put(NOM, e.getMessageErreur(NOM));
+//					e.erreurs.put(PRENOM, e.getMessageErreur(PRENOM));
+//					e.erreurs.put(EMAIL, e.getMessageErreur(EMAIL));
+//					e.erreurs.put(TEL, e.getMessageErreur(TEL));
+//					e.erreurs.put(RUE, e.getMessageErreur(RUE));
+//					e.erreurs.put(CP, e.getMessageErreur(CP));
+//					e.erreurs.put(VILLE, e.getMessageErreur(VILLE));
 					//gerer les erreur de valaidation ici
-				}
+//					}
 
 		//VERIFICATION 
 				
 	
 		//initialisation du resultat global de la validation
-		if(erreurs.isEmpty()) {
-			resultat= "Succes de l'inscription.";
-		}else  {
-			resultat = "Echec de l inscription";
-		}
-
-		//Stockage du resultat et des messages d'erreur dans l objet request
-		request.setAttribute(ATT_ERREURS, erreurs);
-		request.setAttribute(ATT_RESULTAT, resultat);
+//		if(erreurs.isEmpty()) {
+//			resultat= "Succes de l'inscription.";
+//		}else  {
+//			resultat = "Echec de l inscription";
+//		}
+//
+//		//Stockage du resultat et des messages d'erreur dans l objet request
+//		request.setAttribute(ATT_ERREURS, erreurs);
+//		request.setAttribute(ATT_RESULTAT, resultat);
 
 		//test methode insert
 		System.out.println("Ajout d'un utilisateur... ");
@@ -117,7 +131,7 @@ public class SInscrireServlet extends HttpServlet {
 		//redirection  sur la page d acceuil en mode connecter.
 		request.getRequestDispatcher("/ProjetEnchere").forward(request, response);
 	}
-
+	}
 
 
 

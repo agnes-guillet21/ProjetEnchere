@@ -18,7 +18,6 @@ public class UtilisateurManager {
 	private UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	//charger une instance de utilisateurdaojbc impl via lafactory
 
-	
 
 	// pr obtenir une instance de utilsateur dao 
 	//qui est une instance  utilisateurdaojbc impl
@@ -28,20 +27,20 @@ public class UtilisateurManager {
 	 * Méthode permettant d'obtenir une instance d'UtilisateurManager
 	 * @return une instance d'ArticleVenduManager
 	 */
-//	public static UtilisateurManager getInstance() {
+	
+//	public static UtilisateurManager getInstance() { patter singleton 
 //		if(instance == null) {
 //			instance = new UtilisateurManager();
 //		}
 //		return instance;
 //	}
 
-	/**
-	 * Méthode insert une Instance d'Utilisateur dans la base de données
-	 * Utilisée lors de la création d'un nouvel utilisateur
-	 * Fait appel à la méthode présent dans la DAL
-	 * Demande une instance d'Utilisateur en paramètre
-	 * @param Utilisateur u1
-	 * @throws SQLException 
+
+	
+	/*	 Methode : validation formulaire, validationMP verificationEmail
+	 * utilisee pr valider l inscription
+	 * 
+	 * 
 	 */
 	public void validationFormulaire(String pseudo, String nom, String prenom,String email,String tel,String rue, String cp,String ville) throws Exception {
 		//creation variable bll exception
@@ -90,6 +89,32 @@ public class UtilisateurManager {
 		}
 	}
 	
+	public Utilisateur verificationEmail(String email) {
+		Utilisateur user = new Utilisateur();
+		boolean checkFormulaire;
+		
+		try {
+			user = utilisateurDAO.getUserByEmail(email);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		if(user.getEmail().isEmpty()) {
+			return user;	
+		}else {
+			checkFormulaire = false;
+			return null;
+		}	
+	}
+	
+	/**
+	 * Méthode insert une Instance d'Utilisateur dans la base de données
+	 * Utilisée lors de la création d'un nouvel utilisateur
+	 * Fait appel à la méthode présent dans la DAL
+	 * Demande une instance d'Utilisateur en paramètre
+	 * @param Utilisateur u1
+	 * @throws SQLException 
+	 */
+	
 	public void InsertUtilisateur(Utilisateur u1) throws SQLException {
 		 try {
 			utilisateurDAO.insert(u1);//Méthode présente dans la DAL
@@ -127,34 +152,5 @@ public class UtilisateurManager {
 		}
 		
 	}
-	
-	public Utilisateur verificationEmail(String email) {
-		Utilisateur user = new Utilisateur();
-		boolean checkFormulaire;
-		
-		try {
-			user = utilisateurDAO.getUserByEmail(email);
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
-		if(user.getEmail().isEmpty()) {
-			return user;	
-		}else {
-			checkFormulaire = false;
-			return null;
-		}	
-	}
-	
 
-	/*pseudo caractere alphanumerique:
-	 * for ( email : i
-	 * 
-	 * 
-	 *  pseudo et email doivent etre unique 
-	 *  
-	 *  dc si present ds laBDD => pas bon  
-	 *  select , email from Utilisateurs where email = email;
-	 *  si request.getParameter("userpseudo")== select pseudo , email from Utilisateurs where pseudo = pseudo,
-	 */
-	
 }

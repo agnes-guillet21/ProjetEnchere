@@ -29,7 +29,7 @@ public interface UtilisateurDAO {
 
 	Utilisateur getUserByEmail(String email) throws DALException;
 	
-	void deleteUser(Utilisateur user, String pseudo)throws DALException,SQLException;
-
+	
+	Utilisateur getUserByPseudo(String pseudo) throws DALException;
 
 }
