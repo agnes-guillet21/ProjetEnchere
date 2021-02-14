@@ -248,11 +248,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 	@Override
 	public void delete(Utilisateur utilisateur) throws DALException {
-		 Connection cnx=null;
+		 	Connection cnx=null;
 	        PreparedStatement pstmt = null;
 	        ResultSet rs = null;
 	       
-	        String delete ="delete from UTILISATEURS WHERE pseudo='?';";
+	        String delete ="delete from UTILISATEURS WHERE pseudo=?;";
 	        try {
 	            cnx = DALConnectionProvider.getConnection();
 	            pstmt = cnx.prepareStatement(delete);

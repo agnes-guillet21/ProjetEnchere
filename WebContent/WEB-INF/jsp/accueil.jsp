@@ -42,13 +42,14 @@
 		    <div class="col-md-4">
 		    </div>
 		    <div class="col-md-4">
-                 <h3>Nouvelle Vente</h3>
+                 <h3>Listes des Ventes</h3>
 		    </div>
 		    <div class="col-md-4">
 		    </div>
 	    </div>
 	    </br>
 		 <div class="row">
+		 <div class="col-md-1"></div>
                      <div class="col-md-5">
                         <p>Filtres :</p>
             <form class="rechercher" method="post" action="/ProjetEnchere">
@@ -67,6 +68,7 @@
                  </div>
              </br>
                  <div class="row">
+                 <div class="col-md-1"></div>
                       <div class="col-md-8">
                          <label for="catégorie" method="get">Catégorie : </label>
                          <select name="scategorie" id="categorie">
@@ -78,29 +80,43 @@
                         <!-- il y a "&" entre sport et loisir   -->
                         </select>
                      </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                          </div>
                  </div>
              </form>
 
-		<div>
-			<!-- il y aura un article  -->
-			<p>ArticleVendu</p>
-			
-			<c:if test="${empty listeEncheres.size()}">				
-				<p>Aucune vente en cours</p>		
-			</c:if>
-			
-			<p>Il y a ${listeEncheres.size()} ventes.</p>				
-				<c:forEach var="v" items="${listeEncheres}">
-					<div>
-						<p>${v.nomArticle}</p>
-						<p>Prix : ${v.prixVente} points</p>
-						<p>Fin de l'enchère : ${v.dateFinEncheres}</p>
-						<p>Vendeur : ${v.utilisateurVendeur.getPseudo()}</p>
-					</div><br>
-				</c:forEach>					
-
+		<div class="row">
+		<div class="col-md-1"></div>
+            <div class="col-md-11">
+                <c:if test="${empty listeEncheres.size()}">
+                    <div>				
+                        <p>Aucune vente en cours</p>
+                    </div>		
+                </c:if>
+                
+                <c:if test="${!empty listeEncheres.size()}">
+                    <p>Il y a ${listeEncheres.size()} ventes.</p>
+                </c:if>
+            </div>
+        </div>
+        <br>    
+        <div class="row"> 
+        <div class="col-md-1"></div>
+        	<div class="col-md-10">
+        		<div class="row">
+					<c:forEach var="v" items="${listeEncheres}">
+						<div class="card bg-default col-md-5 m-1 p-0">
+							<h5 class="card-header"><c:if test="${!empty user}"><a href=""></c:if>${v.nomArticle}<c:if test="${!empty user}"></a></c:if></h5>
+							<div class="card-text">
+								<p>Prix : ${v.prixVente} points</p>
+								<p>Fin de l'enchère : ${v.dateFinEncheres}</p>
+							</div>
+							<div class="card-footer">Vendeur : <c:if test="${!empty user}"><a href=""></c:if>${v.utilisateurVendeur.getPseudo()}<c:if test="${!empty user}"></a></c:if></div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>						
+            <div class="col-md-1"></div>    
 		</div>
 	</div>
 	 <footer>
