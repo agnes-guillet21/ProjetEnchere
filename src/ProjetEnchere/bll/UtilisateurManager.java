@@ -152,5 +152,8 @@ public class UtilisateurManager {
 		}
 		
 	}
+	 public void delete(Utilisateur utilisateur)throws DALException {
+		this.utilisateurDAO.delete(utilisateur);//appelle a ma methode ds utilisateur dao 
+	 }
 
 }

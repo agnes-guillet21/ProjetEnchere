@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import ProjetEnchere.bll.UtilisateurManager;
 import ProjetEnchere.bo.Utilisateur;
+import ProjetEnchere.dal.jdbc.DALException;
 
 @WebServlet("/SupprimerServlet")
 public class SupprimerServlet extends HttpServlet {
@@ -30,19 +31,20 @@ public class SupprimerServlet extends HttpServlet {
 
 			//Récup utilisateur
 			
-			HttpSession session = request.getSession();
+			HttpSession session = (HttpSession) request.getSession().getAttribute("user");
 			Utilisateur currentUser = (Utilisateur) session.getAttribute("user");
 
 			//Suppression utilisateur
 			UtilisateurManager userManager = new UtilisateurManager();
 			try {
-				userManager.deleteUtilisateur(currentUser);
-			} catch (  e) { // a renseigner !?
-				listeCodesErreur.addAll( e.getListeCodesErreur());
+				userManager.delete(currentUser);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+		
 			
 			//Déco utilisateur
-			
 			session.removeAttribute("user");
 			session.invalidate();
 			
@@ -57,7 +59,7 @@ public class SupprimerServlet extends HttpServlet {
 			
 			}else {
 				List<Integer> listeCodeSuccess = new ArrayList<>();
-				listeCodeSuccess.add(/*a renseigner*/.SUPPRESSION_REUSSIE);
+				//listeCodeSuccess.add(/*a renseigner*/.SUPPRESSION_REUSSIE);
 				request.setAttribute("listeCodesSuccess",listeCodeSuccess);
 				this.getServletContext().getRequestDispatcher("/ProjetEnchere").forward(request, response);
 			
