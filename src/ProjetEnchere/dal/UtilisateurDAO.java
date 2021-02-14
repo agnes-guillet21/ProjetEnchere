@@ -26,10 +26,10 @@ public interface UtilisateurDAO {
 	
 	Utilisateur selectPseudo(String pseudo) throws DALException;
 	
+
 	Utilisateur getUserByEmail(String email) throws DALException;
 	
-	void deleteUser(Utilisateur user, String pseudo)throws DALException, SQLException;
-
+	
 	Utilisateur getUserByPseudo(String pseudo) throws DALException;
 
 }

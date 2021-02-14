@@ -18,23 +18,94 @@ public class UtilisateurManager {
 	private UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	//charger une instance de utilisateurdaojbc impl via lafactory
 
-	private static UtilisateurManager instance;
-	//sert a pouvoir appeler des methodes  qui st des methodes ds la dal
-	
+
 	// pr obtenir une instance de utilsateur dao 
 	//qui est une instance  utilisateurdaojbc impl
+	
 	
 	/**
 	 * Méthode permettant d'obtenir une instance d'UtilisateurManager
 	 * @return une instance d'ArticleVenduManager
 	 */
-	public static UtilisateurManager getInstance() {
-		if(instance == null) {
-			instance = new UtilisateurManager();
-		}
-		return instance;
-	}
+	
+//	public static UtilisateurManager getInstance() { patter singleton 
+//		if(instance == null) {
+//			instance = new UtilisateurManager();
+//		}
+//		return instance;
+//	}
 
+
+	
+	/*	 Methode : validation formulaire, validationMP verificationEmail
+	 * utilisee pr valider l inscription
+	 * 
+	 * 
+	 */
+	public void validationFormulaire(String pseudo, String nom, String prenom,String email,String tel,String rue, String cp,String ville) throws Exception {
+		//creation variable bll exception
+		//bll excpt je vais decla ma hashmap
+		//il ne faut pas que je lance une exception  , je veux juste alimenter ma mah avc mon mess correspondant 
+		if(pseudo != null && !pseudo.matches("[A-Za-z0-9_]+")){
+			throw new Exception("caractere incorrectes, merci de saisir un autre pseudo");
+		}
+		if(nom != null && nom.trim().length()>30) {
+			throw new Exception("le nom ne doit pas dépasser 30 caracteres, merci de saisir un autre nom");
+		}
+		if(prenom != null && prenom.trim().length()>30) {
+			throw new Exception("le prénom ne doit pas dépasser 30 caracteres, merci de saisir un autre prenom");
+		}
+		if(email != null && email.trim().length()>100) {
+			if(!email.matches("([^.@]+)(\\\\.[^.@]+)*@([^.@]+\\\\.)+([^.@]+)")) {
+				throw new Exception(" Merci de saisir une adresse mail valide.");
+			}
+		}else {
+			throw new Exception("l'email ne doit pas dépasser 20 caracteres");
+		}
+		if (tel != null && !tel.matches("\\+?[0-9][0-9][0-9]([0-9][0-9])+")){ // pas sur de ce regex
+			throw new Exception("Merci de saisir un numéro de téléphone valide.");
+		}
+		if(rue != null && rue.trim().length()>50) {
+			throw new Exception("Merci de saisir un nom de rue valide.");
+		}
+		if(cp != null && rue.trim().length()>50) {
+			throw new Exception("Merci de saisir un code postal valide.");
+		}
+		if(ville != null && ville.trim().length()>30) {
+			throw new Exception("Merci de saisir un nom de ville valide.");
+		}
+
+	}
+	public void validationMP(String motDePasse, String confirMP)throws Exception{
+		if(motDePasse !=null && motDePasse.trim().length() !=0 && confirMP != null &&
+				confirMP.trim().length()!=0) {
+			if(!motDePasse.equals(confirMP)) {
+				throw new Exception("Les mots de passe entrés sont différents, merci de les saisir à nouveau.");
+			}else if(motDePasse.trim().length()>30) {
+				throw new Exception("le mot de passe ne doit pas depasser 30 caracteres");
+			}
+		}else {
+			throw new Exception("Merci de saisir et de confirmer votre mot de passe");
+		}
+	}
+	
+	public Utilisateur verificationEmail(String email) {
+		Utilisateur user = new Utilisateur();
+		boolean checkFormulaire;
+		
+		try {
+			user = utilisateurDAO.getUserByEmail(email);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		if(user.getEmail().isEmpty()) {
+			return user;	
+		}else {
+			checkFormulaire = false;
+			return null;
+		}	
+	}
+	
 	/**
 	 * Méthode insert une Instance d'Utilisateur dans la base de données
 	 * Utilisée lors de la création d'un nouvel utilisateur
@@ -43,6 +114,7 @@ public class UtilisateurManager {
 	 * @param Utilisateur u1
 	 * @throws SQLException 
 	 */
+	
 	public void InsertUtilisateur(Utilisateur u1) throws SQLException {
 		 try {
 			utilisateurDAO.insert(u1);//Méthode présente dans la DAL
@@ -67,7 +139,6 @@ public class UtilisateurManager {
 		try {
 			user = utilisateurDAO.getUserByPseudo(login);//Méthode présente dans la DAL
 		} catch (DALException e) {
-			//TODO PERSONNALISATION DE L'ERREUR
 			e.printStackTrace();
 		}
 		
@@ -81,34 +152,8 @@ public class UtilisateurManager {
 		}
 		
 	}
-	
-	public Utilisateur verificationEmail(String email) {
-		Utilisateur user = new Utilisateur();
-		boolean checkFormulaire;
-		
-		try {
-			user = utilisateurDAO.getUserByEmail(email);
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
-		if(user.getEmail().isEmpty()) {
-			return user;	
-		}else {
-			checkFormulaire = false;
-			return null;
-		}	
-	}
-	
+	 public void delete(Utilisateur utilisateur)throws DALException {
+		this.utilisateurDAO.delete(utilisateur);//appelle a ma methode ds utilisateur dao 
+	 }
 
-	/*pseudo caractere alphanumerique:
-	 * for ( email : i
-	 * 
-	 * 
-	 *  pseudo et email doivent etre unique 
-	 *  
-	 *  dc si present ds laBDD => pas bon  
-	 *  select , email from Utilisateurs where email = email;
-	 *  si request.getParameter("userpseudo")== select pseudo , email from Utilisateurs where pseudo = pseudo,
-	 */
-	
 }

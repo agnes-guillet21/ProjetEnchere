@@ -45,7 +45,7 @@ public class SeConnecterServlet extends HttpServlet {
 		String login = request.getParameter("susername");
 		String pass = request.getParameter("spassword");
 
-		UtilisateurManager userManager = UtilisateurManager.getInstance();
+		UtilisateurManager userManager = new UtilisateurManager();
 
 		Utilisateur user = userManager.getUserByPseudoPassword(login, pass); // verif utilisateur
 		
@@ -54,8 +54,8 @@ public class SeConnecterServlet extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp").forward(request, response);
 		}else {
 		// session utilis.
-		HttpSession session = request.getSession();
-		session.setAttribute("user", user);
+		HttpSession session = request.getSession();// recu les sessions ds la variable sessaion
+		session.setAttribute("user", user);// creer une session
 		this.getServletContext().getRequestDispatcher("/ProjetEnchere").forward(request, response);
 		// retour accueil
 		}
