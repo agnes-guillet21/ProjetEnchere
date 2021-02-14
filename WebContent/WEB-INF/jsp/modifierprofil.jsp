@@ -69,12 +69,13 @@
 	            
 	            
 	            <div>
-	            	<form action="suppression" method="post">
+	            	<form action="suppression" method="get">
 	            		<button id="delete" name="delete">
 	            		
 	            			Supprimer mon compte
 	            			
 	            		</button>
+	            		
 	            	</form>
 	            </div>
 	            	
