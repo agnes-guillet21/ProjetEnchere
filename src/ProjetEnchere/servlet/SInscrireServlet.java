@@ -97,27 +97,27 @@ public class SInscrireServlet extends HttpServlet {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-//				} catch (BLLException e) {
-//					e.erreurs.put(PSEUDO, e.getMessageErreur(PSEUDO));//.put qui alimente ma hashmap
-//					e.erreurs.put(NOM, e.getMessageErreur(NOM));
-//					e.erreurs.put(PRENOM, e.getMessageErreur(PRENOM));
-//					e.erreurs.put(EMAIL, e.getMessageErreur(EMAIL));
-//					e.erreurs.put(TEL, e.getMessageErreur(TEL));
-//					e.erreurs.put(RUE, e.getMessageErreur(RUE));
-//					e.erreurs.put(CP, e.getMessageErreur(CP));
-//					e.erreurs.put(VILLE, e.getMessageErreur(VILLE));
+				} catch (BLLException e) {
+					e.erreurs.put(PSEUDO, e.getMessageErreur(PSEUDO));//.put qui alimente ma hashmap
+					e.erreurs.put(NOM, e.getMessageErreur(NOM));
+					e.erreurs.put(PRENOM, e.getMessageErreur(PRENOM));
+					e.erreurs.put(EMAIL, e.getMessageErreur(EMAIL));
+					e.erreurs.put(TEL, e.getMessageErreur(TEL));
+					e.erreurs.put(RUE, e.getMessageErreur(RUE));
+					e.erreurs.put(CP, e.getMessageErreur(CP));
+					e.erreurs.put(VILLE, e.getMessageErreur(VILLE));
 					//gerer les erreur de valaidation ici
-//					}
+					}
 
 		//VERIFICATION 
 				
 	
 		//initialisation du resultat global de la validation
-//		if(erreurs.isEmpty()) {
-//			resultat= "Succes de l'inscription.";
-//		}else  {
-//			resultat = "Echec de l inscription";
-//		}
+		if(erreurs.isEmpty()) {
+			resultat= "Succes de l'inscription.";
+		}else  {
+			resultat = "Echec de l inscription";
+		}
 //
 //		//Stockage du resultat et des messages d'erreur dans l objet request
 //		request.setAttribute(ATT_ERREURS, erreurs);

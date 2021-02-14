@@ -245,9 +245,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}
 		return u;
 	}
-<<<<<<< HEAD
-}
-=======
+
 
 
 
@@ -307,7 +305,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 	@Override
 	public Utilisateur selectPseudo(String pseudo) throws DALException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -324,4 +321,4 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 
 
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
+
