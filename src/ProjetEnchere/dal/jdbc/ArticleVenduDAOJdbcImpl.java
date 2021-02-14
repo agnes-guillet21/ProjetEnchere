@@ -73,7 +73,12 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 		return listeVentes;
 	}
 
-	@Override
+	/**
+	 * Méthode permettant d'afficher une liste d'Articles en vente en fonction des critères de recherches
+	 * @return une liste d'objet de types ArticleVendu
+	 * @throws BLLException
+	 * @Override
+	 */
 	public List<ArticleVendu> listerVentesParCriteres() throws DALException {
 		// TODO Auto-generated method stub
 		return null;
