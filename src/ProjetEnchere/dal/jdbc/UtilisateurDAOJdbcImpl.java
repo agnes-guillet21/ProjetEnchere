@@ -245,6 +245,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}
 		return u;
 	}
+<<<<<<< HEAD
+}
+=======
 
 
 
@@ -321,3 +324,4 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 
 
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
