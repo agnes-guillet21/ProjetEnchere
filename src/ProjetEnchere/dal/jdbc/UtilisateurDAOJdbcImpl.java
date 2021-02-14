@@ -255,9 +255,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String delete ="delete  from UTILISATEURS";
+		String delete ="delete from UTILISATEURS WHERE pseudo='?';";
 		try {
+			cnx = DALConnectionProvider.getConnection();
 			pstmt = cnx.prepareStatement(delete);
+			pstmt.setString(1, utilisateur.getPseudo());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new DALException("erreur lors de la suppression de l'utilisateur :",e);
