@@ -245,12 +245,3 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		return u;
 	}
 }
-
-
-
-
-
-
-
-
-
