@@ -1,4 +1,4 @@
-package ProjetEnchere.servlets;
+package ProjetEnchere.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;

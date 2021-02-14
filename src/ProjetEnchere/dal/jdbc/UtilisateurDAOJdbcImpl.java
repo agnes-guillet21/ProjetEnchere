@@ -245,11 +245,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}
 		return u;
 	}
-<<<<<<< HEAD
-}
-=======
-
-
 
 	@Override
 	public void delete(Utilisateur utilisateur) throws DALException {
@@ -316,12 +311,3 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 }
 
-
-
-
-
-
-
-
-
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
