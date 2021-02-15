@@ -102,7 +102,7 @@
 					
 					<div>
 			            <label for="rue">Rue:</label>
-			            <input type="text" id="rue" name="rue" size="30" value="${user.getRue() }" size="30" maxlength="30" ">
+			            <input type="text" id="rue" name="rue" size="30" value="${user.getRue() }" size="30" maxlength="30">
 			        </div>
 		
 			        <div>
