@@ -22,7 +22,7 @@ public class SupprimerServlet extends HttpServlet {
 	  public SupprimerServlet() {
 	        super();
 	  }
-	
+	  
 	   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		   
 		   // initialisation erreur

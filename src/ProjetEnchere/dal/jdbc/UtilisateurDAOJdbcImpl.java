@@ -204,7 +204,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 
 	/**
-	 * Méthode permettant de récupérer un utilisateur de la BDD grace à son numméro utilisateur
+	 * Méthode permettant de récupérer un utilisateur de la BDD grace à son numéro utilisateur
 	 * @param noUtilisateur id
 	 * @return Utilisateur
 	 * @throws DALException
@@ -247,15 +247,13 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	}
 
 
-
-
 	@Override
 	public void delete(Utilisateur utilisateur) throws DALException {
 		Connection cnx=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String delete ="delete from UTILISATEURS WHERE pseudo='?';";
+		String delete ="delete from UTILISATEURS WHERE pseudo=?;";
 		try {
 			cnx = DALConnectionProvider.getConnection();
 			pstmt = cnx.prepareStatement(delete);
@@ -314,13 +312,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 
 }
-
-
-
-
-
-
-
 
 
 

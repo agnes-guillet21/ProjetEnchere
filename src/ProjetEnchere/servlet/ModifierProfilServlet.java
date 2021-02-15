@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import ProjetEnchere.bll.UtilisateurManager;
 import ProjetEnchere.bo.Utilisateur;
+import ProjetEnchere.dal.jdbc.DALException;
 
 // Implementation Acceuil
 
@@ -44,9 +45,10 @@ public class ModifierProfilServlet extends HttpServlet {
 				String rue = request.getParameter("rue").trim();
 				String codePostal = request.getParameter("cpo").trim();
 				String ville = request.getParameter("ville").trim();
+				
 			
 				Utilisateur utilisateur = new Utilisateur(utilisateurSession.getNoUtilisateur(), pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
-				mger.modifierUtilisateur(utilisateur);
+				mger.update(utilisateur);
 				
 				session.setAttribute("utilisateur", utilisateur);
 				request.setAttribute("success", "Profil modifié");
@@ -56,7 +58,9 @@ public class ModifierProfilServlet extends HttpServlet {
 			} else {
 				request.setAttribute("error", "Les mots de passe sont différents");
 			}
-		}catch
+		}catch(DALException e) {
+			e.printStackTrace();
+		}
 
 		}
 }			

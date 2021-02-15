@@ -1,4 +1,4 @@
-package ProjetEnchere.servlets;
+package ProjetEnchere.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class AffichageServlet extends HttpServlet {
     			// Initialisation erreurs
     		List<Integer> listeCodesErreur=new ArrayList<>();
 
-    		UtilisateurManager userManager = UtilisateurManager.getInstance(); 
+    		//UtilisateurManager userManager = UtilisateurManager.getInstance(); 
 
     		boolean isCurrentUser = true; // pour afficher le bouton modif ou pas
     		
@@ -37,7 +37,7 @@ public class AffichageServlet extends HttpServlet {
     			isCurrentUser = false;
 
     			try {	
-    				Utilisateur user =  userManager.getUtilisateurById(id); // recup infos utilisateur
+    				//Utilisateur user =  userManager.getUtilisateurById(id); // recup infos utilisateur
     				request.setAttribute("otherUser", user);
     			} catch (Exception e) { // créer exeption !?
     				request.setAttribute(" ",e.get /**liste...*/ ()); // a renseigner

@@ -113,11 +113,11 @@ public class SInscrireServlet extends HttpServlet {
 				
 	
 		//initialisation du resultat global de la validation
-		if(erreurs.isEmpty()) {
-			resultat= "Succes de l'inscription.";
-		}else  {
-			resultat = "Echec de l inscription";
-		}
+//		if(erreurs.isEmpty()) {
+//			resultat= "Succes de l'inscription.";
+//		}else  {
+//			resultat = "Echec de l inscription";
+//		}
 //
 //		//Stockage du resultat et des messages d'erreur dans l objet request
 //		request.setAttribute(ATT_ERREURS, erreurs);
@@ -135,4 +135,4 @@ public class SInscrireServlet extends HttpServlet {
 
 
 
-}
+

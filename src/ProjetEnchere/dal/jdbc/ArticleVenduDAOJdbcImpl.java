@@ -69,24 +69,24 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 				e.printStackTrace();
 			}
 		}
-		
 		return listeVentes;
 	}
 
-	@Override
+	/**
+	 * Méthode permettant d'afficher une liste d'Articles en vente en fonction des critères de recherches
+	 * @return une liste d'objet de types ArticleVendu
+	 * @throws BLLException
+	 * @Override
+	 */
 	public List<ArticleVendu> listerVentesParCriteres() throws DALException {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
 	/**
 	 * Méthode permettant d'insérer une nouvelle vente (objet de type ArticleVendu) dans la base de données
 	 * @param ArticleVendu a
 	 * @Override
 	 */
-	public void insert(ArticleVendu a) {
-		//TODO Méthode à implémenter
-		
+	public void insert(ArticleVendu a) {	
 	}
 
 }

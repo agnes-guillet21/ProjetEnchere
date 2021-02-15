@@ -5,12 +5,10 @@ package ProjetEnchere.dal;
 
 import java.sql.SQLException;
 import java.util.List;
-
 import ProjetEnchere.bo.Utilisateur;
 import ProjetEnchere.dal.jdbc.DALException;
 
 public interface UtilisateurDAO {
-
 
 
 	void insert ( Utilisateur utilisateur)throws DALException, SQLException;
