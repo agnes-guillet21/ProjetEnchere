@@ -1,6 +1,10 @@
 package ProjetEnchere.dal.jdbc;
 
 import java.sql.Connection;
+<<<<<<< HEAD
+import java.sql.Date;
+=======
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,13 +19,23 @@ import ProjetEnchere.dal.ArticleVenduDAO;
 public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 
 	private static final String SELECT_ALL="SELECT no_article, nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie,no_retrait FROM ARTICLES_VENDUS;";
+	private static final String INSERT_VENTE="INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, "
+											+ "prix_initial, prix_vente, no_utilisateur, no_categorie, no_retrait) "
+											+ "VALUES ('?', '?', '?', '?', ?, ?, ?, ?, ?);";
 	private static UtilisateurDAOJdbcImpl utilisateur = new UtilisateurDAOJdbcImpl();
 	
+<<<<<<< HEAD
+	/**
+	 * Méthode permettant de lister toutes les ventes de l'application
+	 * @return List<ArticleVendu> Une liste d'objets de type ArticleVendu
+	 * @throws DALException
+=======
 	
 	/**
 	 * Méthode permettant d'afficher la liste de toutes les ventes
 	 * @return une liste d'objet de types ArticleVendu
 	 * @throws BLLException
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 	 * @Override
 	 */
 	public List<ArticleVendu> listerToutesLesVentes() throws DALException {
@@ -73,14 +87,75 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 	}
 
 	/**
+<<<<<<< HEAD
+	 * Méthode permettant de lister les ventes en fonctions de critères donnés par l'utilisateur
+	 * @return List<ArticleVendu> Une liste d'objets de type ArticleVendu
+	 * @throws DALException
+=======
 	 * Méthode permettant d'afficher une liste d'Articles en vente en fonction des critères de recherches
 	 * @return une liste d'objet de types ArticleVendu
 	 * @throws BLLException
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 	 * @Override
 	 */
 	public List<ArticleVendu> listerVentesParCriteres() throws DALException {
 		return null;
 	}
+<<<<<<< HEAD
+=======
+	
+
+	/**
+	 * Méthode permettant d'ajouter une vente (un ArticleVendu) dans la base de donnée
+	 * @param Une instance d'ArticleVendu aV
+	 * @throws DALException
+	 * @Override
+	 */
+	public void ajouterVente(ArticleVendu articleVendu) throws DALException {
+		Connection cnx = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			cnx = DALConnectionProvider.getConnection();
+			pstmt = cnx.prepareStatement(INSERT_VENTE, Statement.RETURN_GENERATED_KEYS);
+			//(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, no_retrait)
+			pstmt.setString(1, articleVendu.getNomArticle());
+			pstmt.setString(2,articleVendu.getDescription());
+			pstmt.setDate(3, Date.valueOf(articleVendu.getDateDebutEncheres()));
+			pstmt.setDate(4, Date.valueOf(articleVendu.getDateFinEncheres()));
+			pstmt.setInt(5,articleVendu.getMiseAPrix());
+			pstmt.setInt(6,articleVendu.getPrixVente());
+			pstmt.setInt(7,articleVendu.getUtilisateurVendeur().getNoUtilisateur());
+			//TODO Revoir la récupération des Objets liés à ArticleVendu
+			//pstmt.setInt(8,articleVendu.getCategorieArticle().getNoCategorie());
+			pstmt.setInt(8,1);
+			//pstmt.setInt(9,articleVendu.getLieuRetrait().getNoRetrait());
+			pstmt.setInt(9, 1);
+
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				if (pstmt != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 	/**
 	 * Méthode permettant d'insérer une nouvelle vente (objet de type ArticleVendu) dans la base de données
 	 * @param ArticleVendu a

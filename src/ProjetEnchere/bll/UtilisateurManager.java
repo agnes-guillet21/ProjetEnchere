@@ -119,10 +119,21 @@ public class UtilisateurManager {
 		 try {
 			utilisateurDAO.insert(u1);//Méthode présente dans la DAL
 		} catch (DALException e) {
-			//TODO PERSONNALISATION DE L'ERREUR
 			e.printStackTrace();
 		}		 
 	 }
+
+public void deleteUser(Utilisateur user, String pseudo) throws SQLException {
+	try {
+		utilisateurDAO.deleteUser(user, pseudo);
+	} catch (DALException e) {
+		e.printStackTrace();
+	}
+}
+
+
+
+
 	
 	/**
 	 * Méthode permettant de récupérer un Utilisateur den fontion de son pseudo et de son mot de passe
@@ -131,6 +142,7 @@ public class UtilisateurManager {
 	 * @return Utilisateur user si login et mdp ok. 
 	 * @return null si le mode passe ou le login ne sont pas bons
 	 */
+
 	public Utilisateur getUserByPseudoPassword(String login, String pass) {
 		
 		Utilisateur user = new Utilisateur();
@@ -152,14 +164,46 @@ public class UtilisateurManager {
 		}
 		
 	}
+<<<<<<< HEAD
+	
+	public Utilisateur verificationEmail(String email) {
+		Utilisateur user = new Utilisateur();
+		boolean checkFormulaire;
+		
+		try {
+			user = utilisateurDAO.getUserByEmail(email);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		if(user.getEmail().isEmpty()) {
+			return user;	
+		}else {
+			checkFormulaire = false;
+			return null;
+		}	
+	}
+
+	public Utilisateur getUtilisateurById(int id) {
+		return null;
+	}
+	
+=======
 	 public void delete(Utilisateur utilisateur)throws DALException {
 		this.utilisateurDAO.delete(utilisateur);//appelle a ma methode ds utilisateur dao 
 	 }
+<<<<<<< HEAD
 	 
 	 
 	 
 	public  void update(Utilisateur utilisateur) throws DALException{
 		this.utilisateurDAO.update(utilisateur);
 	}
+=======
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 
+<<<<<<< HEAD
+	
+=======
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 }
