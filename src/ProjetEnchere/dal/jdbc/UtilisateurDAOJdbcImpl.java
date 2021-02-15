@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import ProjetEnchere.bo.Utilisateur;
 import ProjetEnchere.dal.DAOFactory;
@@ -254,7 +255,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 
 	/**
-	 * Méthode permettant de récupérer un utilisateur de la BDD grace à son numméro utilisateur
+	 * Méthode permettant de récupérer un utilisateur de la BDD grace à son numéro utilisateur
 	 * @param noUtilisateur id
 	 * @return Utilisateur
 	 * @throws DALException
@@ -295,13 +296,71 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}
 		return u;
 	}
+
+	@Override
+	public void delete(Utilisateur utilisateur) throws DALException {
+		 	Connection cnx=null;
+	        PreparedStatement pstmt = null;
+	        ResultSet rs = null;
+	       
+	        String delete ="delete from UTILISATEURS WHERE pseudo=?;";
+	        try {
+	            cnx = DALConnectionProvider.getConnection();
+	            pstmt = cnx.prepareStatement(delete);
+	            pstmt.setString(1, utilisateur.getPseudo());
+	            pstmt.executeUpdate();
+	        } catch (SQLException e) {
+	            throw new DALException("erreur lors de la suppression de l'utilisateur :",e);
+	        }finally {
+	            try {
+	                //lib des ressources on ferme le stmt et la connexio
+	                if(pstmt!=null) {
+	                    pstmt.close();
+	                }
+	                if(cnx !=null) {
+	                    cnx.close();
+	                }
+	            }catch (SQLException e) {
+	                throw new DALException("erreur de la  suppression  de l'article:", e);
+	        }
+		}
+		
+	}
+
+
+
+	@Override
+	public void update(Utilisateur utilisateur) throws DALException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public List<Utilisateur> select() throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public Utilisateur selectConnexion(String identifiant, String password) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public Utilisateur selectPseudo(String pseudo) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
 }
-
-
-
-
-
-
-
-
 

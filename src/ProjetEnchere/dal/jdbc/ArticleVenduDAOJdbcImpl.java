@@ -1,7 +1,10 @@
 package ProjetEnchere.dal.jdbc;
 
 import java.sql.Connection;
+<<<<<<< HEAD
 import java.sql.Date;
+=======
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import ProjetEnchere.bll.BLLException;
 import ProjetEnchere.bo.ArticleVendu;
 import ProjetEnchere.dal.ArticleVenduDAO;
 
@@ -21,10 +24,18 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 											+ "VALUES ('?', '?', '?', '?', ?, ?, ?, ?, ?);";
 	private static UtilisateurDAOJdbcImpl utilisateur = new UtilisateurDAOJdbcImpl();
 	
+<<<<<<< HEAD
 	/**
 	 * Méthode permettant de lister toutes les ventes de l'application
 	 * @return List<ArticleVendu> Une liste d'objets de type ArticleVendu
 	 * @throws DALException
+=======
+	
+	/**
+	 * Méthode permettant d'afficher la liste de toutes les ventes
+	 * @return une liste d'objet de types ArticleVendu
+	 * @throws BLLException
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 	 * @Override
 	 */
 	public List<ArticleVendu> listerToutesLesVentes() throws DALException {
@@ -77,9 +88,15 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Méthode permettant de lister les ventes en fonctions de critères donnés par l'utilisateur
 	 * @return List<ArticleVendu> Une liste d'objets de type ArticleVendu
 	 * @throws DALException
+=======
+	 * Méthode permettant d'afficher une liste d'Articles en vente en fonction des critères de recherches
+	 * @return une liste d'objet de types ArticleVendu
+	 * @throws BLLException
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 	 * @Override
 	 */
 	public List<ArticleVendu> listerVentesParCriteres() throws DALException {
@@ -136,6 +153,16 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * Méthode permettant d'insérer une nouvelle vente (objet de type ArticleVendu) dans la base de données
+	 * @param ArticleVendu a
+	 * @Override
+	 */
+	public void insert(ArticleVendu a) {
+		//TODO Méthode à implémenter
+		
 	}
 
 }

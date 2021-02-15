@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import ProjetEnchere.bll.UtilisateurManager;
 import ProjetEnchere.bo.Utilisateur;
+import ProjetEnchere.dal.jdbc.DALException;
 
 @WebServlet("/SupprimerServlet")
 public class SupprimerServlet extends HttpServlet {
@@ -21,6 +22,10 @@ public class SupprimerServlet extends HttpServlet {
 	  public SupprimerServlet() {
 	        super();
 	  }
+<<<<<<< HEAD
+=======
+	
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 	   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		   //en jsp
 //		   <form method="get" action="Test" >
@@ -44,21 +49,32 @@ public class SupprimerServlet extends HttpServlet {
 
 			//Récup utilisateur
 			
-			HttpSession session = request.getSession();
+			HttpSession session = (HttpSession) request.getSession().getAttribute("user");
 			Utilisateur currentUser = (Utilisateur) session.getAttribute("user");
 
 			//Suppression utilisateur
+<<<<<<< HEAD
 			
 			
 			user.getUserByPseudoPassword(login, pass)
+=======
+			UtilisateurManager userManager = new UtilisateurManager();
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 			try {
+<<<<<<< HEAD
 				userManager.deleteUser(currentUser, pseudo);
 			} catch (  e) { // a renseigner !?
 				listeCodesErreur.addAll( e.getListeCodesErreur());
+=======
+				userManager.delete(currentUser);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 			}
+		
 			
 			//Déco utilisateur
-			
 			session.removeAttribute("user");
 			session.invalidate();
 			
@@ -73,7 +89,7 @@ public class SupprimerServlet extends HttpServlet {
 			
 			}else {
 				List<Integer> listeCodeSuccess = new ArrayList<>();
-				listeCodeSuccess.add(/*a renseigner*/.SUPPRESSION_REUSSIE);
+				//listeCodeSuccess.add(/*a renseigner*/.SUPPRESSION_REUSSIE);
 				request.setAttribute("listeCodesSuccess",listeCodeSuccess);
 				this.getServletContext().getRequestDispatcher("/ProjetEnchere").forward(request, response);
 			
@@ -85,5 +101,9 @@ public class SupprimerServlet extends HttpServlet {
 			doGet(request, response);
 	   
 	   }
+<<<<<<< HEAD
 	  }
+=======
+}
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 // test envoie git

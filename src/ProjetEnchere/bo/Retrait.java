@@ -16,7 +16,12 @@ public class Retrait {
 	    }
 
 	   
-	    public String getRue() {
+	    public Retrait() {
+			// TODO Auto-generated constructor stub
+		}
+
+
+		public String getRue() {
 	        return rue;
 	    }
 
