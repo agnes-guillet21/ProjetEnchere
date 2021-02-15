@@ -15,9 +15,7 @@ public interface CategorieDAO {
 
 	List<Categorie> selectAll() throws DALException;
 
-<<<<<<< HEAD
-=======
 	Categorie selectById(int id) throws DALException;
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
+
 
 }
