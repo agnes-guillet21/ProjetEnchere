@@ -47,10 +47,10 @@ public class ModifierProfilServlet extends HttpServlet {
 				String ville = request.getParameter("ville").trim();
 				
 			
-				Utilisateur utilisateur = new Utilisateur(utilisateurSession.getNoUtilisateur(), pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
-				mger.update(utilisateur);
+				utilisateurSession = new Utilisateur(utilisateurSession.getNoUtilisateur(), pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
+				mger.update(utilisateurSession);
 				
-				session.setAttribute("utilisateur", utilisateur);
+				session.setAttribute("utilisateur", utilisateurSession);
 				request.setAttribute("success", "Profil modifié");
 				
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/modifierProfil.jsp");

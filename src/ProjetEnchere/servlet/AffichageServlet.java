@@ -38,9 +38,9 @@ public class AffichageServlet extends HttpServlet {
 
     			try {	
     				//Utilisateur user =  userManager.getUtilisateurById(id); // recup infos utilisateur
-    				request.setAttribute("otherUser", user);
+    				request.setAttribute("otherUser", "user");
     			} catch (Exception e) { // créer exeption !?
-    				request.setAttribute(" ",e.get /**liste...*/ ()); // a renseigner
+    				//request.setAttribute(" ",e.get /**liste...*/ ()); // a renseigner
     				e.printStackTrace();
     			}
     			

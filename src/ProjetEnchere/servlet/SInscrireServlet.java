@@ -77,37 +77,25 @@ public class SInscrireServlet extends HttpServlet {
 				// on utilise tt par l utilisateurDAOJdbcimpl
 		
 				Utilisateur u1 = new Utilisateur(pseudo,nom,prenom,email,tel,rue,cp,ville,motDePasse,0);
+				// besoin d une instance de mon utilisateur manager , dc creation de variable 
+				UtilisateurManager user = new UtilisateurManager();
+				
 				try {
-					// besoin d une instance de mon utilisateur manager , dc creation de variable 
-					UtilisateurManager user = new UtilisateurManager();
-					
-					try {
-						user.InsertUtilisateur(u1);
-					} catch (SQLException e2) {
-						e2.printStackTrace();
-					}
-					try {
-						user.validationMP(motDePasse, confirMP);
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-					user.verificationEmail(email);
-					try {
-						user.validationFormulaire(pseudo, nom, prenom, email, tel, rue, cp, ville);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				} catch (BLLException e) {
-					e.erreurs.put(PSEUDO, e.getMessageErreur(PSEUDO));//.put qui alimente ma hashmap
-					e.erreurs.put(NOM, e.getMessageErreur(NOM));
-					e.erreurs.put(PRENOM, e.getMessageErreur(PRENOM));
-					e.erreurs.put(EMAIL, e.getMessageErreur(EMAIL));
-					e.erreurs.put(TEL, e.getMessageErreur(TEL));
-					e.erreurs.put(RUE, e.getMessageErreur(RUE));
-					e.erreurs.put(CP, e.getMessageErreur(CP));
-					e.erreurs.put(VILLE, e.getMessageErreur(VILLE));
-					//gerer les erreur de valaidation ici
-					}
+					user.InsertUtilisateur(u1);
+				} catch (SQLException e2) {
+					e2.printStackTrace();
+				}
+				try {
+					user.validationMP(motDePasse, confirMP);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				user.verificationEmail(email);
+				try {
+					user.validationFormulaire(pseudo, nom, prenom, email, tel, rue, cp, ville);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 
 		//VERIFICATION 
 				
