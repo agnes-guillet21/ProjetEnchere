@@ -1,8 +1,7 @@
 <%@ include file="/WEB-INF/fragments/header.jspf" %>
 
 
-<<<<<<< HEAD
-=======
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +50,7 @@ Page d'acceuil
 		    </div>
 	    </div>
 	    </br>
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
+
 		 <div class="row">
 		 <div class="col-md-1"></div>
                      <div class="col-md-5">
@@ -89,7 +88,7 @@ Page d'acceuil
                  </div>
              </form>
 
-<<<<<<< HEAD
+
 		<div>
 			<!-- il y aura un article  -->
 			<p>ArticleVendu</p>
@@ -107,7 +106,7 @@ Page d'acceuil
 						<p>Vendeur : ${v.utilisateurVendeur.getPseudo()}</p>
 					</div><br>
 				</c:forEach>					
-=======
+
 		<div class="row">
 		<div class="col-md-1"></div>
             <div class="col-md-11">
@@ -140,7 +139,7 @@ Page d'acceuil
 				</div>
 			</div>						
             <div class="col-md-1"></div>    
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
+
 		</div>
 	</div>
 	

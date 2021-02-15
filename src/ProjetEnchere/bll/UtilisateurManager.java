@@ -89,22 +89,22 @@ public class UtilisateurManager {
 		}
 	}
 	
-	public Utilisateur verificationEmail(String email) {
-		Utilisateur user = new Utilisateur();
-		boolean checkFormulaire;
-		
-		try {
-			user = utilisateurDAO.getUserByEmail(email);
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
-		if(user.getEmail().isEmpty()) {
-			return user;	
-		}else {
-			checkFormulaire = false;
-			return null;// a modifier surmt 
-		}	
-	}
+//	public Utilisateur verificationEmail(String email) {
+//		Utilisateur user = new Utilisateur();
+//		boolean checkFormulaire
+//		
+//		try {
+//			user = utilisateurDAO.getUserByEmail(email);
+//		} catch (DALException e) {
+//			e.printStackTrace();
+//		}
+//		if(user.getEmail().isEmpty()) {
+//			return user;	
+//		}else {
+//			checkFormulaire = false;
+//			return null;// a modifier surmt 
+//		}	
+//	}
 	
 	/**
 	 * Méthode insert une Instance d'Utilisateur dans la base de données
@@ -122,17 +122,6 @@ public class UtilisateurManager {
 			e.printStackTrace();
 		}		 
 	 }
-
-public void deleteUser(Utilisateur user, String pseudo) throws SQLException {
-	try {
-		utilisateurDAO.deleteUser(user, pseudo);
-	} catch (DALException e) {
-		e.printStackTrace();
-	}
-}
-
-
-
 
 	
 	/**
@@ -164,8 +153,7 @@ public void deleteUser(Utilisateur user, String pseudo) throws SQLException {
 		}
 		
 	}
-<<<<<<< HEAD
-	
+
 	public Utilisateur verificationEmail(String email) {
 		Utilisateur user = new Utilisateur();
 		boolean checkFormulaire;
@@ -187,23 +175,15 @@ public void deleteUser(Utilisateur user, String pseudo) throws SQLException {
 		return null;
 	}
 	
-=======
+
 	 public void delete(Utilisateur utilisateur)throws DALException {
 		this.utilisateurDAO.delete(utilisateur);//appelle a ma methode ds utilisateur dao 
 	 }
-<<<<<<< HEAD
 	 
 	 
 	 
 	public  void update(Utilisateur utilisateur) throws DALException{
 		this.utilisateurDAO.update(utilisateur);
 	}
-=======
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 }
