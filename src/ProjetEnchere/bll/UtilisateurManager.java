@@ -39,8 +39,6 @@ public class UtilisateurManager {
 	
 	/*	 Methode : validation formulaire, validationMP verificationEmail
 	 * utilisee pr valider l inscription
-	 * 
-	 * 
 	 */
 	public void validationFormulaire(String pseudo, String nom, String prenom,String email,String tel,String rue, String cp,String ville) throws Exception {
 		//creation variable bll exception

@@ -88,15 +88,13 @@ public class SInscrireServlet extends HttpServlet {
 					}
 					try {
 						user.validationMP(motDePasse, confirMP);
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-					user.verificationEmail(email);
-					try {
+						user.verificationEmail(email);
 						user.validationFormulaire(pseudo, nom, prenom, email, tel, rue, cp, ville);
+
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
+					
 				} catch (BLLException e) {
 					e.erreurs.put(PSEUDO, e.getMessageErreur(PSEUDO));//.put qui alimente ma hashmap
 					e.erreurs.put(NOM, e.getMessageErreur(NOM));

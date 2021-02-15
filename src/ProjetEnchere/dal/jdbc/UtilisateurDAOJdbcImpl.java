@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import org.apache.catalina.User;
+
 import ProjetEnchere.bo.Utilisateur;
 import ProjetEnchere.dal.DAOFactory;
 import ProjetEnchere.dal.UtilisateurDAO;
@@ -334,8 +336,47 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 	@Override
 	public void update(Utilisateur utilisateur) throws DALException {
-		// TODO Auto-generated method stub
+		Connection cnx=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			cnx = DALConnectionProvider.getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if(utilisateur == null) {
+			throw new DALException("Pas d'utilisateur creer en parametre de ma methode inserer");
+		}
 
+
+		try {
+			System.out.println("La connexion est " + (cnx.isClosed()?"fermée":"ouverte") + ".");
+		} catch (SQLException e2) {
+			
+			e2.printStackTrace();
+		}
+		
+		String update ="UPDATE UTILISATEURS SET pseudo= nouveauPseudo,nom=?,prenom=?,email=?,telephone=?,code_postal=?,ville=? WHERE pseudo = ancienPseudo";
+			
+		
+		try {
+			pstmt = cnx.prepareStatement(update);
+			//if( Utilisateur.pseudo ==  )
+			pstmt.setString(1, utilisateur.getPseudo());
+			pstmt.setString(2, utilisateur.getNom());
+			pstmt.setString(3, utilisateur.getPrenom());
+			pstmt.setString(4, utilisateur.getEmail());
+			pstmt.setString(5, utilisateur.getTelephone());
+			pstmt.setString(6, utilisateur.getCodepostal());
+			pstmt.setString(7, utilisateur.getVille());
+			pstmt.setString(8, utilisateur.getMotDePasse());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+	
+		//pstmt = cnx.prepareStatement(update);
 	}
 
 
