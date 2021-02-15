@@ -42,43 +42,44 @@ public class SupprimerServlet extends HttpServlet {
 	
 		   // initialisation erreur
 		   
-			List<Integer> listeCodesErreur = new ArrayList<>();
+			//List<Integer> listeCodesErreur = new ArrayList<>();
 
 			//Récup utilisateur
 			
-			HttpSession session = (HttpSession) request.getSession().getAttribute("user");
+			HttpSession session = (HttpSession) request.getSession();
 			Utilisateur currentUser = (Utilisateur) session.getAttribute("user");
 
 			//
 			UtilisateurManager userManager = new UtilisateurManager();
-			Utilisateur user = userManager.getUserByPseudoPassword("login", "pass");
+			
 			try {
 				userManager.delete(currentUser);
 			} catch (DALException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
+			
 			//Déco utilisateur
 			session.removeAttribute("user");
+			request.getRequestDispatcher("//deconnexion.html").forward(request, response);
 			session.invalidate();
 			
 			//Redirection profil
 			
-			if(listeCodesErreur.size() > 0) {
-				request.setAttribute(" ", listeCodesErreur); // a renseigner
-				request.setAttribute("user", currentUser);
-				this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/modifierprofil.jsp").forward(request, response);
-				
-			//Redirection acceuil
+//			if(listeCodesErreur.size() > 0) {
+//				request.setAttribute(" ", listeCodesErreur); // a renseigner
+//				request.setAttribute("user", currentUser);
+//				this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/modifierprofil.jsp").forward(request, response);
+//				
+//			//Redirection acceuil
+//			
+//			}else {
+//				List<Integer> listeCodeSuccess = new ArrayList<>();
+//				//listeCodeSuccess.add(/*a renseigner*/.SUPPRESSION_REUSSIE);
+//				request.setAttribute("listeCodesSuccess",listeCodeSuccess);
+//				this.getServletContext().getRequestDispatcher("/ProjetEnchere").forward(request, response);
 			
-			}else {
-				List<Integer> listeCodeSuccess = new ArrayList<>();
-				//listeCodeSuccess.add(/*a renseigner*/.SUPPRESSION_REUSSIE);
-				request.setAttribute("listeCodesSuccess",listeCodeSuccess);
-				this.getServletContext().getRequestDispatcher("/ProjetEnchere").forward(request, response);
 			
-			}
 	   }
 			
 	   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
