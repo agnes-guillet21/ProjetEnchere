@@ -1,9 +1,11 @@
 package ProjetEnchere.bll;
 
+import java.util.ArrayList;
 import java.util.List;
 import ProjetEnchere.bo.Categorie;
 import ProjetEnchere.dal.CategorieDAO;
 import ProjetEnchere.dal.DAOFactory;
+import ProjetEnchere.dal.jdbc.DALException;
 
 /**
  * Classe g�rant les objets de type Categorie en BLL
@@ -40,9 +42,14 @@ public class CategorieManager {
 		return null; 
 		}
 		
-		public List<Categorie> selectAll() throws DALException{
+		public List<Categorie> selectAll() {
 			List<Categorie> listeCategorie = new ArrayList<Categorie>();
-			listeCategorie = categorieDAO.selectAll();
+			try {
+				listeCategorie = categorieDAO.selectAll();
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return listeCategorie;
 		
 	}
