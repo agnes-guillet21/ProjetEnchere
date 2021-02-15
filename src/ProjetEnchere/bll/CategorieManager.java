@@ -1,12 +1,14 @@
 package ProjetEnchere.bll;
 
+import java.util.ArrayList;
 import java.util.List;
 import ProjetEnchere.bo.Categorie;
 import ProjetEnchere.dal.CategorieDAO;
 import ProjetEnchere.dal.DAOFactory;
+import ProjetEnchere.dal.jdbc.DALException;
 
 /**
- * Classe gérant les objets de type Categorie en BLL
+ * Classe gï¿½rant les objets de type Categorie en BLL
  * @author Team F
  *
  */
@@ -17,7 +19,7 @@ public class CategorieManager {
 	
 	
 	/**
-	 * Méthode permettant d'afficher la liste des catégories
+	 * Mï¿½thode permettant d'afficher la liste des catï¿½gories
 	 * @return Une liste d'objets de type Categorie
 	 */
 	public static List<Categorie> getCategories() {
@@ -25,7 +27,7 @@ public class CategorieManager {
 	}
 	
 	/**
-	 * Méthode permettant d'obtenir une instance de CategorieManager
+	 * Mï¿½thode permettant d'obtenir une instance de CategorieManager
 	 * @return une instance de CategorieManager
 	 */
 	public static CategorieManager getInstance() {
@@ -37,7 +39,14 @@ public class CategorieManager {
 
 	public Categorie selectByName(String parameter) {
 		// TODO Auto-generated method stub
-		return null;
+		return null; 
+		}
+		
+		public List<Categorie> selectAll() throws DALException{
+			List<Categorie> listeCategorie = new ArrayList<Categorie>();
+			listeCategorie = categorieDAO.selectAll();
+			return listeCategorie;
+		
 	}
 
 }

@@ -77,9 +77,9 @@ public class SInscrireServlet extends HttpServlet {
 				// on utilise tt par l utilisateurDAOJdbcimpl
 		
 				Utilisateur u1 = new Utilisateur(pseudo,nom,prenom,email,tel,rue,cp,ville,motDePasse,0);
-				try {
-					// besoin d une instance de mon utilisateur manager , dc creation de variable 
-					UtilisateurManager user = new UtilisateurManager();
+				// besoin d une instance de mon utilisateur manager , dc creation de variable 
+				UtilisateurManager user = new UtilisateurManager();
+				
 					
 					try {
 						user.InsertUtilisateur(u1);
@@ -94,18 +94,23 @@ public class SInscrireServlet extends HttpServlet {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
+	}
+}
 					
-				} catch (BLLException e) {
-					e.erreurs.put(PSEUDO, e.getMessageErreur(PSEUDO));//.put qui alimente ma hashmap
-					e.erreurs.put(NOM, e.getMessageErreur(NOM));
-					e.erreurs.put(PRENOM, e.getMessageErreur(PRENOM));
-					e.erreurs.put(EMAIL, e.getMessageErreur(EMAIL));
-					e.erreurs.put(TEL, e.getMessageErreur(TEL));
-					e.erreurs.put(RUE, e.getMessageErreur(RUE));
-					e.erreurs.put(CP, e.getMessageErreur(CP));
-					e.erreurs.put(VILLE, e.getMessageErreur(VILLE));
-					//gerer les erreur de valaidation ici
-					}
+				 //catch (BLLException e) {
+//					e.erreurs.put(PSEUDO, e.getMessageErreur(PSEUDO));//.put qui alimente ma hashmap
+//					e.erreurs.put(NOM, e.getMessageErreur(NOM));
+//					e.erreurs.put(PRENOM, e.getMessageErreur(PRENOM));
+//					e.erreurs.put(EMAIL, e.getMessageErreur(EMAIL));
+//					e.erreurs.put(TEL, e.getMessageErreur(TEL));
+//					e.erreurs.put(RUE, e.getMessageErreur(RUE));
+//					e.erreurs.put(CP, e.getMessageErreur(CP));
+//					e.erreurs.put(VILLE, e.getMessageErreur(VILLE));
+//					//gerer les erreur de valaidation ici
+//					}
+
+		
+
 
 		//VERIFICATION 
 				
@@ -122,15 +127,14 @@ public class SInscrireServlet extends HttpServlet {
 //		request.setAttribute(ATT_RESULTAT, resultat);
 
 		//test methode insert
-		System.out.println("Ajout d'un utilisateur... ");
-		System.out.println("Utilisateur ajoute  : " + u1.toString() );
-		
-		
-		//redirection  sur la page d acceuil en mode connecter.
-		request.getRequestDispatcher("/ProjetEnchere").forward(request, response);
-	}
-	}
-
-
-
+//		System.out.println("Ajout d'un utilisateur... ");
+//		System.out.println("Utilisateur ajoute  : " + u1.toString() );
+//		
+//		
+//		//redirection  sur la page d acceuil en mode connecter.
+//		request.getRequestDispatcher("/ProjetEnchere").forward(request, response);
+//	}
+//	
+//
+//	
 

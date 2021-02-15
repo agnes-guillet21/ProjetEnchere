@@ -2,55 +2,6 @@
 
 
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-	crossorigin="anonymous">
-<title>
-Page d'acceuil
-</title>
-</head>
-<body>
-
-	<div class="container-fluid">
-		<header class="header">
-
-			<div class="row">
-				<div class="col-md-3">
-					<p>ENI-Encheres</p>
-					<!-- insertion fragments header  Eni-enchere-->
-				</div>
-				<div class="col-md-5"></div>
-				<div class="col-md-4">
-					<c:if test="${empty user}">
-						<a href="connexion.html">S'inscrire - Se connecter </a>
-					</c:if>
-					<c:if test="${!empty user}">
-						<a href="/ProjetEnchere">Enchères</a>
-						<a href="vendre.html">Vendre un article</a>
-						<a href="profil.html">Mon Profil</a>
-						<a href="deconnexion.html">Déconnexion</a>
-					</c:if>
-				</div>
-			</div>
-		</header>
-		   <div class="row">
-		    <div class="col-md-4">
-		    </div>
-		    <div class="col-md-4">
-                 <h3>Listes des Ventes</h3>
-		    </div>
-		    <div class="col-md-4">
-		    </div>
-	    </div>
-	    </br>
-
 		 <div class="row">
 		 <div class="col-md-1"></div>
                      <div class="col-md-5">
@@ -87,25 +38,6 @@ Page d'acceuil
                          </div>
                  </div>
              </form>
-
-
-		<div>
-			<!-- il y aura un article  -->
-			<p>ArticleVendu</p>
-			
-			<c:if test="${empty listeEncheres.size()}">				
-				<p>Aucune vente en cours</p>		
-			</c:if>
-			
-			<p>Il y a ${listeEncheres.size()} ventes.</p>				
-				<c:forEach var="v" items="${listeEncheres}">
-					<div>
-						<p>${v.nomArticle}</p>
-						<p>Prix : ${v.prixVente} points</p>
-						<p>Fin de l'ench�re : ${v.dateFinEncheres}</p>
-						<p>Vendeur : ${v.utilisateurVendeur.getPseudo()}</p>
-					</div><br>
-				</c:forEach>					
 
 		<div class="row">
 		<div class="col-md-1"></div>
