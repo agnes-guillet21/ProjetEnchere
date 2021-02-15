@@ -118,3 +118,5 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 			}
 
 }
+
+// pour git
