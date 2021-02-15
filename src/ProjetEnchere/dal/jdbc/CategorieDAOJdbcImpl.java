@@ -60,4 +60,5 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 				return listeCategorie;
 			}
 		}
+// pour git
 				
