@@ -22,14 +22,9 @@ public class SupprimerServlet extends HttpServlet {
 	  public SupprimerServlet() {
 	        super();
 	  }
-<<<<<<< HEAD
-	  
-=======
-<<<<<<< HEAD
-=======
+
 	
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
+
 	   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		   //en jsp
 //		   <form method="get" action="Test" >
@@ -37,15 +32,13 @@ public class SupprimerServlet extends HttpServlet {
 //		   <p><input type="submit"  value="Delete" /></p>
 //
 //		   </form>
-//
-//		   
-		   
+
+		 
 		  // UtilisateurManager user = UtilisateurManager.getInstance();
 		    //userDelete = request.getParameterValues("delete");
 		   
 		   
-		   
-		   
+
 	
 		   // initialisation erreur
 		   
@@ -56,27 +49,15 @@ public class SupprimerServlet extends HttpServlet {
 			HttpSession session = (HttpSession) request.getSession().getAttribute("user");
 			Utilisateur currentUser = (Utilisateur) session.getAttribute("user");
 
-			//Suppression utilisateur
-<<<<<<< HEAD
-			
-			
-			user.getUserByPseudoPassword(login, pass)
-=======
+			//
 			UtilisateurManager userManager = new UtilisateurManager();
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
+			Utilisateur user = userManager.getUserByPseudoPassword("login", "pass");
 			try {
-<<<<<<< HEAD
-				userManager.deleteUser(currentUser, pseudo);
-			} catch (  e) { // a renseigner !?
-				listeCodesErreur.addAll( e.getListeCodesErreur());
-=======
 				userManager.delete(currentUser);
-			} catch (DALException e) {
+			} catch (DALException e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
+				e1.printStackTrace();
 			}
-		
 			
 			//Déco utilisateur
 			session.removeAttribute("user");
@@ -105,9 +86,5 @@ public class SupprimerServlet extends HttpServlet {
 			doGet(request, response);
 	   
 	   }
-<<<<<<< HEAD
-	  }
-=======
+
 }
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
-// test envoie git
