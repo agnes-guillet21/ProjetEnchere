@@ -1,10 +1,9 @@
 package ProjetEnchere.dal.jdbc;
 
 import java.sql.Connection;
-<<<<<<< HEAD
+
 import java.sql.Date;
-=======
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +23,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 											+ "VALUES ('?', '?', '?', '?', ?, ?, ?, ?, ?);";
 	private static UtilisateurDAOJdbcImpl utilisateur = new UtilisateurDAOJdbcImpl();
 	
-<<<<<<< HEAD
+
 	/**
 	 * Méthode permettant de lister toutes les ventes de l'application
 	 * @return List<ArticleVendu> Une liste d'objets de type ArticleVendu
@@ -101,9 +100,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 	public List<ArticleVendu> listerVentesParCriteres() throws DALException {
 		return null;
 	}
-<<<<<<< HEAD
-=======
-	
+
 
 	/**
 	 * Méthode permettant d'ajouter une vente (un ArticleVendu) dans la base de donnée
@@ -155,7 +152,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 		}
 	}
 
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
+//github.com/agnes-guillet21/ProjetEnchere
 	/**
 	 * Méthode permettant d'insérer une nouvelle vente (objet de type ArticleVendu) dans la base de données
 	 * @param ArticleVendu a

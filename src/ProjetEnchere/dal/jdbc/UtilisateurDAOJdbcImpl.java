@@ -202,53 +202,53 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		return user;
 	}
 
-	public void deleteUser(Utilisateur user,String pseudo) throws DALException {
-
-		 user =null;
-		PreparedStatement pstmt=null;
-		Connection cnx=null;
-		ResultSet rs=null;
-
-		if(user == null) {
-			throw new DALException("Pas d'utilisateur supprimer dans ma methode delete");
-		}
-
-		try {
-			cnx = DALConnectionProvider.getConnection();
-		} catch (SQLException e2) {
-			e2.printStackTrace();
-		}
-
-		try {
-			System.out.println("La connexion est " + (cnx.isClosed()?"fermée":"ouverte") + ".");
-		} catch (SQLException e2) {
-			e2.printStackTrace();
-		}
-
-		String delete = "DELETE from UTILISATEURS where pseudo ='?';";
-		delete = delete + "'"+pseudo+"';";
-
-		try {
-			pstmt = cnx.prepareStatement(delete);
-			pstmt.setString(1, user.getPseudo());
-			//execution de la requete
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			throw new DALException("erreur de la suppression de l 'utilisateur: ",e);
-		}finally {//fermeture des ressources
-			try {
-				if(pstmt!=null){
-					pstmt.close();
-				}
-				if(cnx !=null) {
-					cnx.close();
-				}
-			}catch (SQLException e) {
-				throw new DALException("erreur lors de la suppresssio de l'utilisateur :",e);
-			}
-
-		}
-	}
+	//	public void deleteUser(Utilisateur user,String pseudo) throws DALException {
+	//
+	//		 user =null;
+	//		PreparedStatement pstmt=null;
+	//		Connection cnx=null;
+	//		ResultSet rs=null;
+	//
+	//		if(user == null) {
+	//			throw new DALException("Pas d'utilisateur supprimer dans ma methode delete");
+	//		}
+	//
+	//		try {
+	//			cnx = DALConnectionProvider.getConnection();
+	//		} catch (SQLException e2) {
+	//			e2.printStackTrace();
+	//		}
+	//
+	//		try {
+	//			System.out.println("La connexion est " + (cnx.isClosed()?"fermée":"ouverte") + ".");
+	//		} catch (SQLException e2) {
+	//			e2.printStackTrace();
+	//		}
+	//
+	//		String delete = "DELETE from UTILISATEURS where pseudo ='?';";
+	//		delete = delete + "'"+pseudo+"';";
+	//
+	//		try {
+	//			pstmt = cnx.prepareStatement(delete);
+	//			pstmt.setString(1, user.getPseudo());
+	//			//execution de la requete
+	//			pstmt.executeUpdate();
+	//		} catch (SQLException e) {
+	//			throw new DALException("erreur de la suppression de l 'utilisateur: ",e);
+	//		}finally {//fermeture des ressources
+	//			try {
+	//				if(pstmt!=null){
+	//					pstmt.close();
+	//				}
+	//				if(cnx !=null) {
+	//					cnx.close();
+	//				}
+	//			}catch (SQLException e) {
+	//				throw new DALException("erreur lors de la suppresssio de l'utilisateur :",e);
+	//			}
+	//
+	//		}
+	//	}
 
 
 
@@ -300,11 +300,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 	@Override
 	public void delete(Utilisateur utilisateur) throws DALException {
-<<<<<<< HEAD
+
 		Connection cnx=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		String delete ="delete from UTILISATEURS WHERE pseudo=?;";
 		try {
 			cnx = DALConnectionProvider.getConnection();
@@ -325,34 +325,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			}catch (SQLException e) {
 				throw new DALException("erreur de la  suppression  de l'article:", e);
 			}
-=======
-		 	Connection cnx=null;
-	        PreparedStatement pstmt = null;
-	        ResultSet rs = null;
-	       
-	        String delete ="delete from UTILISATEURS WHERE pseudo=?;";
-	        try {
-	            cnx = DALConnectionProvider.getConnection();
-	            pstmt = cnx.prepareStatement(delete);
-	            pstmt.setString(1, utilisateur.getPseudo());
-	            pstmt.executeUpdate();
-	        } catch (SQLException e) {
-	            throw new DALException("erreur lors de la suppression de l'utilisateur :",e);
-	        }finally {
-	            try {
-	                //lib des ressources on ferme le stmt et la connexio
-	                if(pstmt!=null) {
-	                    pstmt.close();
-	                }
-	                if(cnx !=null) {
-	                    cnx.close();
-	                }
-	            }catch (SQLException e) {
-	                throw new DALException("erreur de la  suppression  de l'article:", e);
-	        }
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
+
 		}
-		
+
 	}
 
 
@@ -360,14 +335,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	@Override
 	public void update(Utilisateur utilisateur) throws DALException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
 
 	@Override
 	public List<Utilisateur> select() throws DALException {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
@@ -375,7 +350,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 	@Override
 	public Utilisateur selectConnexion(String identifiant, String password) throws DALException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

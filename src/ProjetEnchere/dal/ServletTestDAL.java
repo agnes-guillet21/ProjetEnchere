@@ -48,18 +48,18 @@ public class ServletTestDAL extends HttpServlet {
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
-//		String pseudo = "Mamou";
-//		String nom = "Prevost";
-//		String prenom = "Amaury";
-//		String email = "amauryprevost@hotmail.fr";
-//		String telephone = "0631681002";
-//		String rue = "4 allée Richemont";
-//		String codepostal = "44000";
-//		String ville = "NANTES";
-//		String motDePasse = "mdp";
-//		int credit = 100;
+		String pseudo = "Mamou";
+		String nom = "Prevost";
+		String prenom = "Amaury";
+		String email = "amauryprevost@hotmail.fr";
+		String telephone = "0631681002";
+		String rue = "4 allée Richemont";
+		String codepostal = "44000";
+		String ville = "NANTES";
+		String motDePasse = "mdp";
+		int credit = 100;
 //		
-//		Utilisateur u1 = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
+		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
 //		UtilisateurDAO uDAO = DAOFactory.getUtilisateurDAO();
 //		try {
 //
@@ -74,7 +74,7 @@ public class ServletTestDAL extends HttpServlet {
 //			rs.next();
 //			String pseudot = rs.getString("pseudo");
 //			String nomt = rs.getString("nom");
-//			String prenomt = rs.getString("prenom");
+//			String prenomt = rs.getString("prenom"); vv
 //			String emailt = rs.getString("email");
 //			String telephonet = rs.getString("telephone");
 //			String ruet = rs.getString("rue");
@@ -100,41 +100,68 @@ public class ServletTestDAL extends HttpServlet {
 //				e1.printStackTrace();
 //			}
 //		}
-		String pseudo = "a";
-		Utilisateur u = new Utilisateur();
-		String sql = "SELECT no_utilisateur,pseudo, nom, prenom ,email ,telephone, rue, code_postal,ville ,mot_de_passe,credit ,administrateur FROM UTILISATEURS WHERE pseudo=";
-		sql = sql +"'" + pseudo + "';";
-		out.print(sql);
-		Statement stmt;
-		
-		try {
-			Connection cnx = DALConnectionProvider.getConnection();
+//		String pseudo = "a";
+//		Utilisateur u = new Utilisateur();
+//		String sql = "SELECT no_utilisateur,pseudo, nom, prenom ,email ,telephone, rue, code_postal,ville ,mot_de_passe,credit ,administrateur FROM UTILISATEURS WHERE pseudo=";
+//		sql = sql +"'" + pseudo + "';";
+//		out.print(sql);
+//		Statement stmt;
+//		
+//		try {
+//			Connection cnx = DALConnectionProvider.getConnection();
+//			
+//			stmt = cnx.createStatement();
+//						
+//			ResultSet rs = stmt.executeQuery(sql);
+//			rs.next();
+//			String nom = rs.getString("nom");
+//			String prenom = rs.getString("prenom");
+//			String email = rs.getString("email");
+//			String telephone = rs.getString("telephone");
+//			String rue = rs.getString("rue");
+//			String codepostal = rs.getString("code_postal");
+//			String ville = rs.getString("ville");
+//			String motDePasse = rs.getString("mot_de_passe");
+//			int credit = rs.getInt("credit");
+//			
+//			u = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
+//			u.setNoUtilisateur(rs.getInt(1));
+//			
+//			cnx.close();
+//
+//		} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		out.print(u);
+//		
+//		
+		Connection cnx=null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
 			
-			stmt = cnx.createStatement();
-						
-			ResultSet rs = stmt.executeQuery(sql);
-			rs.next();
-			String nom = rs.getString("nom");
-			String prenom = rs.getString("prenom");
-			String email = rs.getString("email");
-			String telephone = rs.getString("telephone");
-			String rue = rs.getString("rue");
-			String codepostal = rs.getString("code_postal");
-			String ville = rs.getString("ville");
-			String motDePasse = rs.getString("mot_de_passe");
-			int credit = rs.getInt("credit");
-			
-			u = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
-			u.setNoUtilisateur(rs.getInt(1));
-			
-			cnx.close();
-
-		} catch (SQLException e) {
+			String delete ="delete from UTILISATEURS WHERE pseudo=?;";
+			try {
+				cnx = DALConnectionProvider.getConnection();
+				pstmt = cnx.prepareStatement(delete);
+				pstmt.setString(1, utilisateur.getPseudo());
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
 				e.printStackTrace();
+			}finally {
+				try {
+					//lib des ressources on ferme le stmt et la connexio
+					if(pstmt!=null) {
+						pstmt.close();
+					}
+					if(cnx !=null) {
+						cnx.close();
+					}
+				}catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
-		out.print(u);
-}
-
+			
+		}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
