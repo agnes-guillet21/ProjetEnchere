@@ -89,23 +89,6 @@ public class UtilisateurManager {
 		}
 	}
 	
-//	public Utilisateur verificationEmail(String email) {
-//		Utilisateur user = new Utilisateur();
-//		boolean checkFormulaire
-//		
-//		try {
-//			user = utilisateurDAO.getUserByEmail(email);
-//		} catch (DALException e) {
-//			e.printStackTrace();
-//		}
-//		if(user.getEmail().isEmpty()) {
-//			return user;	
-//		}else {
-//			checkFormulaire = false;
-//			return null;// a modifier surmt 
-//		}	
-//	}
-	
 	/**
 	 * Méthode insert une Instance d'Utilisateur dans la base de données
 	 * Utilisée lors de la création d'un nouvel utilisateur
@@ -166,8 +149,8 @@ public class UtilisateurManager {
 		if(user.getEmail().isEmpty()) {
 			return user;	
 		}else {
-			checkFormulaire = false;
-			return null;
+		return null;
+			
 		}	
 	}
 
