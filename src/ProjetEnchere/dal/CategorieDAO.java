@@ -18,7 +18,5 @@ public interface CategorieDAO {
 
 	List<Categorie> selectAll() throws DALException;
 
-	Categorie selectById(int id) throws DALException;
-
 
 }
