@@ -249,6 +249,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 	@Override
 	public void delete(Utilisateur utilisateur) throws DALException {
+<<<<<<< HEAD
 		Connection cnx=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -273,6 +274,32 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			}catch (SQLException e) {
 				throw new DALException("erreur de la  suppression  de l'article:", e);
 			}
+=======
+		 	Connection cnx=null;
+	        PreparedStatement pstmt = null;
+	        ResultSet rs = null;
+	       
+	        String delete ="delete from UTILISATEURS WHERE pseudo=?;";
+	        try {
+	            cnx = DALConnectionProvider.getConnection();
+	            pstmt = cnx.prepareStatement(delete);
+	            pstmt.setString(1, utilisateur.getPseudo());
+	            pstmt.executeUpdate();
+	        } catch (SQLException e) {
+	            throw new DALException("erreur lors de la suppression de l'utilisateur :",e);
+	        }finally {
+	            try {
+	                //lib des ressources on ferme le stmt et la connexio
+	                if(pstmt!=null) {
+	                    pstmt.close();
+	                }
+	                if(cnx !=null) {
+	                    cnx.close();
+	                }
+	            }catch (SQLException e) {
+	                throw new DALException("erreur de la  suppression  de l'article:", e);
+	        }
+>>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 		}
 		
 	}
