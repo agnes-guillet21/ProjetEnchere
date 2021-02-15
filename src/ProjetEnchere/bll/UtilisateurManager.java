@@ -47,10 +47,21 @@ public class UtilisateurManager {
 		 try {
 			utilisateurDAO.insert(u1);//Méthode présente dans la DAL
 		} catch (DALException e) {
-			//TODO PERSONNALISATION DE L'ERREUR
 			e.printStackTrace();
 		}		 
 	 }
+
+public void deleteUser(Utilisateur user, String pseudo) throws SQLException {
+	try {
+		utilisateurDAO.deleteUser(user, pseudo);
+	} catch (DALException e) {
+		e.printStackTrace();
+	}
+}
+
+
+
+
 	
 	/**
 	 * Méthode permettant de récupérer un Utilisateur den fontion de son pseudo et de son mot de passe
@@ -59,6 +70,7 @@ public class UtilisateurManager {
 	 * @return Utilisateur user si login et mdp ok. 
 	 * @return null si le mode passe ou le login ne sont pas bons
 	 */
+
 	public Utilisateur getUserByPseudoPassword(String login, String pass) {
 		
 		Utilisateur user = new Utilisateur();
@@ -98,17 +110,11 @@ public class UtilisateurManager {
 			return null;
 		}	
 	}
+
+	public Utilisateur getUtilisateurById(int id) {
+		return null;
+	}
 	
 
-	/*pseudo caractere alphanumerique:
-	 * for ( email : i
-	 * 
-	 * 
-	 *  pseudo et email doivent etre unique 
-	 *  
-	 *  dc si present ds laBDD => pas bon  
-	 *  select , email from Utilisateurs where email = email;
-	 *  si request.getParameter("userpseudo")== select pseudo , email from Utilisateurs where pseudo = pseudo,
-	 */
 	
 }
