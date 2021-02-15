@@ -28,13 +28,6 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 	 * Méthode permettant de lister toutes les ventes de l'application
 	 * @return List<ArticleVendu> Une liste d'objets de type ArticleVendu
 	 * @throws DALException
-=======
-	
-	/**
-	 * Méthode permettant d'afficher la liste de toutes les ventes
-	 * @return une liste d'objet de types ArticleVendu
-	 * @throws BLLException
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 	 * @Override
 	 */
 	public List<ArticleVendu> listerToutesLesVentes() throws DALException {
@@ -86,15 +79,9 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Méthode permettant de lister les ventes en fonctions de critères donnés par l'utilisateur
 	 * @return List<ArticleVendu> Une liste d'objets de type ArticleVendu
 	 * @throws DALException
-=======
-	 * Méthode permettant d'afficher une liste d'Articles en vente en fonction des critères de recherches
-	 * @return une liste d'objet de types ArticleVendu
-	 * @throws BLLException
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
 	 * @Override
 	 */
 	public List<ArticleVendu> listerVentesParCriteres() throws DALException {
@@ -152,7 +139,6 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 		}
 	}
 
-//github.com/agnes-guillet21/ProjetEnchere
 	/**
 	 * Méthode permettant d'insérer une nouvelle vente (objet de type ArticleVendu) dans la base de données
 	 * @param ArticleVendu a
