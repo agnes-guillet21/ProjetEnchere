@@ -93,9 +93,10 @@ public class SInscrireServlet extends HttpServlet {
 						e2.printStackTrace();
 						//gerer la direction 
 						//renvoyer sur la page inscription
+						request.getRequestDispatcher("connexion.html").forward(request, response);
 						// garder les champs et plus message d erreur  => jsp avc EL
 						//pr avoir les messages d erreurs  il faudra passer la hasmap en attribut 
-				
+						
 					}
 						
 
@@ -104,7 +105,7 @@ public class SInscrireServlet extends HttpServlet {
 					//on va lui passer l utilisateur en attribut
 					Utilisateur user1 = user.getUserByPseudoPassword(u1.getPseudo(), u1.getMotDePasse());
 					session.setAttribute("user", user1);
-					request.getRequestDispatcher("connexion.html").forward(request, response);
+					request.getRequestDispatcher("AccueilServlet").forward(request, response);
 	}
 	
 }
