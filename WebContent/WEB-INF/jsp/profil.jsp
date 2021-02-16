@@ -1,60 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Profil</title>
-</head>
-	<body>
-
-				<header>
-				<p>Eni-encheres</p>
-			    <!--faire un fragment-->
-				</header>
-				
-	<body>
+<%@ include file="/WEB-INF/fragments/header.jspf" %>
 	
-	            <form action="" method="post">
-	   
-	                
-	                <label for="pseudo">Pseudo :</label>
-	             <p>${utilisateur.pseudo}<p>
+	                <h3>${user.getPseudo()}</h3>
 					<br>
 	
-	                <label for="name">Nom :</label>
-	             <p>${utilisateur.nom}</p>
+	                <div>Nom :</div>
+	             <div>${user.getNom()}</div>
 					<br>
 	
-					<label for="firstname">PrÃ©nom :</label>
-	             <p>${utilisateur.prenom}</p>
+					<div for="firstname">Prénom :</label>
+	             <span>${user.getPrenom()}</span>
 					<br>
 					
 					<label for="mail">Email :</label>
-	             <p>${utilisateur.email}</p>
+	             <span>${user.getEmail()}</span>
 					<br>
 					
-					<label for="tel">TÃ©lÃ©phone :</label>
-	             <p>${utilisateur.telephone}</p>
+					<label for="tel">Téléphone :</label>
+	             <span>${user.getTelephone()}</span>
 					<br>
 					
 					<label for="address">Rue :</label>
-	             <p>${utilisateur.rue}</p>
+	             <span>${user.getRue()}</span>
 					<br>
 					
 					<label for="cpo">Code Postal :</label>
-	             <p>${utilisateur.codePostal}</p>
+	             <span>${user.getCodepostal()}</span>
 					<br>
 					
 					<label for="city">Ville :</label>
-	             <p>${utilisateur.ville}</p>
+	             <span>${user.getVille()}</span>
 					<br>
-					
-					</form>	
+
 				<div>
 						
 						<a id="modifProfil" href="modifierprofil" class="btn btn-primary">Modifier</a>
 	        	</div>
-	<script></script>
+	
 </body>
 </html>
