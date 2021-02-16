@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ProjetEnchere.bll.UtilisateurManager; // import à completer
 import ProjetEnchere.bo.Utilisateur;
@@ -23,6 +24,12 @@ public class AffichageServlet extends HttpServlet {
     
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	Utilisateur userProfil = (Utilisateur) request.getSession().getAttribute("user");
+    	
+    	request.setAttribute("titreDePage", "Profil");
+    	request.setAttribute("userProfil", userProfil);
+    	request.setAttribute("nomDePage", "PROFIL");
     	this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/profil.jsp").forward(request, response);
     }
     		

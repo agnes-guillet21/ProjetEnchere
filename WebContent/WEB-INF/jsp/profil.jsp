@@ -1,40 +1,43 @@
 <%@ include file="/WEB-INF/fragments/header.jspf" %>
-	
-	                <h3>${user.getPseudo()}</h3>
-					<br>
-	
-	                <div>Nom :</div>
-	             <div>${user.getNom()}</div>
-					<br>
-	
-					<div for="firstname">Prénom :</label>
-	             <span>${user.getPrenom()}</span>
-					<br>
 					
-					<label for="mail">Email :</label>
-	             <span>${user.getEmail()}</span>
-					<br>
+					<div class="row">
+	                <div class="col-md-4"></div><div class="col-md-2">Pseudo :</div><div class="col-md-2">${user.getPseudo()}</div>
+					</div>
 					
-					<label for="tel">Téléphone :</label>
-	             <span>${user.getTelephone()}</span>
-					<br>
+					<div class="row">
+	                	<div class="col-md-4"></div><div class="col-md-2">Nom :</div><div class="col-md-2">${user.getNom()}</div>
+					</div>
 					
-					<label for="address">Rue :</label>
-	             <span>${user.getRue()}</span>
-					<br>
+					<div class="row">
+						<div class="col-md-4"></div><div class="col-md-2">Prénom :</div><div class="col-md-2">${user.getPrenom()}</div>
+					</div>
 					
-					<label for="cpo">Code Postal :</label>
-	             <span>${user.getCodepostal()}</span>
-					<br>
+					<div class="row">
+						<div class="col-md-4"></div><div class="col-md-2">Email :</div><div class="col-md-2">${user.getEmail()}</div>
+					</div>
 					
-					<label for="city">Ville :</label>
-	             <span>${user.getVille()}</span>
-					<br>
-
-				<div>
-						
-						<a id="modifProfil" href="modifierprofil" class="btn btn-primary">Modifier</a>
+					<div class="row">
+						<div class="col-md-4"></div><div class="col-md-2">Téléphone :</div><div class="col-md-2">${user.getTelephone()}</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-4"></div><div class="col-md-2">Rue :</div><div class="col-md-2">${user.getRue()}</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-4"></div><div class="col-md-2">Code Postal :</div><div class="col-md-2">${user.getCodepostal()}</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-4"></div><div class="col-md-2">Ville :</div><div class="col-md-2">${user.getVille()}</div>
+					</div>
+				<br>
+				<div class="row">
+						<div class="col-md-4"></div>
+						<c:if test="${userProfil.getPseudo().equals(user.getPseudo())}">
+							<div class="col-md-4"><a id="modifProfil" href="modifierprofil" class="btn btn-primary">Modifier</a></div>
+						</c:if>	
 	        	</div>
-	
-</body>
-</html>
+	        	
+	        	
+<%@  include file="/WEB-INF/fragments/footer.jspf" %>
