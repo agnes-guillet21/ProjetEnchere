@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ProjetEnchere.bll.BLLException;
 import ProjetEnchere.bll.UtilisateurManager;
@@ -82,46 +83,35 @@ public class SInscrireServlet extends HttpServlet {
 				
 					
 					try {
-						user.InsertUtilisateur(u1);
-					} catch (SQLException e2) {
-						e2.printStackTrace();
-					}
-					try {
-						user.validationMP(motDePasse, confirMP);
-						user.verificationEmail(email);
 						user.validationFormulaire(pseudo, nom, prenom, email, tel, rue, cp, ville);
-
-					} catch (Exception e) {
-						e.printStackTrace();
+						user.validationMP(motDePasse, confirMP);
+						if(user.verificationEmail(email)!= null) 
+						System.out.println("le mail est deja existant");
+						user.InsertUtilisateur(u1);
+						
+					} catch (Exception e2) {
+						e2.printStackTrace();
+						//gerer la direction 
+						//renvoyer sur la page inscription
+						// garder les champs et plus message d erreur  => jsp avc EL
+						//pr avoir les messages d erreurs  il faudra passer la hasmap en attribut 
+				
 					}
+						
+
+			
+					HttpSession session = request.getSession();// on creer une session au moment de l inscription 
+					//on va lui passer l utilisateur en attribut
+					Utilisateur user1 = user.getUserByPseudoPassword(u1.getPseudo(), u1.getMotDePasse());
+					session.setAttribute("user", user1);
+					request.getRequestDispatcher("connexion.html").forward(request, response);
 	}
+	
 }
 					
-				 //catch (BLLException e) {
-//					e.erreurs.put(PSEUDO, e.getMessageErreur(PSEUDO));//.put qui alimente ma hashmap
-//					e.erreurs.put(NOM, e.getMessageErreur(NOM));
-//					e.erreurs.put(PRENOM, e.getMessageErreur(PRENOM));
-//					e.erreurs.put(EMAIL, e.getMessageErreur(EMAIL));
-//					e.erreurs.put(TEL, e.getMessageErreur(TEL));
-//					e.erreurs.put(RUE, e.getMessageErreur(RUE));
-//					e.erreurs.put(CP, e.getMessageErreur(CP));
-//					e.erreurs.put(VILLE, e.getMessageErreur(VILLE));
-//					//gerer les erreur de valaidation ici
-//					}
-
 		
 
 
-		//VERIFICATION 
-				
-	
-		//initialisation du resultat global de la validation
-//		if(erreurs.isEmpty()) {
-//			resultat= "Succes de l'inscription.";
-//		}else  {
-//			resultat = "Echec de l inscription";
-//		}
-//
 //		//Stockage du resultat et des messages d'erreur dans l objet request
 //		request.setAttribute(ATT_ERREURS, erreurs);
 //		request.setAttribute(ATT_RESULTAT, resultat);
@@ -133,6 +123,7 @@ public class SInscrireServlet extends HttpServlet {
 //		
 //		//redirection  sur la page d acceuil en mode connecter.
 //		request.getRequestDispatcher("/ProjetEnchere").forward(request, response);
+//	}
 //	}
 //	
 //

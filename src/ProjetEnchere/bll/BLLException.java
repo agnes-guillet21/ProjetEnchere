@@ -11,25 +11,42 @@ import ProjetEnchere.servlet.SInscrireServlet;
  *
  */
 public class BLLException extends Exception {
+	
+	public static final String ERREUR_PSEUDO ="caractere incorrectes, merci de saisir un autre pseudo";
 	public static final String PSEUDO ="userpseudo";
+	public static final String ERREUR_NOM ="Nom incorrecte, merci de saisir un autre nom";
 	public static final String NOM ="username";
+	public static final String ERREUR_PRENOM ="Prenom incorrecte, merci de saisir un autre prenom";
 	public static final String PRENOM="userfirstname";
+	public static final String ERREUR_EMAIL ="Adresse mail incorrecte, merci de saisir une autre adresse mail";
+	public static final String ERREUR_EMAIL1 ="Taille de l'adresse mail incorrecte, merci de saisir une autre adresse mail";
 	public static final String EMAIL = "usermail";
+	public static final String ERREUR_TEL ="Numero de tel incorrecte, merci de saisir un autre numero telephone";
 	public static final String TEL="userphone";
+	public static final String ERREUR_RUE="Nom de rue incorrecte, merci de saisir un autre nom de rue";
 	public static final String RUE="user_street";
+	public static final String ERREUR_CP="Code postal incorrecte, merci de saisir un autre code postal";
 	public static final String CP="usercp";
+	public static final String ERREUR_VILLE="Ville incorrecte, merci de saisir un autre code postal";
 	public static final String VILLE="city";
-	public static final String ATT_ERREURS="erreurs";
-	public static final String ATT_RESULTAT= "resultat";
+	
+	//public static final String ATT_ERREURS="erreurs";
+	//public static final String ATT_RESULTAT= "resultat";
 
 	//  creation hasmap pr les erreurs
-	public	Map<String, String> erreurs = new HashMap<String, String>();
-
-
+	private	Map<String, String> erreurs ;
+//rajouter un setter 
+	
 
 	//Constructeurs
 	public BLLException() {
 		super();
+	}
+
+	
+	public void setErreurs(Map<String, String> erreurs) {
+		this.erreurs = erreurs;
+		
 	}
 
 	public BLLException(String message) {
@@ -47,48 +64,7 @@ public class BLLException extends Exception {
 		sb.append(super.getMessage());
 		return sb.toString() ;
 	}
-	// la je creer une methode pr personnalisation
-	public String getMessageErreur(String message) {
-		StringBuffer sb = new StringBuffer("Couche BLL - ");
-		if(message.equals(PSEUDO)) {
-			sb.append("caractere incorrectes, merci de saisir un autre pseudo");
-			return sb.toString() ;
-		}
-		if(message.equals(NOM)) {
-			sb.append("Nom incorrecte, merci de saisir un autre nom");
-			return sb.toString() ;
-		}
-		if(message.equals(PRENOM)) {
-			sb.append("Prénom incorrecte, merci de saisir un autre nom");
-			return sb.toString() ;
-		}
-		if(message.equals(EMAIL)) {
-			sb.append("Email incorrecte, merci de saisir une autre mail");
-			return sb.toString() ;
-		}
-		if(message.equals(TEL)) {
-			sb.append("Numéro de télephone incorrecte, merci de saisir un autre numéro");
-			return sb.toString() ;
-		}
-		if(message.equals(RUE)) {
-			sb.append("Numéro de rue incorrecte, merci de saisir un autre numéro");
-			return sb.toString() ;
-		}
-		if(message.equals(CP)) {
-			sb.append("Code Postal incorrecte, merci de saisir un autre Code postal");
-			return sb.toString() ;
-		}
-		if(message.equals(CP)) {
-			sb.append("Code Postal incorrecte, merci de saisir un autre Code postal");
-			return sb.toString() ;
-		}
-		if(message.equals(VILLE)) {
-			sb.append("Nom de ville incorrecte, merci de saisir un autre nom de ville");
-			return sb.toString() ;
-		}
-		return message;
-
-	}
+	
 
 
 
