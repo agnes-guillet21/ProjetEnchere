@@ -26,7 +26,13 @@ public interface UtilisateurDAO {
 	 */
 	void fermer(Utilisateur utilisateur) throws DALException;
 	
-	void update(Utilisateur utilisateur) throws DALException;
+	/**
+	 * Méthode permettant de mettre à jour les informations d'un utilisateur dans la base de données 
+	 * @param Utilisateur
+	 * @return Utilisateur modifié
+	 * @throws DALException
+	 */
+	Utilisateur update(Utilisateur newUtilisateur, Utilisateur utilisateurSession) throws DALException;
 
 	List<Utilisateur> select() throws DALException;
 	

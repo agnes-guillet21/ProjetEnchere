@@ -29,7 +29,8 @@ public class ModifierProfilServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+		request.setAttribute("titreDePage", "Modifier Profil");
+    	request.setAttribute("nomDePage", "MODIFIER MON PROFIL");
 		try {
 			String motDePasse = request.getParameter("password").trim();
 			String checkMotDePasse = request.getParameter("checkPassword").trim();
@@ -37,7 +38,7 @@ public class ModifierProfilServlet extends HttpServlet {
 			if(motDePasse.equals(checkMotDePasse)) {
 				UtilisateurManager mger = new UtilisateurManager();
 				HttpSession session = request.getSession();
-				Utilisateur utilisateurSession = (Utilisateur) session.getAttribute("utilisateur");
+				Utilisateur utilisateurSession = (Utilisateur) session.getAttribute("user");
 					
 				String pseudo = request.getParameter("pseudo").trim();
 				String nom = request.getParameter("nom").trim();
@@ -49,11 +50,11 @@ public class ModifierProfilServlet extends HttpServlet {
 				String ville = request.getParameter("ville").trim();
 				
 			
-				utilisateurSession = new Utilisateur(utilisateurSession.getNoUtilisateur(), pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
-				mger.update(utilisateurSession);
-				
+				Utilisateur newUtilisateur = new Utilisateur(utilisateurSession.getNoUtilisateur(), pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
+				utilisateurSession = mger.update(newUtilisateur,utilisateurSession);
+								
 				session.setAttribute("user", utilisateurSession);
-				request.setAttribute("success", "Profil modifié avec succés");
+				request.setAttribute("succes", "Profil modifié avec succés");
 				
 			} else {
 				request.setAttribute("error", "Les mots de passe sont différents");

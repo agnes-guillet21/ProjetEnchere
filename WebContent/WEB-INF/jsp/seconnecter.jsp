@@ -1,61 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Page de Connexion</title>
-</head>
-<body>
-	</br>
-	<div id="container">
-		<!-- zone de connexion -->
+<%@ include file="/WEB-INF/fragments/header.jspf" %>
 
 		<form action="connexion.html" method="POST">
-			<div>
-				<label>Identifiant</label> <input type="text"
-					placeholder="Entrer le nom d'utilisateur" name="susername" required>
+			
+			<div class="row">
+	             <div class="col-md-4"></div><div class="col-md-1"><label for="susername">Identifiant</label></div>
+	             <div class="col-md-3"><input type="text"
+					placeholder="Entrer le nom d'utilisateur" name="susername" required></div>
 			</div>
-			</br>
 
-			<div>
-				<label>Mot de passe</label> <input type="password"
-					placeholder="Entrer le mot de passe" name="spassword" required>
+			<div class="row">
+				<div class="col-md-4"></div><div class="col-md-1"><label for="spassword">Mot de passe</label></div>
+				<div class="col-md-3"><input type="password"
+					placeholder="Entrer le mot de passe" name="spassword" required></div>
 			</div>
-			</br>
-			<!-- if get username ou get password == null -->
-			<!-- Utilisateur ou mot de passe incorrect-->
-			<div>
-				<input type="submit" id='submit' value='Connexion'>
+			
+			<div class="row">
+				<div class="col-md-4"></div><div class="col-md-3"><input class="btn btn-success" type="submit" id="submit" value="Connexion"></div>
 			</div>
-			</br>
-
-			<div>
-				<input type="checkbox" id="sesouvenir" name="ssouvenir">
+			<br>
+			<div class="row">
+				<div class="col-md-4"></div><div class="col-md-4"><input type="checkbox" id="sesouvenir" name="ssouvenir">
 				<!-- je ne sais pas si je mets une value -->
 				<!--si on veut que se soit coche on fait un checked-->
-				<label for="se souvenir de moi ">Se souvenir de moi </label>
+				<label for="se souvenir de moi ">Se souvenir de moi </label></div>
 			</div>
-			</br>
 		</form>	
-			<div>
-				<a href="">Mot de passe oubliÃ©</a>
-			</div>
-			</br>
-
-			<div>
-				<form action="inscription.html">
-					<button type="Submit" >CrÃ©er un compte</button>
-				</form>
-			</div>
 		
-	<div>
-	    <form action="/ProjetEnchere">
-	    	<button>Annuler</button>
-	    </form>
+			<div class="row">
+				<div class="col-md-4"></div><div class="col-md-4"><a href="">Mot de passe oublié</a></div>
+			</div>
+			<br>
+
+			<div class="row">
+			<div class="col-md-4"></div>
+				<div class="col-md-2">	
+					<a  class="btn btn-primary" href="inscription.html">Créer un compte</a>
+					</form>
+				</div>
+				<div class="col-md-2">
+					<a class="btn btn-primary" href="/ProjetEnchere">Annuler</a>
+				</div>
+		
+			</div>
+	    
 	
-	    <!--redirection sur page d accueil page 1 du pdf -->
-    </div> 
-	</div>
-</body>
-</html>
+<%@  include file="/WEB-INF/fragments/footer.jspf" %>

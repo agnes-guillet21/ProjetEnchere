@@ -33,6 +33,8 @@ public class SeConnecterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("titreDePage", "Connexion");
+    	request.setAttribute("nomDePage", "CONNEXION");
 		request.getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp").forward(request, response);
 	}
 
@@ -56,6 +58,8 @@ public class SeConnecterServlet extends HttpServlet {
 		// session utilis.
 		HttpSession session = request.getSession();// recu les sessions ds la variable sessaion
 		session.setAttribute("user", user);// creer une session
+		request.setAttribute("titreDePage", "Accueil");
+    	request.setAttribute("nomDePage", "LISTE DES VENTES");
 		this.getServletContext().getRequestDispatcher("/ProjetEnchere").forward(request, response);
 		// retour accueil
 		}

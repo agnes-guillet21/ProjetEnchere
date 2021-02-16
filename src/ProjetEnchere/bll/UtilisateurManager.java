@@ -193,9 +193,14 @@ public class UtilisateurManager {
 		} 
 	 }
 	 
-	 
-	public  void update(Utilisateur utilisateur) throws DALException{
-		this.utilisateurDAO.update(utilisateur);
+	/**
+	 * Méthode permettant de mettre à jour les informations d'un utilisateur dans la base de données 
+	 * @param Utilisateur
+	 * @return Utilisateur modifié
+	 * @throws DALException
+	 */
+	public Utilisateur update(Utilisateur newUtilisateur,Utilisateur utilisateurSession) throws DALException{
+		return this.utilisateurDAO.update(newUtilisateur,utilisateurSession);
 	}
 
 }
