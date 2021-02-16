@@ -1,21 +1,30 @@
 package ProjetEnchere.bll;
 
+import java.sql.SQLException;
+
 import ProjetEnchere.bo.Retrait;
+import ProjetEnchere.dal.DAOFactory;
+import ProjetEnchere.dal.RetraitDAO;
+import ProjetEnchere.dal.jdbc.DALException;
 
 public class RetraitManager {
-
+	private RetraitDAO retraitDAO = DAOFactory.getRetraitDAO();
 
 	public RetraitManager() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Retrait selectByCriteres(Retrait r) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
-	public void insert(Retrait r) {
-		// TODO Auto-generated method stub
+	public void insert(Retrait r) throws SQLException {
+		try {
+			retraitDAO.insertLieuRetrait(r);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	/**

@@ -2,6 +2,7 @@ package ProjetEnchere.dal;
 
 import ProjetEnchere.dal.jdbc.ArticleVenduDAOJdbcImpl;
 import ProjetEnchere.dal.jdbc.CategorieDAOJdbcImpl;
+import ProjetEnchere.dal.jdbc.RetraitDAOJdbcImpl;
 import ProjetEnchere.dal.jdbc.UtilisateurDAOJdbcImpl;
 
 /**
@@ -38,5 +39,8 @@ public abstract class DAOFactory {
 		CategorieDAO categorieDAO= new CategorieDAOJdbcImpl();
 		return categorieDAO;
 	}
-
+	public static RetraitDAO getRetraitDAO(){
+		RetraitDAO retraitDAO = new RetraitDAOJdbcImpl();
+		return retraitDAO;
+	}
 }

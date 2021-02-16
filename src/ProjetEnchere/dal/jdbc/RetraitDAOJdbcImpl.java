@@ -6,8 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import ProjetEnchere.bo.Retrait;
+import ProjetEnchere.dal.RetraitDAO;
 
-public class RetraitDAOJdbcImpl {
+public class RetraitDAOJdbcImpl implements RetraitDAO {
 	
 	
 	
