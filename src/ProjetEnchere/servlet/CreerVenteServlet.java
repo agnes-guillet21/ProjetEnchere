@@ -47,8 +47,34 @@ public class CreerVenteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
+	
+//		HttpSession session = request.getSession();
+//		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+//		CategorieManager cMger = new CategorieManager();
+//		List<Categorie> listeCategorie = new ArrayList<Categorie>();
+//		ArticleVenduManager aMger = new ArticleVenduManager();
+//		ArticleVendu a = new ArticleVendu();
 		
+//		try {
+//			listeCategorie = cMger.selectAll();
+//			request.setAttribute("listeCategories", listeCategories);
+//		} catch (DALException ex) {
+//			request.setAttribute("error", ex.getMessage());
+//		}
 		
+
+//		try {
+//		article = aMger.select(noArticle);
+//		request.setAttribute("ArticleVendu", article);
+//	} 	catch (DALException e) {
+//		e.printStackTrace();
+//	}
+//		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/vendrearticle.jsp");
+//		rd.forward(request, response);
+//  }
+
+
+
 		if (request.getSession().getAttribute("user") != null) {
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/vendrearticle.jsp");
 		}else {
