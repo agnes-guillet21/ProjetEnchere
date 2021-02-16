@@ -22,29 +22,13 @@ import ProjetEnchere.bo.ArticleVendu;
 import ProjetEnchere.bo.Categorie;
 import ProjetEnchere.bo.Enchere;
 
+
 /**
  * Servlet implementation class AccueilServlet
  */
-
-
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	String recherche = null;
-	String categorie = "Toutes";
-	String choix = "Tous";
-	String filtreChoix = "EnCours";
-
-//	EnchereManager enchereManager = EnchereManager.getEnchereManager();
-//	CategorieManager categorieManager = CategorieManager.getCategorieManager();
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public AccueilServlet() {
-		super();
-
-	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,28 +36,57 @@ public class AccueilServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		
+		EnchereManager enchereManager = EnchereManager.getEnchereManager();
+		CategorieManager categorieManager = CategorieManager.getCategorieManager();
 		List<ArticleVendu> listeEncheres = new ArrayList<>();
 		ArticleVenduManager aVManager = ArticleVenduManager.getInstance();
-		
-		request.setCharacterEncoding("UTF-8");
-		
-//
-////		List<Categorie> listCat = CategorieManager.getCategories();
+		List<Categorie> listCat = CategorieManager.getCategories();
+		String recherche = null;
+		String categorie = "Toutes";
+		String choix = "Tous";
+		String filtreChoix = "EnCours";
 
-			try {
-				listeEncheres = aVManager.listerToutesLesVentes();
-			} catch (BLLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 
+		
+		request.setCharacterEncoding("UTF-8"); // ???
+		
+		
+		// récup de la catégorie et de rechercher
+		if(request.getParameter("categorie")!=null) {
+			categorie = request.getParameter("categorie");
+		}
+		
+
+		if(request.getParameter("ArticleVendu")!=null) { 			// La nomination n est probablement pas la bonne pour"articlevendu"
+			recherche = request.getParameter("ArticleVendu");
+		}
+		
+		System.out.println(categorie);
+		System.out.println(recherche);
+		
+		try {
+				
+		// Recup liste categories pour select html
+		listeEncheres = aVManager.listerToutesLesVentes();
+		request.setAttribute("listeEncheres", listeEncheres);
+
+		} catch (BLLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+
+			
+			
+			
 ////		for (int i = 0; i < listEnchere.size(); i++) {
 ////			if (listEnchere.get(i).getArticleVendu().getDateDebutEncheres().before(Date.valueOf(LocalDate.now().plusDays(1))))
 ////			{
 ////				processEnchere.add(listEnchere.get(i));
 ////			}
 ////		}
-		request.setAttribute("listeEncheres", listeEncheres);
+			
+	
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 
 		rd.forward(request, response);
