@@ -69,10 +69,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			pstmt.executeUpdate();
 			//recuperer l  identity ay travers du resultset 
 
-						rs = pstmt.getGeneratedKeys();
-						if(rs.next()) {
-							u1.setNoUtilisateur(rs.getInt(1));
-						}
+						//			rs = pstmt.getGeneratedKeys();
+			//			if(rs.next()) {
+			//				u1.setNoUtilisateur(rs.getInt(1));
+			//			}
+			pstmt.close();
 			//			cnx.commit();
 
 			//			rs = pstmt.getGeneratedKeys();
@@ -335,15 +336,16 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 					pstmt.close();
 				}
 				if(cnx !=null) {
-				cnx.close();
+					cnx.close();
 				}
 			}catch (SQLException e) {
-				throw new DALException("erreur de la  suppression  de l'article:", e);
+				throw new DALException("erreur de la  suppression  de l'utilisateur:", e);
 			}
 
 		}
 
 	}
+	
 	
 	/**
 	 * Méthode permettant de vérifier si un utilisateur a des ventes en cours
