@@ -1,178 +1,78 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Modifier mon profil</title>
-</head>
-<body>
-	<header>
-		<h3>Profil</h3>
-	</header>
+<%@ include file="/WEB-INF/fragments/header.jspf" %>
 
-	
+					<div class="row">
+	                <div class="col-md-4"></div><div class="col-md-4"><p>${success}</p></div>
+					</div>
+		
 	            <form action="modifierProfil" method="post">
 	   
-	                
-	                <label for="pseudo">Pseudo :</label>
-	                <input type="text" id="pseudo" name="pseudo" value="${utilisateur.pseudo}">
-					<br>
-	
-	                <label for="nom">Nom :</label>
-	                <input type="text" id="nom" name="nom" value="${utilisateur.nom}">
-					<br>
-	
-					<label for="prenom">Prénom :</label>
-	             	<input type="text" id="prenom" name="prenom" value="${utilisateur.prenom}">
-					<br>
-					
-					<label for="mail">Email :</label>
-	                <input type="email" id="mail" name="mail" value="${utilisateur.email}">
-					<br>
-					
-					<label for="tel">Téléphone :</label>
-	                <input type="tel" id="tel" name="tel" value="${utilisateur.telephone}">
-					<br>
-					
-					<label for="rue">Rue :</label>
-	                <input type="text" id="rue" name="rue" value="${utilisateur.rue}">
-					<br>
-					
-					<label for="cpo">Code Postal :</label>
-	                <input type="text"id="cpo" name="cpo" value="${utilisateur.codePostal}">
-					<br>
-					
-					<label for="ville">Ville :</label>
-	                <input type="text" id="ville" name="ville" value="${utilisateur.ville}">
-					<br>
-					
-					
-					<label for="password">Mot de passe :</label>
-	                <input type="password" id="password" name="password" value="${utilisateur.motDePasse}">
-					<br>
-					
-					<label for="checkPassword">Confirmation :</label>
-	                <input type="password" id="checkPassword" name="checkPassword" value="${utilisateur.motDePasse}">
-					<br>
-					
-					<label for="credit">Credit :</label>
-	                <p>${utilisateur.credit}</p>
-					<br>
-					
-					<div>
-						<p>${success}</p>
-						<button id="save" name="save">Enregistrer</button>
+	                <div class="row">
+	                <div class="col-md-4"></div><div class="col-md-1"><label for="pseudo">Pseudo</label></div>
+	                <div class="col-md-3"><input type="text" id="pseudo" name="pseudo" value="${user.getPseudo()}"></div>
+	                <div class="col-md-4"></div>
 					</div>
-				  </form>
-
-
-		<div>
-			<label for="name">Nom :</label> <input type="text" id="name"
-				name="username">
-		</div>
-		</br>
-
-		<div>
-			<label for="prenom">Prénom :</label> <input id="prenom"
-				name="userfirstname"></input>
-		</div>
-		</br>
-
-		<div>
-			<label for="mail">e-mail :</label> <input type="email" id="mail"
-				name="usermail">
-			<!--doit etre unique-->
-		</div>
-		</br>
-
-		<div>
-			<label for="tel">Téléphone :</label> <input type="text" id="tel"
-				name="userphone">
-		</div>
-		</br>
-
-		<div>
-			<label for="rue">Rue :</label> <input type="text" id="rue"
-				name="userstreet">
-		</div>
-		</br>
-
-		<div>
-			<label for="codePostal">Code Postal :</label> <input type="text"
-				id="cp" name="usercp">
-		</div>
-		</br>
-
-		<div>
-			<label for="ville">Ville:</label> <input type="text" id="ville"
-				name="city">
-		</div>
-		</br>
-
-		<div>
-			<label for="password">Mot de passe:</label> <input type="text"
-				id="s_password" name="spassword">
-		</div>
-		</br>
-
-		<div>
-			<label for="ConfirPassword">Confirmation:</label> <input type="text"
-				id="s_password" name="spassword">
-		</div>
-		</br>
-	</form>
-	</br>
-	<div>
-		<p>Credits :</p>
-	</div>
-	<div>
-		<input type="submit" value="Enregistrer">
-	</div>
-	</br>
-
-	<div>
-		<input type="submit" value="Supprimer mon compte">
-		  <ul>
-
-		 <c:forEach var="utilisateur" items="${ utilisateurs }">
-		             <li>
-		             <c:out value="${ utilisateur.id }" />
-		             <c:out value="${ utilisateur.prenom }" />
-
-		             <c:out value="${ utilisateur.nom }" />
-	            	 <c:out value="${ utilisateur.email }" />
-		     <input type="checkbox" name="delete" value="${ utilisateur }"/>
-
-		             </li>
-
-		         </c:forEach>
-
-		     </ul>    
-		<!--renvoi sur la page d'acceuil-->
-	</div>
-
-	            
-	            
-	            <div>
-	            	<form action="suppression" method="get">
-	            		<button id="delete" name="delete">
-	            		
-	            			Supprimer mon compte
-	            			
-	            		</button>
-	            		
-	            	</form>
-	            </div>
-	            	
-	            <div>
-						
-					<a id="previous" href="profil" class="btn btn-primary">Retour</a>
-	       		</div>
-	            	
+					
+					<div class="row">
+	                <div class="col-md-4"></div><div class="col-md-1"><label for="nom">Nom</label></div>
+	                <div class="col-md-3"><input type="text" id="nom" name="nom" value="${user.getNom()}"></div>
+					</div>
+					
+					<div class="row">
+					<div class="col-md-4"></div><div class="col-md-1"><label for="prenom">Pr�nom</label></div>
+	             	<div class="col-md-3"><input type="text" id="prenom" name="prenom" value="${user.getPrenom()}"></div>
+					</div>
+					
+					<div class="row">
+					<div class="col-md-4"></div><div class="col-md-1"><label for="mail">Email</label></div>
+	               <div class="col-md-3"><input type="email" id="mail" name="mail" value="${user.getEmail()}"></div>
+					</div>
+					
+					<div class="row">
+					<div class="col-md-4"></div><div class="col-md-1"><label for="tel">T�l�phone</label></div>
+	                <div class="col-md-3"><input type="tel" id="tel" name="tel" value="${user.getTelephone()}"></div>
+					</div>
+					
+					<div class="row">
+					<div class="col-md-4"></div><div class="col-md-1"><label for="rue">Rue</label></div>
+	                <div class="col-md-3"><input type="text" id="rue" name="rue" value="${user.getRue()}"></div>
+					</div>
+					
+					<div class="row">
+					<div class="col-md-4"></div><div class="col-md-1"><label for="cpo">Code Postal</label></div>
+	                <div class="col-md-3"><input type="text"id="cpo" name="cpo" value="${user.getCodepostal()}"></div>
+					</div>
+					
+					<div class="row">
+					<div class="col-md-4"></div><div class="col-md-1"><label for="ville">Ville</label></div>
+	                <div class="col-md-3"><input type="text" id="ville" name="ville" value="${user.getVille()}"></div>
+					</div>
+					
+					<div class="row">
+					<div class="col-md-4"></div><div class="col-md-1"><label for="password">Mot de passe</label></div>
+	                <div class="col-md-3"><input type="password" id="password" name="password" value="${user.getMotDePasse()}"></div>
+					</div>
+					
+					<div class="row">
+					<div class="col-md-4"></div><div class="col-md-1"><label for="checkPassword">Confirmation</label></div>
+	                <div class="col-md-3"><input type="password" id="checkPassword" name="checkPassword" value="${user.getMotDePasse()}"></div>
+					</div>
+					
+					<div class="row">
+					<div class="col-md-4"></div><div class="col-md-1"><label for="credit">Credit</label></div>
+	                <div class="col-md-3"><p>${user.getCredit()} points</p></div>
+					</div>
+	                
+					<br>
+					
+					<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<button type="submit" id="submit" name="submit" class="btn btn-success">Enregistrer</button>
+						<a id="delete" name="delete" class="btn btn-danger" href="SupprimerCompte.html">Supprimer mon compte</a>
+						<a id="previous" href="profil.html" class="btn btn-primary">Retour</a>
+					</div>
+					</div>
+				  	</form>
+					
 		
-	<script></script>
-
-</body>
-</html>
+<%@  include file="/WEB-INF/fragments/footer.jspf" %>

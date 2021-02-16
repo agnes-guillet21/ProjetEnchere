@@ -16,18 +16,20 @@ import ProjetEnchere.dal.jdbc.DALException;
 
 // Implementation Acceuil
 
-@WebServlet("/modifierProfil")
+@WebServlet("/modifierprofil.html")
 public class ModifierProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/modifierProfil.jsp");
+		
+		request.setAttribute("titreDePage", "Modifier Profil");
+    	request.setAttribute("nomDePage", "MODIFIER MON PROFIL");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifierprofil.jsp");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+			
 		try {
 			String motDePasse = request.getParameter("password").trim();
 			String checkMotDePasse = request.getParameter("checkPassword").trim();
@@ -50,14 +52,14 @@ public class ModifierProfilServlet extends HttpServlet {
 				utilisateurSession = new Utilisateur(utilisateurSession.getNoUtilisateur(), pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 				mger.update(utilisateurSession);
 				
-				session.setAttribute("utilisateur", utilisateurSession);
-				request.setAttribute("success", "Profil modifiÃ©");
+				session.setAttribute("user", utilisateurSession);
+				request.setAttribute("success", "Profil modifié avec succés");
 				
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/modifierProfil.jsp");
-				rd.forward(request, response);
 			} else {
-				request.setAttribute("error", "Les mots de passe sont diffÃ©rents");
+				request.setAttribute("error", "Les mots de passe sont différents");
 			}
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifierprofil.jsp");
+			rd.forward(request, response);
 		}catch(DALException e) {
 			e.printStackTrace();
 		}

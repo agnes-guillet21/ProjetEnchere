@@ -2,11 +2,10 @@
     pageEncoding="UTF-8"%>
  <footer>
         <div class="row">
-            <div class="col-md-6"> 
-            </div>
+            <div class="col-md-6"></div>
             <div class="col-md-6">
                 <p>Amaury, Thomas & Agnès</p>  
-       </div>
+       		</div>
         </div>
     </footer>
 </body>

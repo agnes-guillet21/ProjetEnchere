@@ -6,10 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.catalina.User;
 
+import ProjetEnchere.bo.EtatVente;
 import ProjetEnchere.bo.Utilisateur;
 import ProjetEnchere.dal.DAOFactory;
 import ProjetEnchere.dal.UtilisateurDAO;
@@ -17,7 +19,10 @@ import ProjetEnchere.dal.UtilisateurDAO;
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 
-	//methode insert
+	/**
+	 * Méthode permettant d'insérer un utilisateur dans la BDD
+	 * @param Utilisateur u1
+	 */
 	public void insert ( Utilisateur u1) throws DALException, SQLException{
 		Connection cnx=null;
 		PreparedStatement pstmt = null;
@@ -103,7 +108,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			}
 		}
 	}
-
 
 
 	@Override
@@ -297,29 +301,42 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	}
 
 
-	@Override
-	public void delete(Utilisateur utilisateur) throws DALException {
+	/**
+	 * Méthode permettant de "fermer" un utilisateur dans la BDD s'il n'a pas de ven,tes en cours
+	 * @param Utilisateur utilisateur
+	 * @throws DALException
+	 * @Override
+	 */
+	public void fermer(Utilisateur utilisateur) throws DALException {
 
 		Connection cnx=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String delete ="delete from UTILISATEURS WHERE pseudo=?;";
+		try {
+			verificationVentesEnCours(utilisateur);
+		} catch (DALException e) {
+			e.getMessage();
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+		
+		String fermer ="UPDATE UTILISATEURS SET utilisateur_ferme_le = ? WHERE pseudo=?;";
 		try {
 			cnx = DALConnectionProvider.getConnection();
-			pstmt = cnx.prepareStatement(delete);
-			pstmt.setString(1, utilisateur.getPseudo());
+			pstmt = cnx.prepareStatement(fermer);
+			pstmt.setDate(1, java.sql.Date.valueOf(LocalDate.now()));
+			pstmt.setString(2, utilisateur.getPseudo());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new DALException("erreur lors de la suppression de l'utilisateur :",e);
 		}finally {
 			try {
-				//lib des ressources on ferme le stmt et la connexio
 				if(pstmt!=null) {
 					pstmt.close();
 				}
 				if(cnx !=null) {
-					cnx.close();
+				cnx.close();
 				}
 			}catch (SQLException e) {
 				throw new DALException("erreur de la  suppression  de l'article:", e);
@@ -328,8 +345,41 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}
 
 	}
-
-
+	
+	/**
+	 * Méthode permettant de vérifier si un utilisateur a des ventes en cours
+	 * @param Utilisateur u
+	 * @throws DALException
+	 * @throws SQLException
+	 */
+	private void verificationVentesEnCours(Utilisateur u) throws DALException, SQLException {
+		
+		final String sql = "SELECT UTILISATEURS.no_utilisateur, pseudo, nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,utilisateur_ferme_le, etat_vente " + 
+				"FROM UTILISATEURS INNER JOIN ARTICLES_VENDUS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur WHERE ARTICLES_VENDUS.etat_vente='"+ EtatVente.EN_COURS + "' AND pseudo =? ;";
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		Connection cnx = null;
+		
+		try {
+			cnx = DALConnectionProvider.getConnection();
+		} catch (SQLException e) {
+			throw new DALException("Problème de connexion à la base de données");
+		}
+		
+		try {
+			pstmt = cnx.prepareStatement(sql);
+			pstmt.setString(1, u.getPseudo());
+			rs = pstmt.executeQuery();
+		} catch (SQLException e) {
+			throw new DALException("Requête SQL Impossible");
+		}
+		if(rs.next()) {
+			throw new DALException("Le compte ne peut pas être fermé car il y a des ventes en cours");
+		} 
+		
+	}
+	
+	
 
 	@Override
 	public void update(Utilisateur utilisateur) throws DALException {

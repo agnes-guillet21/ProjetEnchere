@@ -38,10 +38,10 @@ public class AccueilServlet extends HttpServlet {
 
 		
 		EnchereManager enchereManager = EnchereManager.getEnchereManager();
-		CategorieManager categorieManager = CategorieManager.getCategorieManager();
+//		CategorieManager categorieManager = CategorieManager.getCategorieManager();
 		List<ArticleVendu> listeEncheres = new ArrayList<>();
 		ArticleVenduManager aVManager = ArticleVenduManager.getInstance();
-		List<Categorie> listCat = CategorieManager.getCategories();
+//		List<Categorie> listCat = CategorieManager.getCategories();
 		String recherche = null;
 		String categorie = "Toutes";
 		String choix = "Tous";

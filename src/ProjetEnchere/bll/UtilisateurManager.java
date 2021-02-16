@@ -16,6 +16,7 @@ import ProjetEnchere.dal.jdbc.DALException;
  *
  */
 public class UtilisateurManager {
+	
 	private UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	//charger une instance de utilisateurdaojbc impl via lafactory
 
@@ -120,24 +121,21 @@ public class UtilisateurManager {
 	 * @param Utilisateur u1
 	 * @throws SQLException 
 	 */
-	
 	public void InsertUtilisateur(Utilisateur u1) throws SQLException {
 		 try {
-			utilisateurDAO.insert(u1);//Méthode présente dans la DAL
+			utilisateurDAO.insert(u1);
 		} catch (DALException e) {
 			e.printStackTrace();
 		}		 
 	 }
-
 	
 	/**
-	 * Méthode permettant de récupérer un Utilisateur den fontion de son pseudo et de son mot de passe
+	 * Méthode permettant de récupérer un Utilisateur en fontion de son pseudo et de son mot de passe
 	 * @param String login
 	 * @param String pass
 	 * @return Utilisateur user si login et mdp ok. 
 	 * @return null si le mode passe ou le login ne sont pas bons
 	 */
-
 	public Utilisateur getUserByPseudoPassword(String login, String pass) {
 		
 		Utilisateur user = new Utilisateur();
@@ -177,9 +175,22 @@ public class UtilisateurManager {
 		return null;
 	}
 	
-
-	 public void delete(Utilisateur utilisateur)throws DALException {
-		this.utilisateurDAO.delete(utilisateur);//appelle a ma methode ds utilisateur dao 
+	/**
+	 * Méthode permettant de "fermer" un utilisateur dans la BDD s'il n'a pas de vente en cours
+	 * @param Utilisateur utilisateur
+	 * @throws DALException
+	 * @throws BLLException 
+	 * @Override
+	 */
+	 public void fermer(Utilisateur utilisateur)throws BLLException, DALException {
+		 if(utilisateurDAO.getUserByPseudo(utilisateur.getPseudo()) == null) {
+			 throw new BLLException("Impossible de supprimer le compte. Aucun utilisateur avec le pseudo "+ utilisateur.getPseudo() + "n'existe dans la base de données.");
+		 }
+		try {
+			this.utilisateurDAO.fermer(utilisateur);
+		} catch (DALException e) {
+			e.getMessage();
+		} 
 	 }
 	 
 	 
