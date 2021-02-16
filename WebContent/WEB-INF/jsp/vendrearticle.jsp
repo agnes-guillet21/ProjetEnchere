@@ -70,10 +70,8 @@
 		        <div>
 		            <label for="categorie">Catégorie</label>
 						<select name="categorie" id="categorie">
-						<option value="exemple1">Exemple 1</option>
-						<option value="exemple2">Exemple 2</option>
 			            	<c:forEach var="v" items="${listeCategories}">	
-						   		<option value="${v.nomCategorie}">${v.nomCategorie}</option>
+						   		<option value="${v.getLibelle()}">${v.getLibelle()}</option>
 						    </c:forEach>
 						</select>
 		        </div>

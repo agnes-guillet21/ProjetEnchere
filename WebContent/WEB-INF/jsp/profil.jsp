@@ -1,60 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Profil</title>
-</head>
-	<body>
-
-				<header>
-				<p>Eni-encheres</p>
-			    <!--faire un fragment-->
-				</header>
-				
-	<body>
-	
-	            <form action="" method="post">
-	   
-	                
-	                <label for="pseudo">Pseudo :</label>
-	             <p>${utilisateur.pseudo}<p>
-					<br>
-	
-	                <label for="name">Nom :</label>
-	             <p>${utilisateur.nom}</p>
-					<br>
-	
-					<label for="firstname">PrÃ©nom :</label>
-	             <p>${utilisateur.prenom}</p>
-					<br>
+<%@ include file="/WEB-INF/fragments/header.jspf" %>
 					
-					<label for="mail">Email :</label>
-	             <p>${utilisateur.email}</p>
-					<br>
+					<div class="row">
+	                <div class="col-md-4"></div><div class="col-md-2">Pseudo :</div><div class="col-md-2">${user.getPseudo()}</div>
+					</div>
 					
-					<label for="tel">TÃ©lÃ©phone :</label>
-	             <p>${utilisateur.telephone}</p>
-					<br>
+					<div class="row">
+	                	<div class="col-md-4"></div><div class="col-md-2">Nom :</div><div class="col-md-2">${user.getNom()}</div>
+					</div>
 					
-					<label for="address">Rue :</label>
-	             <p>${utilisateur.rue}</p>
-					<br>
+					<div class="row">
+						<div class="col-md-4"></div><div class="col-md-2">Prénom :</div><div class="col-md-2">${user.getPrenom()}</div>
+					</div>
 					
-					<label for="cpo">Code Postal :</label>
-	             <p>${utilisateur.codePostal}</p>
-					<br>
+					<div class="row">
+						<div class="col-md-4"></div><div class="col-md-2">Email :</div><div class="col-md-2">${user.getEmail()}</div>
+					</div>
 					
-					<label for="city">Ville :</label>
-	             <p>${utilisateur.ville}</p>
-					<br>
+					<div class="row">
+						<div class="col-md-4"></div><div class="col-md-2">Téléphone :</div><div class="col-md-2">${user.getTelephone()}</div>
+					</div>
 					
-					</form>	
-				<div>
-						
-						<a id="modifProfil" href="modifierprofil" class="btn btn-primary">Modifier</a>
+					<div class="row">
+						<div class="col-md-4"></div><div class="col-md-2">Rue :</div><div class="col-md-2">${user.getRue()}</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-4"></div><div class="col-md-2">Code Postal :</div><div class="col-md-2">${user.getCodepostal()}</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-4"></div><div class="col-md-2">Ville :</div><div class="col-md-2">${user.getVille()}</div>
+					</div>
+				<br>
+				<div class="row">
+						<div class="col-md-4"></div>
+						<c:if test="${userProfil.getPseudo().equals(user.getPseudo())}">
+							<div class="col-md-4"><a id="modifProfil" href="modifierprofil" class="btn btn-primary">Modifier</a></div>
+						</c:if>	
 	        	</div>
-	<script></script>
-</body>
-</html>
+	        	
+	        	
+<%@  include file="/WEB-INF/fragments/footer.jspf" %>

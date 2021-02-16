@@ -17,17 +17,9 @@ public class CategorieManager {
 	private CategorieDAO categorieDAO = DAOFactory.getCategorieDAO();
 	private static CategorieManager instance;
 	
-	
+
 	/**
-	 * Mï¿½thode permettant d'afficher la liste des catï¿½gories
-	 * @return Une liste d'objets de type Categorie
-	 */
-	public static List<Categorie> getCategories() {
-		return null;
-	}
-	
-	/**
-	 * Mï¿½thode permettant d'obtenir une instance de CategorieManager
+	 * Méthode permettant d'obtenir une instance de CategorieManager
 	 * @return une instance de CategorieManager
 	 */
 	public static CategorieManager getInstance() {
@@ -41,12 +33,16 @@ public class CategorieManager {
 		// TODO Auto-generated method stub
 		return null; 
 		}
-		
-		public List<Categorie> selectAll() throws DALException{
-			List<Categorie> listeCategorie = new ArrayList<Categorie>();
-			listeCategorie = categorieDAO.selectAll();
-			return listeCategorie;
-		
+	
+
+	/**
+	* Méthode permettant d'afficher la liste des catégories
+	* @return Une liste d'objets de type Categorie 
+	*/
+	public List<Categorie> selectAll() throws DALException{
+		List<Categorie> listeCategories = new ArrayList<Categorie>();
+		listeCategories = categorieDAO.selectAll();
+		return listeCategories;	
 	}
 
 }
