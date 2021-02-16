@@ -2,11 +2,24 @@ package ProjetEnchere.bo;
 
 public class Retrait {
 	
-	   
+	   private int no_retrait;// auto generer
 	    private String rue;
 	    private String codePostal;
 	    private String ville;
 
+	   
+	    //construc
+	
+	    public Retrait() {
+		}
+	    
+//    public Retrait(int no_retrait, String rue, String codePostal, String ville) {
+//	        
+//	        this.rue = rue;
+//	        this.codePostal = codePostal;
+//	        this.ville = ville;
+//	        this.no_retrait=no_retrait;
+//	    }
 
 	    public Retrait( String rue, String codePostal, String ville) {
 	        
@@ -16,16 +29,23 @@ public class Retrait {
 	    }
 
 	   
-	    public Retrait() {
-			// TODO Auto-generated constructor stub
-		}
+	   //getter setter
+	    public int getNo_retrait() {
+				return no_retrait;
+			}
+
+			public void setNo_retrait(int no_retrait) {
+				this.no_retrait = no_retrait;
+			}
 
 
 		public String getRue() {
 	        return rue;
 	    }
 
-	    public void setRue(String rue) {
+	
+
+		public void setRue(String rue) {
 	        this.rue = rue;
 	    }
 
@@ -45,11 +65,19 @@ public class Retrait {
 	        this.ville = ville;
 	    }
 
-	    public String toString() {
-	        return "Retrait{" +
-	                " rue='" + rue + '\'' +
-	                ", codePostal='" + codePostal + '\'' +
-	                ", ville='" + ville + '\'' +
-	                '}';
-	    }
+	    @Override
+		public String toString() {
+			StringBuilder builder = new StringBuilder();
+			builder.append("Retrait [no_retrait=");
+			builder.append(no_retrait);
+			builder.append(", rue=");
+			builder.append(rue);
+			builder.append(", codePostal=");
+			builder.append(codePostal);
+			builder.append(", ville=");
+			builder.append(ville);
+			builder.append("]");
+			return builder.toString();
+		}
+	    
 	}
