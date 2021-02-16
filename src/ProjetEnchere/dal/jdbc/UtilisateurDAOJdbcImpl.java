@@ -171,9 +171,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		String sql = "SELECT no_utilisateur,pseudo, nom, prenom ,email ,telephone, rue, code_postal,ville ,mot_de_passe,credit ,administrateur FROM UTILISATEURS WHERE email=";
 		sql = sql + "'"+email+"';";
 
-
-
-
 		try {
 			rs = stmt.executeQuery(sql);
 		} catch (SQLException e) {
@@ -184,7 +181,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			String pseudo = rs.getString("pseudo");
 			String nom = rs.getString("nom");
 			String prenom = rs.getString("prenom");
-			//String mail = rs.getString("email");
+			String mail = rs.getString("email");
 			String telephone = rs.getString("telephone");
 			String rue = rs.getString("rue");
 			String codepostal = rs.getString("code_postal");
@@ -192,7 +189,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			String motDePasse = rs.getString("mot_de_passe");
 			int credit = rs.getInt("credit");
 
-			user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
+			user = new Utilisateur(pseudo, nom, prenom, mail, telephone, rue, codepostal, ville, motDePasse, credit);
 			user.setNoUtilisateur(rs.getInt(1));
 
 			stmt.close();
@@ -400,6 +397,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	public Utilisateur selectPseudo(String pseudo) throws DALException {
 		return null;
 	}
+
+
 
 
 

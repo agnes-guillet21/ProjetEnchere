@@ -29,13 +29,14 @@ public class BLLException extends Exception {
 	public static final String CP="usercp";
 	public static final String ERREUR_VILLE="Ville incorrecte, merci de saisir un autre code postal";
 	public static final String VILLE="city";
+	public static final String ERREUR_CHAMPSVIDE=" Merci de remplir le champs";
+	public static final String CHAMPSVIDE="";
 	
 	//public static final String ATT_ERREURS="erreurs";
 	//public static final String ATT_RESULTAT= "resultat";
 
 	//  creation hasmap pr les erreurs
 	private	Map<String, String> erreurs ;
-//rajouter un setter 
 	
 
 	//Constructeurs
@@ -43,7 +44,7 @@ public class BLLException extends Exception {
 		super();
 	}
 
-	
+//setter de l hashmap	
 	public void setErreurs(Map<String, String> erreurs) {
 		this.erreurs = erreurs;
 		

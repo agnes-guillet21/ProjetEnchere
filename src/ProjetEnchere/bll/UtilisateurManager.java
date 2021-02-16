@@ -36,10 +36,15 @@ public class UtilisateurManager {
 //		return instance;
 //	}
 
-
 	
 	/*	 Methode : validation formulaire, validationMP verificationEmail
 	 * utilisee pr valider l inscription
+	 * 
+	 * 
+	 * if(ville.trim().equals(""){
+	 * erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE;
+	System.out.println(erreurs);
+	 * }
 	 */
 	public void validationFormulaire(String pseudo, String nom, String prenom,String email,String tel,String rue, String cp,String ville) throws Exception {
 		BLLException e = new BLLException();//je creer une variable e d instance de bllexception

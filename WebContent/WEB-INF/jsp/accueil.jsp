@@ -1,4 +1,4 @@
-<%@ include file="/WEB-INF/fragments/header.jspf" %>
+<%@ include file="/WEB-INF/fragments/header.jspf"%>
 
 
 
@@ -75,4 +75,4 @@
 		</div>
 	</div>
 	
-	<%@  include file="/WEB-INF/fragments/footer.jspf" %>
+	<%@  include file="/WEB-INF/fragments/footer.jspf"%>
