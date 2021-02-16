@@ -62,15 +62,15 @@ public class UtilisateurManager {
 			erreurs.put(BLLException.PRENOM,BLLException.ERREUR_PRENOM);
 			System.out.println(erreurs);
 		}
-//		if(email == null && email.trim().length()>100) {
-//			if(!email.matches("([^.@]+)(\\\\.[^.@]+)*@([^.@]+\\\\.)+([^.@]+)")) {
-//				erreurs.put(BLLException.EMAIL,BLLException.ERREUR_EMAIL);
-//				System.out.println(erreurs);
-//			}
-//		}else {
-//			erreurs.put(BLLException.EMAIL,BLLException.ERREUR_EMAIL1);
-//			System.out.println(erreurs);
-//		}
+		if(email == null && email.trim().length()>100) {
+			if(!email.matches("([^.@]+)(\\\\.[^.@]+)*@([^.@]+\\\\.)+([^.@]+)")) {
+				erreurs.put(BLLException.EMAIL,BLLException.ERREUR_EMAIL);
+				System.out.println(erreurs);
+			}
+		}else {
+			erreurs.put(BLLException.EMAIL,BLLException.ERREUR_EMAIL1);
+			System.out.println(erreurs);
+		}
 		if (tel == null && !tel.matches("\\+?[0-9][0-9][0-9]([0-9][0-9])+")){ // pas sur de ce regex
 			erreurs.put(BLLException.TEL,BLLException.ERREUR_TEL);
 			System.out.println(erreurs);
