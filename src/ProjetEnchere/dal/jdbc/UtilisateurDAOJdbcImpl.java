@@ -69,11 +69,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			pstmt.executeUpdate();
 			//recuperer l  identity ay travers du resultset 
 
-			//			rs = pstmt.getGeneratedKeys();
-			//			if(rs.next()) {
-			//				u1.setNoUtilisateur(rs.getInt(1));
-			//			}
-			pstmt.close();
+						rs = pstmt.getGeneratedKeys();
+						if(rs.next()) {
+							u1.setNoUtilisateur(rs.getInt(1));
+						}
 			//			cnx.commit();
 
 			//			rs = pstmt.getGeneratedKeys();
