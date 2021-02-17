@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import ProjetEnchere.bo.ArticleVendu;
+import ProjetEnchere.bo.Categorie;
 import ProjetEnchere.bo.Retrait;
 import ProjetEnchere.dal.RetraitDAO;
 
@@ -28,7 +30,7 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 	}
 
 	try {
-		System.out.println("La connexion est " + (cnx.isClosed()?"fermée":"ouverte") + ".");
+		System.out.println("La connexion est " + (cnx.isClosed()?"fermï¿½e":"ouverte") + ".");
 	} catch (SQLException e2) {
 		e2.printStackTrace();
 	}
@@ -58,10 +60,35 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 				cnx.close();
 			}
 		}catch (SQLException e) {
-			throw new DALException("erreur de la  suppression  de l'article:", e);
+			throw new DALException("erreur de la  suppression  de l'article:", e);}
 		}
+	}
 
 	
+	
+		public ArticleVendu select(int noArticle) throws DALException, SQLException {
+			DALException be = new DALException();
+			try (Connection cnx = DALConnectionProvider.getConnection();
+					PreparedStatement psmt = cnx.prepareStatement(SELECT);) { // a voir pour le select
+				psmt.setInt(1, noArticle);
+				ResultSet rs = psmt.executeQuery();
+				ArticleVendu article = new ArticleVendu();
+				Retrait retrait = new Retrait();
+				
+
+				if (rs.next()) {
+					
+					retrait.setRue(rs.getString("rue"));
+					retrait.setVille(rs.getString("ville"));
+					retrait.setCodePostal(rs.getString("codePostal"));
+
+
+									}
+				rs.close();
+				psmt.close();
+				return article;
+			} catch (SQLException e) {
+				e.printStackTrace();
 	}
 	}
 }
