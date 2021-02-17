@@ -41,10 +41,7 @@ public class UtilisateurManager {
 	 * utilisee pr valider l inscription
 	 * 
 	 * 
-	 * if(ville.trim().equals(""){
-	 * erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE;
-	System.out.println(erreurs);
-	 * }
+	
 	 */
 	public void validationFormulaire(String pseudo, String nom, String prenom,String email,String tel,String rue, String cp,String ville) throws Exception {
 		BLLException e = new BLLException();//je creer une variable e d instance de bllexception
@@ -108,18 +105,24 @@ public class UtilisateurManager {
 	}
 	
 	public void validationMP(String motDePasse, String confirMP)throws Exception{
+		Map<String, String> erreurs = new HashMap<String, String>();
+		BLLException e = new BLLException();
 		if(motDePasse !=null && motDePasse.trim().length() !=0 && confirMP != null &&
 				confirMP.trim().length()!=0) {
 			if(!motDePasse.equals(confirMP)) {
-				throw new Exception("Les mots de passe entrés sont différents, merci de les saisir à nouveau.");
+				erreurs.put(BLLException.MP,BLLException.ERREUR_MP);
 			}else if(motDePasse.trim().length()>30) {
-				throw new Exception("le mot de passe ne doit pas depasser 30 caracteres");
-			}
+				erreurs.put(BLLException.TAILLE_MP,BLLException.ERREUR_TMP);
 		}else {
-			throw new Exception("Merci de saisir et de confirmer votre mot de passe");
+			erreurs.put(BLLException.CONFIR_MP,BLLException.ERREUR_CONFIRMP);
 		}
+			
 	}
-	
+		if(!erreurs.isEmpty()){
+			  e.setErreurs(erreurs);//j' utilise le setter de la hasmap bll exception ( en passant para la hashmap) 
+			  throw  e;//je lance un exception e de type BLLExc pr stopper l inscription 
+				}	
+	}
 	/**
 	 * Méthode insert une Instance d'Utilisateur dans la base de données
 	 * Utilisée lors de la création d'un nouvel utilisateur
