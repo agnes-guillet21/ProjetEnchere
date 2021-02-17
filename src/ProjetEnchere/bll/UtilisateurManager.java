@@ -202,5 +202,8 @@ public class UtilisateurManager {
 	public Utilisateur update(Utilisateur newUtilisateur,Utilisateur utilisateurSession) throws DALException{
 		return this.utilisateurDAO.update(newUtilisateur,utilisateurSession);
 	}
-
+	
+	public Utilisateur getUserByPseudo(String pseudo) throws DALException {
+		return this.utilisateurDAO.getUserByPseudo(pseudo);
+	}
 }
