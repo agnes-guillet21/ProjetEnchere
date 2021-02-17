@@ -16,7 +16,7 @@
         <div>
             <label for="pseudo">Pseudo :</label>
             <input type="text" id="pseudo" name="userpseudo" value="" size="30" maxlength="30" required>
-             <span class="erreur">${erreurs['userpseudo']}</span>
+             <span class="erreur">${erreurs['BLLException.PSEUDO']}</span>
         </div>
         </br>
 
@@ -44,30 +44,35 @@
         <div>
             <label for="tel">Téléphone :</label>
             <input type="text" id="tel" name="userphone"value="" size="20" maxlength="15">
+            <span class="erreur">${erreurs['userphone']}</span>
         </div>
         </br>
 
         <div>
             <label for="rue">Rue :</label>
             <input type="text" id="rue" name="user_street"value="" size="30" maxlength="50" required>
+       <span class="erreur">${erreurs['user_street']}</span>
         </div>
         </br>
 
         <div>
             <label for="codePostal">Code Postal :</label>
             <input type="text" id="cp" name="usercp" value="" size="30" maxlength="10" required>
+        <span class="erreur">${erreurs['usercp']}</span>
         </div>
         </br>
 
         <div>
             <label for="ville">Ville:</label>
             <input type="text" id="ville" name="city" value="" size="30" maxlength="30" required>
+        <span class="erreur">${erreurs['city']}</span>
         </div>
         </br>
 
         <div>
             <label for="password">Mot de passe:</label>
             <input type="text" id="s_password" name="spassword" size="30" value="" size="30" maxlength="30"required>
+        	<span class="erreur">${erreurs['']}</span>
         </div>
         </br>
 
