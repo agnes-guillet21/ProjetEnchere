@@ -31,7 +31,12 @@ public class BLLException extends Exception {
 	public static final String VILLE="city";
 	public static final String ERREUR_CHAMPSVIDE=" Merci de remplir le champs";
 	public static final String CHAMPSVIDE="";
-	
+	public static final String MP="spassword";
+	public static final String ERREUR_MP="Les mots de passe entrés sont différents, merci de les saisir à nouveau.";
+	public static final String CONFIR_MP="spassword2";
+	public static final String ERREUR_CONFIRMP="Merci de saisir et de confirmer votre mot de passe";
+	public static final String TAILLE_MP="spassword";
+	public static final String ERREUR_TMP="le mot de passe ne doit pas depasser 30 caracteres";
 	//public static final String ATT_ERREURS="erreurs";
 	//public static final String ATT_RESULTAT= "resultat";
 
