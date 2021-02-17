@@ -139,19 +139,16 @@ public class UtilisateurManager {
 	public Utilisateur getUserByPseudoPassword(String login, String pass) {
 		
 		Utilisateur user = new Utilisateur();
-		boolean ConnectionOK;
 		
 		try {
-			user = utilisateurDAO.getUserByPseudo(login);//Méthode présente dans la DAL
+			user = utilisateurDAO.getUserByPseudo(login);//Méthode présente dans la DAL			
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
 		
 		if (user.getPseudo().equals(login) && user.getMotDePasse().equals(pass)){
-			ConnectionOK = true;
 			return user;
 		}else {
-			ConnectionOK = false;
 			return null;
 			//TODO prepare message à envoyer en param à la jsp
 		}

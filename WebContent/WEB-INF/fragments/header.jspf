@@ -19,13 +19,13 @@
 <body>
 
 	<div class="container-fluid">
-		<header style = background-color: black" class="header">
+		<header style ="background-color: black" class="header">
 			<div class="row">
 				<div class="col-md-3">
 					<p>ENI-Encheres</p>
 					<!-- insertion fragments header  Eni-enchere-->
 				</div>
-				<div class="col-md-5"></div>
+				<div class="col-md-5"><img src="${pageContext.servletContext.contextPath}/img/lognavsmall.png" alt="logo" ></div>
 				<div class="col-md-4">
 					<c:if test="${empty user}">
 						<a href="connexion.html">S'inscrire - Se connecter </a>

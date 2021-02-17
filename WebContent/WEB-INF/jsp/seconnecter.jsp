@@ -1,5 +1,9 @@
 <%@ include file="/WEB-INF/fragments/header.jspf" %>
 
+			<div class="row">
+	             <div class="col-md-4"></div><div class="col-md-4"><p class="text-danger">${messageErreur }</p></div>
+			</div>
+
 		<form action="connexion.html" method="POST">
 			
 			<div class="row">

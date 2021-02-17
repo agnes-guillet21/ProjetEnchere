@@ -116,7 +116,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	public Utilisateur getUserByPseudo(String pseudo) throws DALException {
 
 		Utilisateur u = null;
-		String sql = "SELECT no_utilisateur,pseudo, nom, prenom ,email ,telephone, rue, code_postal,ville ,mot_de_passe,credit ,administrateur FROM UTILISATEURS WHERE pseudo=";
+		String sql = "SELECT no_utilisateur,pseudo, nom, prenom ,email ,telephone, rue, code_postal,ville ,mot_de_passe,credit ,administrateur,utilisateur_ferme_le FROM UTILISATEURS WHERE pseudo=";
 		sql = sql + "'"+pseudo+"';";
 		Statement stmt;
 
@@ -139,6 +139,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 			u = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
 			u.setNoUtilisateur(rs.getInt(1));
+			u.setFerme_le(null);
+			if (rs.getDate("utilisateur_ferme_le")!=null) {
+				u.setFerme_le(rs.getDate("utilisateur_ferme_le").toLocalDate());
+			}
 
 			stmt.close();
 			cnx.close();

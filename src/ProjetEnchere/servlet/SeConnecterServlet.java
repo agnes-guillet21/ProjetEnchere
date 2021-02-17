@@ -52,17 +52,24 @@ public class SeConnecterServlet extends HttpServlet {
 		Utilisateur user = userManager.getUserByPseudoPassword(login, pass); // verif utilisateur
 		
 		if (user == null) {
+			request.setAttribute("titreDePage", "Connexion");
+	    	request.setAttribute("nomDePage", "CONNEXION");
 			request.setAttribute("messageErreur", "Le compte n'existe pas");
 			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp").forward(request, response);
-		}else {
-		// session utilis.
-		HttpSession session = request.getSession();// recu les sessions ds la variable sessaion
-		session.setAttribute("user", user);// creer une session
-		request.setAttribute("titreDePage", "Accueil");
-    	request.setAttribute("nomDePage", "LISTE DES VENTES");
-		this.getServletContext().getRequestDispatcher("/ProjetEnchere").forward(request, response);
-		// retour accueil
-		}
+		}else if(user.getFerme_le()!=null) {
+			request.setAttribute("titreDePage", "Connexion");
+	    	request.setAttribute("nomDePage", "CONNEXION");
+			request.setAttribute("messageErreur", "Le compte a été fermé et n'est plus actif");
+			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp").forward(request, response);		
+			}else{
+			// session utilis.
+			HttpSession session = request.getSession();// recu les sessions ds la variable sessaion
+			session.setAttribute("user", user);// creer une session
+			request.setAttribute("titreDePage", "Accueil");
+	    	request.setAttribute("nomDePage", "LISTE DES VENTES");
+			this.getServletContext().getRequestDispatcher("/accueil").forward(request, response);
+			// retour accueil
+			}
 						
 		}
 	}
