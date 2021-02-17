@@ -40,7 +40,10 @@ public class SeConnecterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("user")!=null) {
+			request.getRequestDispatcher("/ProjetEnchere").forward(request, response);
+		}
 		// info formulaire
 		String login = request.getParameter("susername");
 		String pass = request.getParameter("spassword");
@@ -54,7 +57,7 @@ public class SeConnecterServlet extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp").forward(request, response);
 		}else {
 		// session utilis.
-		HttpSession session = request.getSession();// recu les sessions ds la variable sessaion
+		//HttpSession session = request.getSession();// recu les sessions ds la variable sessaion
 		session.setAttribute("user", user);// creer une session
 		this.getServletContext().getRequestDispatcher("/ProjetEnchere").forward(request, response);
 		// retour accueil

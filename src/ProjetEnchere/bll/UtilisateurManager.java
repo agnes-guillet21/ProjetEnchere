@@ -53,22 +53,26 @@ public class UtilisateurManager {
 		
 		//reste  a faire le fait que se soit vide = null pr tous les champs
 
-			if(pseudo.trim().equals("") &&!pseudo.matches("[A-Za-z0-9_]+")) {
+			if(pseudo.isEmpty()|| !pseudo.matches("[A-Za-z0-9_]+")) {
+				erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
 		erreurs.put(BLLException.PSEUDO,BLLException.ERREUR_PSEUDO);
 	System.out.println(erreurs);
 		}
 			
-	if(nom == null && nom.trim().length()>30) {
+	if(nom.isEmpty()|| nom.trim().length()>30) {
+		erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
 		erreurs.put(BLLException.NOM,BLLException.ERREUR_NOM);
 		System.out.println(erreurs);
 	}	
 
-		if(prenom == null && prenom.trim().length()>30){
+		if(prenom.isEmpty()|| prenom.trim().length()>30){
+			erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
 			erreurs.put(BLLException.PRENOM,BLLException.ERREUR_PRENOM);
 			System.out.println(erreurs);
 		}
-		if(email == null && email.trim().length()>100) {
+		if(email.isEmpty()|| email.trim().length()>100) {
 			if(!email.matches("([^.@]+)(\\\\.[^.@]+)*@([^.@]+\\\\.)+([^.@]+)")) {
+				erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
 				erreurs.put(BLLException.EMAIL,BLLException.ERREUR_EMAIL);
 				System.out.println(erreurs);
 			}
@@ -76,19 +80,23 @@ public class UtilisateurManager {
 			erreurs.put(BLLException.EMAIL,BLLException.ERREUR_EMAIL1);
 			System.out.println(erreurs);
 		}
-		if (tel == null && !tel.matches("\\+?[0-9][0-9][0-9]([0-9][0-9])+")){ // pas sur de ce regex
+		if (tel.isEmpty() || !tel.matches("([0-9][0-9])+")){ // pas sur de ce regex
+			erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
 			erreurs.put(BLLException.TEL,BLLException.ERREUR_TEL);
 			System.out.println(erreurs);
 		}
-		if(rue == null && rue.trim().length()>50) {
+		if(rue.isEmpty()|| rue.trim().length()>50) {
+			erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
 			erreurs.put(BLLException.RUE,BLLException.ERREUR_RUE);
 			System.out.println(erreurs);
 		}
-		if(cp == null && rue.trim().length()>50) {
+		if(cp.isEmpty() || rue.trim().length()>50) {
+			erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
 			erreurs.put(BLLException.CP,BLLException.ERREUR_CP);
 			System.out.println(erreurs);
 		}
-		if(ville == null && ville.trim().length()>30) {
+		if(ville.isEmpty() || ville.trim().length()>30) {
+			erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
 			erreurs.put(BLLException.VILLE,BLLException.ERREUR_VILLE);
 			System.out.println(erreurs);
 	}
