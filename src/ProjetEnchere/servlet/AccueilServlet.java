@@ -86,7 +86,8 @@ public class AccueilServlet extends HttpServlet {
 ////			}
 ////		}
 			
-	
+		request.setAttribute("titreDePage", "Accueil");
+    	request.setAttribute("nomDePage", "LISTE DES VENTES");
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 
 		rd.forward(request, response);
