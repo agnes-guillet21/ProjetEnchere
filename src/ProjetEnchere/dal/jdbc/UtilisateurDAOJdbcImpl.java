@@ -324,7 +324,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		} catch (SQLException e) {
 			throw new DALException("Requête SQL Impossible");
 		}
-		if(!rs.next()) {
+		if(rs.next()) {
 			throw new DALException("Le compte ne peut pas être fermé car il y a des ventes en cours");
 		} 
 		
