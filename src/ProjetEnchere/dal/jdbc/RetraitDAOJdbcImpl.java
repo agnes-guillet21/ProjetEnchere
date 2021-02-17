@@ -27,11 +27,7 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 		e2.printStackTrace();
 	}
 
-	try {
-		System.out.println("La connexion est " + (cnx.isClosed()?"fermée":"ouverte") + ".");
-	} catch (SQLException e2) {
-		e2.printStackTrace();
-	}
+
 		String insert ="insert into RETRAITS(rue,code_postal,ville) VALUES (?,?,?);";
 	
 		try {
