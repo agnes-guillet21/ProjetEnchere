@@ -4,7 +4,7 @@
 	                <div class="col-md-4"></div><div class="col-md-4"><p>${success}</p></div>
 					</div>
 		
-	            <form action="modifierProfil" method="post">
+	            <form action="modifierProfil.html" method="post">
 	   
 	                <div class="row">
 	                <div class="col-md-4"></div><div class="col-md-1"><label for="pseudo">Pseudo</label></div>
