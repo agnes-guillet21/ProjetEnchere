@@ -68,7 +68,7 @@ public class UtilisateurManager {
 			System.out.println(erreurs);
 		}
 		if(email.isEmpty()|| email.trim().length()>100) {
-			if(!email.matches("([^.@]+)(\\\\.[^.@]+)*@([^.@]+\\\\.)+([^.@]+)")) {
+			if(!email.matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")) {
 				erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
 				erreurs.put(BLLException.EMAIL,BLLException.ERREUR_EMAIL);
 				System.out.println(erreurs);

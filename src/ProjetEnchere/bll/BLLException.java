@@ -54,11 +54,17 @@ public class BLLException extends Exception {
 		this.erreurs = erreurs;
 		
 	}
+	// getter de mon hashùmap
+	public Map<String, String> getErreurs() {
+	
+		return erreurs;
+	}
 
 	public BLLException(String message) {
 		super(message);
 	}
 
+	
 	public BLLException(String message, Throwable exception) {
 		super(message, exception);
 		//modification

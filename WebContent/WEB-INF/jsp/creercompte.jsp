@@ -15,21 +15,21 @@
     <form action="inscription.html" method="post">
         <div>
             <label for="pseudo">Pseudo :</label>
-            <input type="text" id="pseudo" name="userpseudo" value="" size="30" maxlength="30" required>
-             <span class="erreur">${erreurs['BLLException.PSEUDO']}</span>
+            <input type="text" id="pseudo" name="userpseudo" value="<c:out value="${param.userpseudo}"/>" size="30" maxlength="30" required>
+             <span class="erreur">${erreurs['<%=BLLException.PSEUDO%>']}</span>
         </div>
         </br>
 
         <div>
             <label for="name">Nom :</label>
-            <input type="text" id="name" name="username" value="" size="30" maxlength="30" required>
+            <input type="text" id="name" name="username" value="<c:out value="${param.username}"/>" size="30" maxlength="30" required>
             <span class="erreur">${erreurs['username']}</span>
         </div>
         </br>
 
         <div>
             <label for="prenom">Prenom :</label>
-            <input id="prenom" name="userfirstname" value="" size="30" maxlength="30" required></input>
+            <input id="prenom" name="userfirstname" value="<c:out value="${param.userfirstname}"/>"size="30" maxlength="30" required></input>
             <span class="erreur">${erreurs['userfirstname']}</span>
         </div>
         </br>
@@ -72,13 +72,14 @@
         <div>
             <label for="password">Mot de passe:</label>
             <input type="text" id="s_password" name="spassword" size="30" value="" size="30" maxlength="30"required>
-        	<span class="erreur">${erreurs['']}</span>
+        	<span class="erreur">${erreurs['spassword']}</span>
         </div>
         </br>
 
         <div>
             <label for="ConfirPassword">Confirmation du mot de passe:</label>
             <input type="text" id="s_password" name="spassword2" value=""  size="30" maxlength="30" required>
+        <span class="erreur">${erreurs['spassword2']}</span>
         </div>
         </br>
     

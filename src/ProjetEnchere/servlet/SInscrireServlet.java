@@ -56,9 +56,9 @@ public class SInscrireServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String resultat;
-	 
+		Boolean check = true;
 		//recuperer ts les infos ds les champs du formulaire
 		String pseudo=request.getParameter("userpseudo");
 		String nom=request.getParameter("username");
@@ -83,34 +83,39 @@ public class SInscrireServlet extends HttpServlet {
 				
 					
 					try {
+						
 						user.validationFormulaire(pseudo, nom, prenom, email, tel, rue, cp, ville);
 						user.validationMP(motDePasse, confirMP);
 						if(user.verificationEmail(email)!= null) 
 						System.out.println("le mail est deja existant");
 						user.InsertUtilisateur(u1);
 						
-					} catch (Exception e2) {
+					} catch (BLLException e2) {
 						e2.printStackTrace();
+						request.setAttribute("erreurs",e2.getErreurs());
 						//gerer la direction 
 						//renvoyer sur la page inscription
 						request.getRequestDispatcher("/inscription.html").forward(request, response);
 						// garder les champs et plus message d erreur  => jsp avc EL
 						//pr avoir les messages d erreurs  il faudra passer la hasmap en attribut 
 						
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
 						
-
+			
 			
 					HttpSession session = request.getSession();// on creer une session au moment de l inscription 
 					//on va lui passer l utilisateur en attribut
 					Utilisateur user1 = user.getUserByPseudoPassword(u1.getPseudo(), u1.getMotDePasse());
 					session.setAttribute("user", user1);
-					request.getRequestDispatcher("connexion.html").forward(request, response);
+				request.getRequestDispatcher("connexion.html").forward(request, response);
 	}
-	
 }
+	
+
 					
-		
+	
 
 
 //		//Stockage du resultat et des messages d'erreur dans l objet request
@@ -122,10 +127,8 @@ public class SInscrireServlet extends HttpServlet {
 //		System.out.println("Utilisateur ajoute  : " + u1.toString() );
 //		
 //		
-//		//redirection  sur la page d acceuil en mode connecter.
-//		request.getRequestDispatcher("/ProjetEnchere").forward(request, response);
-//	}
-//	}
+//	
+
 //	
 //
 //	

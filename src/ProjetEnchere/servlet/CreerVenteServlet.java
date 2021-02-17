@@ -96,6 +96,13 @@ public class CreerVenteServlet extends HttpServlet {
 //		if(rMger.selectByCriteres(r)==null) {
 //			rMger.insert(r);
 //		}
+		// la je fais appel select des critere
+		//si elle est vide je peux faire l insertion 
+		//sinon je leve une exception qui me dira lieu de retrait deja existant ds la bdd
+		
+		
+		//lieu de retrait  on l insere lors de la creation de la vente
+		// si lieu de retrait est deja existant ca ne doit pas bloquer la creation 
 		a.setLieuRetrait(rMger.selectByCriteres(r));
 		aMger.insert(a);
 		
