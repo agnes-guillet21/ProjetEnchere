@@ -1,10 +1,10 @@
 <%@ include file="/WEB-INF/fragments/header.jspf" %>
 
 					<div class="row">
-	                <div class="col-md-4"></div><div class="col-md-4"><p>${success}</p></div>
+	                <div class="col-md-4"></div><div class="col-md-4"><p class="text-success">${succes}</p></div>
 					</div>
 		
-	            <form action="modifierProfil.html" method="post">
+	            <form action="modifierprofil.html" method="post">
 	   
 	                <div class="row">
 	                <div class="col-md-4"></div><div class="col-md-1"><label for="pseudo">Pseudo</label></div>
@@ -45,6 +45,10 @@
 					<div class="row">
 					<div class="col-md-4"></div><div class="col-md-1"><label for="ville">Ville</label></div>
 	                <div class="col-md-3"><input type="text" id="ville" name="ville" value="${user.getVille()}"></div>
+					</div>
+					
+					<div class="row">
+	                <div class="col-md-4"></div><div class="col-md-4"><p class="text-danger">${error}</p></div>
 					</div>
 					
 					<div class="row">

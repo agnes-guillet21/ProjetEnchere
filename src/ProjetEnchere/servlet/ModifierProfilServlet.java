@@ -54,7 +54,7 @@ public class ModifierProfilServlet extends HttpServlet {
 				utilisateurSession = mger.update(newUtilisateur,utilisateurSession);
 								
 				session.setAttribute("user", utilisateurSession);
-				request.setAttribute("succes", "Profil modifié avec succés");
+				request.setAttribute("succes", "Profil modifié avec succes");
 				
 			} else {
 				request.setAttribute("error", "Les mots de passe sont différents");

@@ -54,7 +54,7 @@ public class SeConnecterServlet extends HttpServlet {
 		if (user == null) {
 			request.setAttribute("titreDePage", "Connexion");
 	    	request.setAttribute("nomDePage", "CONNEXION");
-			request.setAttribute("messageErreur", "Le compte n'existe pas");
+			request.setAttribute("messageErreur", "Le compte n'existe pas ou le mot de passe est incorrect");
 			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp").forward(request, response);
 		}else if(user.getFerme_le()!=null) {
 			request.setAttribute("titreDePage", "Connexion");

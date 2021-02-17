@@ -124,24 +124,25 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			Connection cnx = DALConnectionProvider.getConnection();
 
 			stmt = cnx.createStatement();
-
 			ResultSet rs = stmt.executeQuery(sql);
-			rs.next();
-			String nom = rs.getString("nom");
-			String prenom = rs.getString("prenom");
-			String email = rs.getString("email");
-			String telephone = rs.getString("telephone");
-			String rue = rs.getString("rue");
-			String codepostal = rs.getString("code_postal");
-			String ville = rs.getString("ville");
-			String motDePasse = rs.getString("mot_de_passe");
-			int credit = rs.getInt("credit");
-
-			u = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
-			u.setNoUtilisateur(rs.getInt(1));
-			u.setFerme_le(null);
-			if (rs.getDate("utilisateur_ferme_le")!=null) {
-				u.setFerme_le(rs.getDate("utilisateur_ferme_le").toLocalDate());
+			
+			if (rs.next()) {
+				String nom = rs.getString("nom");
+				String prenom = rs.getString("prenom");
+				String email = rs.getString("email");
+				String telephone = rs.getString("telephone");
+				String rue = rs.getString("rue");
+				String codepostal = rs.getString("code_postal");
+				String ville = rs.getString("ville");
+				String motDePasse = rs.getString("mot_de_passe");
+				int credit = rs.getInt("credit");
+	
+				u = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
+				u.setNoUtilisateur(rs.getInt(1));
+				u.setFerme_le(null);
+				if (rs.getDate("utilisateur_ferme_le")!=null) {
+					u.setFerme_le(rs.getDate("utilisateur_ferme_le").toLocalDate());
+			}
 			}
 
 			stmt.close();
@@ -357,7 +358,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			throw new DALException("Pas d'utilisateur passé en paramêtre de la méthode update");
 		}
 	
-		String update ="UPDATE UTILISATEURS SET pseudo='?',nom='?',prenom='?',email='?',telephone='?',rue='?',code_postal='?',ville='?', mot_de_passe='?' WHERE pseudo='?';";
+		String update ="UPDATE UTILISATEURS SET pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?, mot_de_passe=? WHERE pseudo=?;";
 					
 		try {
 			pstmt = cnx.prepareStatement(update);

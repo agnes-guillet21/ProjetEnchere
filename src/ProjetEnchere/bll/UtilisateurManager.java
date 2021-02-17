@@ -146,6 +146,9 @@ public class UtilisateurManager {
 			e.printStackTrace();
 		}
 		
+		if(user == null) {return null;}
+		
+		
 		if (user.getPseudo().equals(login) && user.getMotDePasse().equals(pass)){
 			return user;
 		}else {

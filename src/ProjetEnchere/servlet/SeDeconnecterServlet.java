@@ -27,7 +27,7 @@ public class SeDeconnecterServlet extends HttpServlet {
 		session.invalidate();
 		
 		// retour acceuil
-		this.getServletContext().getRequestDispatcher("/ProjetEnchere").forward(request, response); 
+		this.getServletContext().getRequestDispatcher("/accueil").forward(request, response); 
 	 }
 
 
