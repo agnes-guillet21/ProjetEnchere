@@ -58,10 +58,10 @@ public class ArticleVenduManager {
 		articleVenduDAO.insert(a); }
 	
 	
-	public static ArticleVendu selectArticleById(int id)throws DALException{
-		return articleVenduDAO.getById(id); }	
-
-		articleVenduDAO.insert(a); 	
+//	public static ArticleVendu selectArticleById(int id)throws DALException{
+//		return articleVenduDAO.getById(id); }	
+//
+//		articleVenduDAO.insert(a); 	
 	
 
 public List<ArticleVendu> listerVentesParCriteres(String nom){

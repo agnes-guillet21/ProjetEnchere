@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,16 +29,6 @@ import ProjetEnchere.dal.jdbc.UtilisateurDAOJdbcImpl;
 @WebServlet("/inscription.html")
 public class SInscrireServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String PSEUDO ="userpseudo";
-	public static final String NOM ="username";
-	public static final String PRENOM="userfirstname";
-	public static final String EMAIL = "usermail";
-	public static final String TEL="userphone";
-	public static final String RUE="user_street";
-	public static final String CP="usercp";
-	public static final String VILLE="city";
-	public static final String ATT_ERREURS="erreurs";
-	public static final String ATT_RESULTAT= "resultat";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -57,8 +48,7 @@ public class SInscrireServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String resultat;
-		Boolean check = true;
+		
 		//recuperer ts les infos ds les champs du formulaire
 		String pseudo=request.getParameter("userpseudo");
 		String nom=request.getParameter("username");
@@ -72,35 +62,26 @@ public class SInscrireServlet extends HttpServlet {
 		String confirMP=request.getParameter("spassword2");
 		
 		request.setCharacterEncoding("UTF-8");
-		//faire appelle a mon truc qui permet d enregistrer en base
-				//	methode insert exist ds ma dal  mais on ne veut pas l appeler directmt
-				// utiliser l utilisateurmanager
-				// on utilise tt par l utilisateurDAOJdbcimpl
-		
+	
 				Utilisateur u1 = new Utilisateur(pseudo,nom,prenom,email,tel,rue,cp,ville,motDePasse,0);
-				// besoin d une instance de mon utilisateur manager , dc creation de variable 
-				UtilisateurManager user = new UtilisateurManager();
+				UtilisateurManager user = new UtilisateurManager(); 
 				
 					
 					try {
 						
 						user.validationFormulaire(pseudo, nom, prenom, email, tel, rue, cp, ville);
 						user.validationMP(motDePasse, confirMP);
-						if(user.verificationEmail(email)!= null) 
-						System.out.println("le mail est deja existant");
+						
+						if(user.verificationEmail(email)!= null) {
+							System.out.println("le mail est deja existant");
+						}
 						user.InsertUtilisateur(u1);
 						response.sendRedirect("./accueil");
 					} catch (BLLException e2) {
-						e2.printStackTrace();
-						request.setAttribute("erreurs",e2.getErreurs());
-						//request.getAttribute("erreurs",e2.getErreurs());
+						request.setAttribute("erreurs",e2.getErreurs());//passage de la hashmap en attribut
 						response.getWriter().print("erreurs");
-						//gerer la direction 
-						//renvoyer sur la page inscription
-						request.getRequestDispatcher("/inscription.html").forward(request, response);
-						// garder les champs et plus message d erreur  => jsp avc EL
-						//pr avoir les messages d erreurs  il faudra passer la hasmap en attribut 
-						
+						RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/creercompte.jsp");
+						rd.forward(request, response);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

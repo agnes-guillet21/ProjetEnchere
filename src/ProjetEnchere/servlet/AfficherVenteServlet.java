@@ -47,24 +47,24 @@ public class AfficherVenteServlet extends HttpServlet {
 		
 		int id = Integer.parseInt(request.getParameter("idArticle"));
 		
-		try {
-			nomArticle = ArticleVenduManager.selectArticleById(id); //par numero et pas par id ^^
-		} catch (DALException e) {
+		//try {
+		//	nomArticle = ArticleVenduManager.selectArticleById(id); //par numero et pas par id ^^
+		//} catch (DALException e) {
 			
-			e.printStackTrace();
-		}
-		if (nomArticle != null) {
-			request.setAttribute("nomArticle", nomArticle);
-			
-			request.getRequestDispatcher("/WEB-INF/jsp/affichervente.jsp").forward(request, response);
-		}
+		//	e.printStackTrace();
+	//	}
+//		if (nomArticle != null) {
+//			request.setAttribute("nomArticle", nomArticle);
+//			
+//			request.getRequestDispatcher("/WEB-INF/jsp/affichervente.jsp").forward(request, response);
+//		}
 		
 		//	R�cup�rer l'articleVendu pass� en param�tre de la requ�te http
 		
 		//  Pr�parer l'envoi de l'articleVendu r�cup�r� � la jsp affichervente.jsp
 			
-		request.setAttribute("titreDePage", "D�tail Vente");
-		request.setAttribute("nomDePage", "DETAIL VENTE");
+		//request.setAttribute("titreDePage", "D�tail Vente");
+		//request.setAttribute("nomDePage", "DETAIL VENTE");
 	
 	}
 		
