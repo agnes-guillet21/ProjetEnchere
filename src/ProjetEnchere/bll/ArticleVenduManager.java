@@ -50,8 +50,15 @@ public class ArticleVenduManager {
 	 * @param ArticleVendu a
 	 */
 	public void insert(ArticleVendu a) {
-		
-		articleVenduDAO.insert(a); }
-		
-			
+		articleVenduDAO.insert(a); 	
 	}
+
+public List<ArticleVendu> listerVentesParCriteres(String nom){
+	try {
+		return this.articleVenduDAO.listerVentesParCriteres(nom);
+	} catch (DALException e) {
+		e.printStackTrace();
+	}return null;
+}
+
+}

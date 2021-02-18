@@ -38,16 +38,15 @@ public class ServletTestDAL extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< HEAD
+
 
 			UtilisateurManager uMger = new UtilisateurManager();			
 			Utilisateur utilisateur = new Utilisateur("test", "nomtest", "prenomtest", "test@test.test", null, "1 rue test", "00000", "Test", "mdptest", 500);
 			
-			try {
-				uMger.delete(utilisateur);
-			} catch (DALException e) {
-				// TODO Auto-generated catch block
-=======
+//			try {
+//				uMger.delete(utilisateur);
+//			} catch (DALException e) {
+
 		
 //////////// TEST CONNEXION /////////////
 		PrintWriter out = response.getWriter();
@@ -73,7 +72,7 @@ public class ServletTestDAL extends HttpServlet {
 		String motDePasse = "mdp";
 		int credit = 100;
 //		
-		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
+		//Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codepostal, ville, motDePasse, credit);
 //		UtilisateurDAO uDAO = DAOFactory.getUtilisateurDAO();
 //		try {
 //
@@ -149,40 +148,55 @@ public class ServletTestDAL extends HttpServlet {
 //		out.print(u);
 //		
 //		
-		Connection cnx=null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			
-			String delete ="delete from UTILISATEURS WHERE pseudo=?;";
-			try {
-				cnx = DALConnectionProvider.getConnection();
-				pstmt = cnx.prepareStatement(delete);
-				pstmt.setString(1, utilisateur.getPseudo());
-				pstmt.executeUpdate();
-			} catch (SQLException e) {
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
-				e.printStackTrace();
-<<<<<<< HEAD
-			}
-}
-
-=======
-			}finally {
-				try {
-					//lib des ressources on ferme le stmt et la connexio
-					if(pstmt!=null) {
-						pstmt.close();
-					}
-					if(cnx !=null) {
-						cnx.close();
-					}
-				}catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+//		Connection cnx=null;
+//			PreparedStatement pstmt = null;
+//			ResultSet rs = null;
+//			
+//			String delete ="delete from UTILISATEURS WHERE pseudo=?;";
+//			try {
+//				cnx = DALConnectionProvider.getConnection();
+//				pstmt = cnx.prepareStatement(delete);
+//				pstmt.setString(1, utilisateur.getPseudo());
+//				pstmt.executeUpdate();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//
+//			}
+//
+//
+//
+//			}finally {
+//				try {
+//					//lib des ressources on ferme le stmt et la connexio
+//					if(pstmt!=null) {
+//						pstmt.close();
+//					}
+//					if(cnx !=null) {
+//						cnx.close();
+//					}
+//				}catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			}
+		
+		
+		//CategorieDAO categorieDAO= DAOFactory.getCategorieDAO();
+		ArticleVenduDAO articleDAO= DAOFactory.getArticleVenduDAO();
+		ResultSet rs = null;
+		
+		try {
+			List<ArticleVendu> articleVendu = 	articleDAO.listerVentesParCriteres("lit");
+	
+			//articleVendu.setUtilisateurVendeur(utilisateur.getUserById(rs.getInt("no_utilisateur")));	
+			//articleVendu.setCategorieArticle(categorieDAO.selectById(rs.getInt("no_categorie")));
+			//articleVendu.setLieuRetrait(retraitDAO.selectById(rs.getInt("no_retrait")));
+			System.out.println(articleVendu);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
 			
 		}
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

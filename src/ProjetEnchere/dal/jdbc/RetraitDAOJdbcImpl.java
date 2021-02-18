@@ -61,4 +61,10 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 	
 	}
 	}
+
+	@Override
+	public Retrait selectById(int noRetrait) {
+		
+		return null;
+	}
 }
