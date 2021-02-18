@@ -11,4 +11,7 @@ public interface RetraitDAO {
 	
 void insertLieuRetrait(Retrait r) throws DALException, SQLException;
 
+Retrait selectById(int noRetrait);
+
+
 }

@@ -14,6 +14,9 @@ import java.util.List;
 import ProjetEnchere.bll.BLLException;
 import ProjetEnchere.bo.ArticleVendu;
 import ProjetEnchere.dal.ArticleVenduDAO;
+import ProjetEnchere.dal.CategorieDAO;
+import ProjetEnchere.dal.DAOFactory;
+import ProjetEnchere.dal.RetraitDAO;
 
 public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 
@@ -31,6 +34,8 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 	 * @Override
 	 */
 	public List<ArticleVendu> listerToutesLesVentes() throws DALException {
+		CategorieDAO categorieDAO= DAOFactory.getCategorieDAO();
+		RetraitDAO retraitDAO= DAOFactory.getRetraitDAO();
 		Connection cnx = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -52,8 +57,8 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 				articleVendu.setPrixVente(rs.getInt("prix_vente"));
 				//TODO Revoir la récupération des Objets liés à ArticleVendu
 				articleVendu.setUtilisateurVendeur(utilisateur.getUserById(rs.getInt("no_utilisateur")));
-				//				articleVendu.setCategorieArticle(CategorieDAOJdbcImpl.SelectById(rs.getInt("no_categorie"));
-				//				articleVendu.setLieuRetrait(RetraitDAOJdbcImpl.SelectById(rs.getInt("no_retrait"));
+								articleVendu.setCategorieArticle(categorieDAO.selectById(rs.getInt("no_categorie")));
+							//	articleVendu.setLieuRetrait(retraitDAO.selectById(rs.getInt("no_retrait")));
 				listeVentes.add(articleVendu);
 
 			}
@@ -84,11 +89,12 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 	 * @throws DALException
 	 * @Override
 	 */
-	public List<ArticleVendu> listerVentesParCriteres() throws DALException {
-
+	public List<ArticleVendu> listerVentesParCriteres(String nom) throws DALException {
+		CategorieDAO categorieDAO= DAOFactory.getCategorieDAO();
+		RetraitDAO retraitDAO= DAOFactory.getRetraitDAO();
 		List<ArticleVendu> listeEncheres = new ArrayList<ArticleVendu>();
 		Connection cnx = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 
@@ -99,21 +105,50 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 		}
 			
 			try {
-				stmt = cnx.createStatement();
+				
+		
+				String selectByCritere= "SELECT no_article, nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,"
+						+ "no_utilisateur,no_categorie,no_retrait from ARTICLES_VENDUS WHERE nom_article like '%"+nom+"%';";
+							//	+ " and no_categorie=?";
+						//pstmt.setString(1,no_categorie )
+						//changer le para de la methode pr ajouter une catego
+					System.out.println(selectByCritere);
+				pstmt = cnx.prepareStatement(selectByCritere);
+				
+				//pstmt.setString(1, nom);
+					rs = pstmt.executeQuery();
+					while (rs.next()) {
+						ArticleVendu articleVendu = new ArticleVendu();
+						articleVendu.setNoArticle(rs.getInt("no_article"));
+						articleVendu.setNomArticle(rs.getString("nom_article"));	
+						articleVendu.setDescription(rs.getString("description"));
+						articleVendu.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
+						articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
+						articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
+						articleVendu.setPrixVente(rs.getInt("prix_vente"));
+						
+						articleVendu.setUtilisateurVendeur(utilisateur.getUserById(rs.getInt("no_utilisateur")));	
+						articleVendu.setCategorieArticle(categorieDAO.selectById(rs.getInt("no_categorie")));
+						//articleVendu.setLieuRetrait(retraitDAO.selectById(rs.getInt("no_retrait")));
+						listeEncheres.add(articleVendu);
+					}
 			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-//				String selectByCritere= SELECT
-//				
-//				
-//				
-//				rs = stmt.executeQuery(SELECT_ALL);
-//			
-//				
+					e.printStackTrace();
+				}finally {
+					try {
+					if(pstmt !=null) {
+						pstmt.close();
+					}
+					if(cnx !=null) {
+						cnx.close();
+					}
+					
+				}catch (SQLException e) {
+					throw new DALException ("getByCritere echec");
+				}
+				}
 				
-				
-				
-		return null;
+		return listeEncheres ;
 	}
 
 
@@ -181,5 +216,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 
 		return null;
 	}
+
+
 
 }

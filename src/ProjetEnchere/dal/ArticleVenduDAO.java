@@ -22,7 +22,7 @@ public interface ArticleVenduDAO {
 	 * @return List<ArticleVendu> Une liste d'objets de type ArticleVendu
 	 * @throws DALException
 	 */
-	List<ArticleVendu> listerVentesParCriteres()throws DALException;
+	List<ArticleVendu> listerVentesParCriteres(String nom)throws DALException;
 	
 	/**
 	 * M�thode permettant d'ajouter une vente (un ArticleVendu) dans la base de donn�e
