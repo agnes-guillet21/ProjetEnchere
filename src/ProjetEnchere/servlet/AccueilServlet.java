@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.FilterConfig;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,7 @@ import ProjetEnchere.bll.ArticleVenduManager;
 import ProjetEnchere.bll.BLLException;
 import ProjetEnchere.bll.CategorieManager;
 import ProjetEnchere.bll.EnchereManager;
+import ProjetEnchere.bll.UtilisateurManager;
 import ProjetEnchere.bo.ArticleVendu;
 import ProjetEnchere.bo.Categorie;
 import ProjetEnchere.bo.Enchere;
@@ -33,6 +35,7 @@ public class AccueilServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -51,7 +54,8 @@ public class AccueilServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8"); // ???
 		
-		
+		//mise en place d un filter
+	
 		// récup de la catégorie et de rechercher
 		if(request.getParameter("categorie")!=null) {
 			categorie = request.getParameter("categorie");
@@ -72,11 +76,13 @@ public class AccueilServlet extends HttpServlet {
 		request.setAttribute("listeEncheres", listeEncheres);
 
 		} catch (BLLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 		}
 
-			
+		
+		
+		
+
 			
 			
 ////		for (int i = 0; i < listEnchere.size(); i++) {
@@ -96,7 +102,38 @@ public class AccueilServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		String nomProduitRecherche= request.getParameter("srecherche");
+		//instancie categorie manager 
+		 Categorie c1 = new Categorie();
+		 CategorieManager c = new CategorieManager();
+		 ArticleVenduManager aVManager =  new ArticleVenduManager();
+		 List<ArticleVendu> listeEncheres = new ArrayList<>();
+		 
+		 String categorie = request.getParameter("scategorie");
+		 
+		 if((nomProduitRecherche.isEmpty()|| nomProduitRecherche==null) && (categorie.isEmpty() || categorie==null)) {
+			 try {
+				listeEncheres= aVManager.listerToutesLesVentes();
+				request.setAttribute("listeEncheres", listeEncheres);// renvoyer des infos faut les monter en attibuts
+				request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);//je les envoie
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
+			 if(!nomProduitRecherche.isEmpty()|| nomProduitRecherche != null) {
+				 // methode ds la dal select by critere ( ya 2 criteres le nom et la categorie)
+				 
+			 }
+			  
+		 }
+		 //je veux modifier la liste des ventes en fction des filtres => categorie choisie
+		 //transmettre le getparameter  a ma dal 
+		 //ma dal ma m envoyer une liste des ventes en fction des para
+		// lister par criteres presente ds ma dal
+			//listeEncheres = aVManager.listerToutesLesVentes();
+			//request.setAttribute("listeEncheres", listeEncheres);
+		 
+		 
+		 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 	}
 
 }
