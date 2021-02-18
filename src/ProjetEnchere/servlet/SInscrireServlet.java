@@ -89,10 +89,12 @@ public class SInscrireServlet extends HttpServlet {
 						if(user.verificationEmail(email)!= null) 
 						System.out.println("le mail est deja existant");
 						user.InsertUtilisateur(u1);
-						
+						response.sendRedirect("./accueil");
 					} catch (BLLException e2) {
 						e2.printStackTrace();
 						request.setAttribute("erreurs",e2.getErreurs());
+						//request.getAttribute("erreurs",e2.getErreurs());
+						response.getWriter().print("erreurs");
 						//gerer la direction 
 						//renvoyer sur la page inscription
 						request.getRequestDispatcher("/inscription.html").forward(request, response);

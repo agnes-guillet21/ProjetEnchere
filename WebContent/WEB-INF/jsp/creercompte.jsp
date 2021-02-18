@@ -16,7 +16,7 @@
         <div>
             <label for="pseudo">Pseudo :</label>
             <input type="text" id="pseudo" name="userpseudo" value="<c:out value="${param.userpseudo}"/>" size="30" maxlength="30" required>
-             <span class="erreur">${erreurs['<%=BLLException.PSEUDO%>']}</span>
+             <span class="erreur">${erreurs['userpseudo']}</span>
         </div>
         </br>
 

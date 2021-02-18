@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import ProjetEnchere.bo.ArticleVendu;
 import ProjetEnchere.bo.Retrait;
+import ProjetEnchere.bo.Utilisateur;
 import ProjetEnchere.dal.RetraitDAO;
 
 public class RetraitDAOJdbcImpl implements RetraitDAO {
@@ -63,8 +65,49 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 	}
 
 	@Override
-	public Retrait selectById(int noRetrait) {
+	public Retrait selectById(int id) throws DALException{
+		Connection cnx= null;
+		Statement stmt=null; 
+		Retrait retrait= null;
 		
-		return null;
+		
+		String sql = "SELECT no_retrait, rue,code_postal,ville FROM RETRAITS WHERE no_retrait=";
+		sql = sql +id+";";
+		
+
+		try {
+			cnx = DALConnectionProvider.getConnection();
+			stmt = cnx.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			retrait = new Retrait();
+			rs.next();
+			retrait.setNo_retrait(rs.getInt("no_retrait"));
+			retrait.setRue(rs.getString("rue"));
+			retrait.setCodePostal(rs.getString("code_postal"));
+			retrait.setVille(rs.getString("ville"));
+			
+
+
+		} catch (SQLException e) {
+			throw new DALException("listerToutesLesVentes() Echec");
+		}finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				if (stmt != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return retrait;
+		
 	}
 }
