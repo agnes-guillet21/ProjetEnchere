@@ -24,7 +24,7 @@
                  <div class="row">
                  <div class="col-md-1"></div>
                       <div class="col-md-8">
-                         <label for="catégorie" method="get">Catégorie : </label>
+                         <label for="catégorie">Catégorie : </label>
                          <select name="scategorie" id="categorie">
                             <option value="">Toutes</option>
                             <option value="informatique">Informatique</option>
