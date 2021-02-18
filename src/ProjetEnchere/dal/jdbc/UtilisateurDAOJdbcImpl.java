@@ -308,32 +308,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	 * @throws DALException
 	 * @throws SQLException
 	 */
-	private void verificationVentesEnCours(Utilisateur u) throws DALException, SQLException {
-		
-		final String sql = "SELECT UTILISATEURS.no_utilisateur, pseudo, nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,utilisateur_ferme_le, etat_vente " + 
-				"FROM UTILISATEURS INNER JOIN ARTICLES_VENDUS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur WHERE ARTICLES_VENDUS.etat_vente='"+ EtatVente.EN_COURS + "' AND pseudo =? ;";
-		ResultSet rs = null;
-		PreparedStatement pstmt = null;
-		Connection cnx = null;
-		
-		try {
-			cnx = DALConnectionProvider.getConnection();
-		} catch (SQLException e) {
-			throw new DALException("Problème de connexion à la base de données");
-		}
-		
-		try {
-			pstmt = cnx.prepareStatement(sql);
-			pstmt.setString(1, u.getPseudo());
-			rs = pstmt.executeQuery();
-		} catch (SQLException e) {
-			throw new DALException("Requête SQL Impossible");
-		}
-		if(rs.next()) {
-			throw new DALException("Le compte ne peut pas être fermé car il y a des ventes en cours");
-		} 
-		
-	}
 	
 	
 	/**
@@ -343,49 +317,49 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	 * @throws DALException
 	 * @Override
 	 */
-	public Utilisateur update(Utilisateur utilisateur, Utilisateur utilisateurSession) throws DALException {
-		Connection cnx=null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		
-		try {
-			cnx = DALConnectionProvider.getConnection();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		if(utilisateur == null) {
-			throw new DALException("Pas d'utilisateur passé en paramêtre de la méthode update");
-		}
-	
-		String update ="UPDATE UTILISATEURS SET pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?, mot_de_passe=? WHERE pseudo=?;";
-					
-		try {
-			pstmt = cnx.prepareStatement(update);
-			pstmt.setString(1, utilisateur.getPseudo());
-			pstmt.setString(2, utilisateur.getNom());
-			pstmt.setString(3, utilisateur.getPrenom());
-			pstmt.setString(4, utilisateur.getEmail());
-			pstmt.setString(5, utilisateur.getTelephone());
-			pstmt.setString(6, utilisateur.getRue());
-			pstmt.setString(7, utilisateur.getCodepostal());
-			pstmt.setString(8, utilisateur.getVille());
-			pstmt.setString(9, utilisateur.getMotDePasse());
-			pstmt.setString(10, utilisateurSession.getPseudo());
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	
-		try {
-			pstmt.close();
-			cnx.close();
-		} catch (SQLException e) {
-			throw new DALException("Impossible de fermer la connexion avec la base de données");
-		}
-		
-		return getUserByPseudo(utilisateur.getPseudo());
-	}
+//	public Utilisateur update(Utilisateur utilisateur, Utilisateur utilisateurSession) throws DALException {
+//		Connection cnx=null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		
+//		
+//		try {
+//			cnx = DALConnectionProvider.getConnection();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		if(utilisateur == null) {
+//			throw new DALException("Pas d'utilisateur passé en paramêtre de la méthode update");
+//		}
+//	
+//		String update ="UPDATE UTILISATEURS SET pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?, mot_de_passe=? WHERE pseudo=?;";
+//					
+//		try {
+//			pstmt = cnx.prepareStatement(update);
+//			pstmt.setString(1, utilisateur.getPseudo());
+//			pstmt.setString(2, utilisateur.getNom());
+//			pstmt.setString(3, utilisateur.getPrenom());
+//			pstmt.setString(4, utilisateur.getEmail());
+//			pstmt.setString(5, utilisateur.getTelephone());
+//			pstmt.setString(6, utilisateur.getRue());
+//			pstmt.setString(7, utilisateur.getCodepostal());
+//			pstmt.setString(8, utilisateur.getVille());
+//			pstmt.setString(9, utilisateur.getMotDePasse());
+//			pstmt.setString(10, utilisateurSession.getPseudo());
+//			pstmt.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	
+//		try {
+//			pstmt.close();
+//			cnx.close();
+//		} catch (SQLException e) {
+//			throw new DALException("Impossible de fermer la connexion avec la base de données");
+//		}
+//		
+//		return getUserByPseudo(utilisateur.getPseudo());
+//	}
 /*
 	* Méthode permettant de vérifier si un utilisateur a des ventes en cours
     * @param Utilisateur u
@@ -474,51 +448,51 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
      * @throws DALException
      * @Override
      */
-    public void fermer(Utilisateur utilisateur) throws DALException {
-
- 
-
-        Connection cnx=null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-
- 
-
-        try {
-            verificationVentesEnCours(utilisateur);
-        } catch (DALException e) {
-            e.getMessage();
-        } catch (SQLException e) {
-            e.getMessage();
-        }
-        
-        String fermer ="UPDATE UTILISATEURS SET utilisateur_ferme_le = ? WHERE pseudo=?;";
-        try {
-            cnx = DALConnectionProvider.getConnection();
-            pstmt = cnx.prepareStatement(fermer);
-            pstmt.setDate(1, java.sql.Date.valueOf(LocalDate.now()));
-            pstmt.setString(2, utilisateur.getPseudo());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new DALException("erreur lors de la suppression de l'utilisateur :",e);
-        }finally {
-            try {
-                if(pstmt!=null) {
-                    pstmt.close();
-                }
-                if(cnx !=null) {
-                    cnx.close();
-                }
-            }catch (SQLException e) {
-                throw new DALException("erreur de la  suppression  de l'utilisateur:", e);
-            }
-
- 
-
-        }
-
-
-    }
+//    public void fermer(Utilisateur utilisateur) throws DALException {
+//
+// 
+//
+//        Connection cnx=null;
+//        PreparedStatement pstmt = null;
+//        ResultSet rs = null;
+//
+// 
+//
+//        try {
+//            verificationVentesEnCours(utilisateur);
+//        } catch (DALException e) {
+//            e.getMessage();
+//        } catch (SQLException e) {
+//            e.getMessage();
+//        }
+//        
+//        String fermer ="UPDATE UTILISATEURS SET utilisateur_ferme_le = ? WHERE pseudo=?;";
+//        try {
+//            cnx = DALConnectionProvider.getConnection();
+//            pstmt = cnx.prepareStatement(fermer);
+//            pstmt.setDate(1, java.sql.Date.valueOf(LocalDate.now()));
+//            pstmt.setString(2, utilisateur.getPseudo());
+//            pstmt.executeUpdate();
+//        } catch (SQLException e) {
+//            throw new DALException("erreur lors de la suppression de l'utilisateur :",e);
+//        }finally {
+//            try {
+//                if(pstmt!=null) {
+//                    pstmt.close();
+//                }
+//                if(cnx !=null) {
+//                    cnx.close();
+//                }
+//            }catch (SQLException e) {
+//                throw new DALException("erreur de la  suppression  de l'utilisateur:", e);
+//            }
+//
+// 
+//
+//        }
+//
+//
+//    }
 
 	@Override
 	public List<Utilisateur> select() throws DALException {
