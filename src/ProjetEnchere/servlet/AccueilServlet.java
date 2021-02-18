@@ -102,6 +102,11 @@ public class AccueilServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		if (request.getAttribute("doGet").equals("ok")) {
+			doGet(request, response);
+		}
+		
 		String nomProduitRecherche= request.getParameter("srecherche");
 		//instancie categorie manager 
 		 Categorie c1 = new Categorie();
