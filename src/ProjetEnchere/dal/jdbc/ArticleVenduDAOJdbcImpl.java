@@ -19,10 +19,10 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 
 	private static final String SELECT_ALL="SELECT no_article, nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie,no_retrait FROM ARTICLES_VENDUS;";
 	private static final String INSERT_VENTE="INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, "
-											+ "prix_initial, prix_vente, no_utilisateur, no_categorie, no_retrait) "
-											+ "VALUES ('?', '?', '?', '?', ?, ?, ?, ?, ?);";
+			+ "prix_initial, prix_vente, no_utilisateur, no_categorie, no_retrait) "
+			+ "VALUES ('?', '?', '?', '?', ?, ?, ?, ?, ?);";
 	private static UtilisateurDAOJdbcImpl utilisateur = new UtilisateurDAOJdbcImpl();
-	
+
 
 	/**
 	 * Méthode permettant de lister toutes les ventes de l'application
@@ -35,27 +35,27 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 		Statement stmt = null;
 		ResultSet rs = null;
 		List<ArticleVendu> listeVentes = new ArrayList<ArticleVendu>();
-	
+
 		try {
 			cnx = DALConnectionProvider.getConnection();
 			stmt = cnx.createStatement();
 			rs = stmt.executeQuery(SELECT_ALL);
-			
+
 			while (rs.next()) {
 				ArticleVendu articleVendu = new ArticleVendu();
-					articleVendu.setNoArticle(rs.getInt("no_article"));
-					articleVendu.setNomArticle(rs.getString("nom_article"));
-					articleVendu.setDescription(rs.getString("description"));
-					articleVendu.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
-					articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
-					articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
-					articleVendu.setPrixVente(rs.getInt("prix_vente"));
-					//TODO Revoir la récupération des Objets liés à ArticleVendu
-					articleVendu.setUtilisateurVendeur(utilisateur.getUserById(rs.getInt("no_utilisateur")));
-//				articleVendu.setCategorieArticle(CategorieDAOJdbcImpl.SelectById(rs.getInt("no_categorie"));
-//				articleVendu.setLieuRetrait(RetraitDAOJdbcImpl.SelectById(rs.getInt("no_retrait"));
-					listeVentes.add(articleVendu);
-				
+				articleVendu.setNoArticle(rs.getInt("no_article"));
+				articleVendu.setNomArticle(rs.getString("nom_article"));
+				articleVendu.setDescription(rs.getString("description"));
+				articleVendu.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
+				articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
+				articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
+				articleVendu.setPrixVente(rs.getInt("prix_vente"));
+				//TODO Revoir la récupération des Objets liés à ArticleVendu
+				articleVendu.setUtilisateurVendeur(utilisateur.getUserById(rs.getInt("no_utilisateur")));
+				//				articleVendu.setCategorieArticle(CategorieDAOJdbcImpl.SelectById(rs.getInt("no_categorie"));
+				//				articleVendu.setLieuRetrait(RetraitDAOJdbcImpl.SelectById(rs.getInt("no_retrait"));
+				listeVentes.add(articleVendu);
+
 			}
 		} catch (SQLException e) {
 			throw new DALException("listerToutesLesVentes() Echec");
@@ -85,6 +85,34 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 	 * @Override
 	 */
 	public List<ArticleVendu> listerVentesParCriteres() throws DALException {
+
+		List<ArticleVendu> listeEncheres = new ArrayList<ArticleVendu>();
+		Connection cnx = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+
+
+		try {
+			cnx = DALConnectionProvider.getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+			
+			try {
+				stmt = cnx.createStatement();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+//				String selectByCritere= SELECT
+//				
+//				
+//				
+//				rs = stmt.executeQuery(SELECT_ALL);
+//			
+//				
+				
+				
+				
 		return null;
 	}
 
@@ -99,7 +127,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 		Connection cnx = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			cnx = DALConnectionProvider.getConnection();
 			pstmt = cnx.prepareStatement(INSERT_VENTE, Statement.RETURN_GENERATED_KEYS);
@@ -145,6 +173,13 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 	 * @Override
 	 */
 	public void insert(ArticleVendu a) {	
+	}
+
+	@Override
+	public List<ArticleVendu> select(String categorie, String recherche) throws DALException {
+
+
+		return null;
 	}
 
 }
