@@ -14,6 +14,7 @@ import ProjetEnchere.bll.ArticleVenduManager;
 import ProjetEnchere.bll.EnchereManager;
 import ProjetEnchere.bo.Utilisateur;
 import ProjetEnchere.dal.jdbc.DALException;
+import ProjetEnchere.bo.ArticleVendu;
 import ProjetEnchere.bo.Enchere;
 
 /**
@@ -36,19 +37,36 @@ public class AfficherVenteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session =  request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		ArticleVenduManager aVenduMger = new ArticleVenduManager();		
 
-		//	Récupérer l'articleVendu passé en paramètre de la requête http
 		
-		//  Préparer l'envoi de l'articleVendu récupéré à la jsp affichervente.jsp
+		ArticleVendu nomArticle = null;
+		
+		int id = Integer.parseInt(request.getParameter("idArticle"));
+		
+		try {
+			nomArticle = ArticleVenduManager.selectArticleById(id); //par numero et pas par id ^^
+		} catch (DALException e) {
 			
-		request.setAttribute("titreDePage", "Détail Vente");
-		request.setAttribute("nomDePage", "DETAIL VENTE");
-		request.getRequestDispatcher("/WEB-INF/jsp/affichervente.jsp").forward(request, response);
-	}
+			e.printStackTrace();
+		}
+		if (nomArticle != null) {
+			request.setAttribute("nomArticle", nomArticle);
+			
+			request.getRequestDispatcher("/WEB-INF/jsp/affichervente.jsp").forward(request, response);
+		}
 		
+		//	Rï¿½cupï¿½rer l'articleVendu passï¿½ en paramï¿½tre de la requï¿½te http
+		
+		//  Prï¿½parer l'envoi de l'articleVendu rï¿½cupï¿½rï¿½ ï¿½ la jsp affichervente.jsp
+			
+		request.setAttribute("titreDePage", "Dï¿½tail Vente");
+		request.setAttribute("nomDePage", "DETAIL VENTE");
+	
+	}
 		
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -17,6 +17,8 @@ public class ArticleVenduManager {
 	private ArticleVenduDAO articleVenduDAO = DAOFactory.getArticleVenduDAO();
 	private static ArticleVenduManager instance;
 	
+	
+	
 	/**
 	 * M�thode permettant d'obtenir une instance d'ArticleVenduManager
 	 * @return une instance d'ArticleVenduManager
@@ -28,6 +30,7 @@ public class ArticleVenduManager {
 		return instance;
 	}
 
+	
 	/**
 	 * M�thode permettant d'afficher la liste des ventes
 	 * @return une liste d'objet de types ArticleVendu
@@ -50,8 +53,16 @@ public class ArticleVenduManager {
 	 * @param ArticleVendu a
 	 */
 	public void insert(ArticleVendu a) {
+
+		
+		articleVenduDAO.insert(a); }
+	
+	
+	public static ArticleVendu selectArticleById(int id)throws DALException{
+		return articleVenduDAO.getById(id); }	
+
 		articleVenduDAO.insert(a); 	
-	}
+	
 
 public List<ArticleVendu> listerVentesParCriteres(String nom){
 	try {
@@ -62,3 +73,4 @@ public List<ArticleVendu> listerVentesParCriteres(String nom){
 }
 
 }
+
