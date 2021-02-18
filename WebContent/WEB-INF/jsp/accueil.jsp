@@ -60,7 +60,7 @@
         		<div class="row">
 					<c:forEach var="v" items="${listeEncheres}">
 						<div class="card bg-default col-md-5 m-1 p-0">
-							<h5 class="card-header"><c:if test="${!empty user}"><a href=""></c:if>${v.nomArticle}<c:if test="${!empty user}"></a></c:if></h5>
+							<h5 class="card-header"><c:if test="${!empty user}"><a href="vente.html"></c:if>${v.nomArticle}<c:if test="${!empty user}"></a></c:if></h5>
 							<div class="card-text">
 								<p>Prix : ${v.prixVente} points</p>
 								<p>Fin de l'enchère : ${v.dateFinEncheres}</p>

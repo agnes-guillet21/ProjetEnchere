@@ -10,59 +10,51 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ProjetEnchere.bll.ArticleVenduManager;
 import ProjetEnchere.bll.EnchereManager;
 import ProjetEnchere.bo.Utilisateur;
 import ProjetEnchere.dal.jdbc.DALException;
 import ProjetEnchere.bo.Enchere;
 
+/**
+ * Servlet implementation afficherVente
+ */
+@WebServlet("/vente.html")
+public class AfficherVenteServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
-public class AfficherVenteServlet {
 
-	@WebServlet("/afficherVenteServlet")
-	public class AfficherDetailEnchere extends HttpServlet {
-		private static final long serialVersionUID = 1L;
-	   
-}
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public AfficherVenteServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 	
-	
-	@Override
-//	public void init(ServletConfig config) throws ServletException {
-//		super.init(config); }
-//		
-//	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			HttpSession session =  request.getSession();
-			Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-			
-			
-			
-			int noArticle = 0;
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session =  request.getSession();
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		ArticleVenduManager aVenduMger = new ArticleVenduManager();		
 
-			
-			if (request.getParameter("noArticle")!=null) {
-				noArticle = Integer.parseInt(request.getParameter("noArticle"));
-			} else { 
-				noArticle = (int) request.getAttribute("noArticle");
-			}
-			
-			Enchere enchere = null;
-			System.out.println("numero article :" + noArticle);
-			try {			
-				enchere = EnchereManager.select(noArticle);
-			} catch (DALException e) {
-				e.printStackTrace();
-			}
-			request.setAttribute("enchere",enchere);}
+		//	Récupérer l'articleVendu passé en paramètre de la requête http
 		
-		
-			/**
-			 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-			 */
-		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			doGet(request, response);
-		}
-
+		//  Préparer l'envoi de l'articleVendu récupéré à la jsp affichervente.jsp
+			
+		request.setAttribute("titreDePage", "Détail Vente");
+		request.setAttribute("nomDePage", "DETAIL VENTE");
+		request.getRequestDispatcher("/WEB-INF/jsp/affichervente.jsp").forward(request, response);
 	}
+		
+		
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
