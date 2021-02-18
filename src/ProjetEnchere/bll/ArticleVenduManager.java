@@ -53,18 +53,16 @@ public class ArticleVenduManager {
 	 * @param ArticleVendu a
 	 */
 	public void insert(ArticleVendu a) {
-<<<<<<< HEAD
+
 		
 		articleVenduDAO.insert(a); }
 	
 	
 	public static ArticleVendu selectArticleById(int id)throws DALException{
-		return articleVenduDAO.getById(id); 
-		}
-	}
-=======
+		return articleVenduDAO.getById(id); }	
+
 		articleVenduDAO.insert(a); 	
-	}
+	
 
 public List<ArticleVendu> listerVentesParCriteres(String nom){
 	try {
@@ -75,4 +73,4 @@ public List<ArticleVendu> listerVentesParCriteres(String nom){
 }
 
 }
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
+
