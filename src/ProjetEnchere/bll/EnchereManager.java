@@ -3,17 +3,35 @@ package ProjetEnchere.bll;
 import java.util.List;
 
 import ProjetEnchere.bo.Enchere;
+import ProjetEnchere.dal.ArticleVenduDAO;
+import ProjetEnchere.dal.DAOFactory;
+import ProjetEnchere.dal.jdbc.DALException;
+
+
 
 /**
- * Classe gérant les objets de type Enchere en BLL
+ * Classe gï¿½rant les objets de type Enchere en BLL
  * @author Team F
  *
  */
 public class EnchereManager {
 	private static EnchereManager instance;
 	
+	
 	/**
-	 * Méthode permettant de récupérer une liste d'objets Enchere
+	 * Constructeur par dÃ©faut
+	 */
+	public EnchereManager() {
+		ArticleVenduDAO = DAOFactory.getArticleVenduDAO();
+	}
+	
+	public  select(int noArticle) throws DALException {
+		return ArticleVenduDAO.select(noArticle);
+
+	
+	
+	/**
+	 * Mï¿½thode permettant de rï¿½cupï¿½rer une liste d'objets Enchere
 	 * @return Une liste d'onjet de type Enchere
 	 */
 	public static List<Enchere> getEncheres() {
@@ -21,7 +39,7 @@ public class EnchereManager {
 	}
 
 	/**
-	 * Méthode permettant d'obtenir une instance d'EnchereManager
+	 * Mï¿½thode permettant d'obtenir une instance d'EnchereManager
 	 * @return une instance d'EnchereManager
 	 */
 	public static EnchereManager getEnchereManager() {
