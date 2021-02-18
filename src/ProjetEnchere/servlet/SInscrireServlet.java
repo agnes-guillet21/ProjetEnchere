@@ -112,7 +112,7 @@ public class SInscrireServlet extends HttpServlet {
 				request.getRequestDispatcher("connexion.html").forward(request, response);
 	}
 }
-	
+
 
 					
 	
