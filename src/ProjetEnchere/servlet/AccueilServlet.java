@@ -138,7 +138,7 @@ public class AccueilServlet extends HttpServlet {
 			//request.setAttribute("listeEncheres", listeEncheres);
 		 
 		 
-		 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+		 request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);;
 	}
 
 }

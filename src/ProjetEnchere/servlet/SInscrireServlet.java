@@ -60,59 +60,38 @@ public class SInscrireServlet extends HttpServlet {
 		String ville=request.getParameter("city");
 		String motDePasse=request.getParameter("spassword");
 		String confirMP=request.getParameter("spassword2");
+		RequestDispatcher rd;
 		
 		request.setCharacterEncoding("UTF-8");
 	
-				Utilisateur u1 = new Utilisateur(pseudo,nom,prenom,email,tel,rue,cp,ville,motDePasse,0);
-				UtilisateurManager user = new UtilisateurManager(); 
-				
+		Utilisateur u1 = new Utilisateur(pseudo,nom,prenom,email,tel,rue,cp,ville,motDePasse,0);
+		UtilisateurManager user = new UtilisateurManager(); 
+		System.out.println(u1);		
 					
-					try {
-						
-						user.validationFormulaire(pseudo, nom, prenom, email, tel, rue, cp, ville);
-						user.validationMP(motDePasse, confirMP);
-						
-						if(user.verificationEmail(email)!= null) {
-							System.out.println("le mail est deja existant");
-						}
-						user.InsertUtilisateur(u1);
-						response.sendRedirect("./accueil");
-					} catch (BLLException e2) {
-						request.setAttribute("erreurs",e2.getErreurs());//passage de la hashmap en attribut
-						response.getWriter().print("erreurs");
-						RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/creercompte.jsp");
-						rd.forward(request, response);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-						
+		try {
 			
+			//user.validationFormulaire(pseudo, nom, prenom, email, tel, rue, cp, ville);
+			user.validationMP(motDePasse, confirMP);
 			
-					HttpSession session = request.getSession();// on creer une session au moment de l inscription 
-					//on va lui passer l utilisateur en attribut
-					Utilisateur user1 = user.getUserByPseudoPassword(u1.getPseudo(), u1.getMotDePasse());
-					session.setAttribute("user", user1);
-				request.getRequestDispatcher("connexion.html").forward(request, response);
+			if(user.verificationEmail(email)!= null) {
+				System.out.println("le mail est deja existant");
+			}
+			user.InsertUtilisateur(u1);
+			
+		} catch (BLLException e2) {
+			request.setAttribute("erreurs",e2.getErreurs());//passage de la hashmap en attribut
+			response.getWriter().print("erreurs");
+			rd = request.getRequestDispatcher("/WEB-INF/jsp/creercompte.jsp");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		HttpSession session = request.getSession();// on creer une session au moment de l inscription 
+		//on va lui passer l utilisateur en attribut
+		Utilisateur user1 = user.getUserByPseudoPassword(u1.getPseudo(), u1.getMotDePasse());
+		session.setAttribute("user", user1);
+		request.setAttribute("doGet", "ok");
+		request.getRequestDispatcher("/connexion.html").forward(request, response);
 	}
 }
-
-
-					
-	
-
-
-//		//Stockage du resultat et des messages d'erreur dans l objet request
-//		request.setAttribute(ATT_ERREURS, erreurs);
-//		request.setAttribute(ATT_RESULTAT, resultat);
-
-		//test methode insert
-//		System.out.println("Ajout d'un utilisateur... ");
-//		System.out.println("Utilisateur ajoute  : " + u1.toString() );
-//		
-//		
-//	
-
-//	
-//
-//	
-

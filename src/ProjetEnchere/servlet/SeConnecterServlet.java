@@ -33,6 +33,12 @@ public class SeConnecterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+	
+		if(session.getAttribute("user")!=null) {
+			request.getRequestDispatcher("/accueil").forward(request, response);
+		}
+		
 		request.getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp").forward(request, response);
 	}
 
@@ -41,28 +47,27 @@ public class SeConnecterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		request.setAttribute("doGet", "ok");
+	
 		
 		if(session.getAttribute("user")!=null) {
 			request.getRequestDispatcher("/accueil").forward(request, response);
 		}
-		// info formulaire
+
 		String login = request.getParameter("susername");
 		String pass = request.getParameter("spassword");
 
 		UtilisateurManager userManager = new UtilisateurManager();
 
-		Utilisateur user = userManager.getUserByPseudoPassword(login, pass); // verif utilisateur
+		Utilisateur user = userManager.getUserByPseudoPassword(login, pass);
 		
 		if (user == null) {
 			request.setAttribute("messageErreur", "Le compte n'existe pas");
 			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp").forward(request, response);
 		}else {
-		// session utilis.
-		//HttpSession session = request.getSession();// recu les sessions ds la variable sessaion
-		session.setAttribute("user", user);// creer une session
+
+		session.setAttribute("user", user);
+		request.setAttribute("doGet", "ok");
 		this.getServletContext().getRequestDispatcher("/accueil").forward(request, response);
-		// retour accueil
 		}
 						
 		}

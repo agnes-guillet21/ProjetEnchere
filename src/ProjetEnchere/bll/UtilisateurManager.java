@@ -18,26 +18,7 @@ import ProjetEnchere.dal.jdbc.DALException;
 public class UtilisateurManager {
 
 	private UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
-	//charger une instance de utilisateurdaojbc impl via lafactory
-
-
-	// pr obtenir une instance de utilsateur dao 
-	//qui est une instance  utilisateurdaojbc impl
-
-
-	/**
-	 * Méthode permettant d'obtenir une instance d'UtilisateurManager
-	 * @return une instance d'ArticleVenduManager
-	 */
-
-	//	public static UtilisateurManager getInstance() { patter singleton 
-	//		if(instance == null) {
-	//			instance = new UtilisateurManager();
-	//		}
-	//		return instance;
-	//	}
-
-
+	
 	/*	 Methode : validation formulaire, validationMP verificationEmail
 	 * utilisee pr valider l inscription
 	 * 
@@ -104,7 +85,7 @@ public class UtilisateurManager {
 			throw  e;//je lance un exception e de type BLLExc pr stopper l inscription 
 		}	
 	}
-
+	
 	public void validationMP(String motDePasse, String confirMP)throws Exception{
 		Map<String, String> erreurs = new HashMap<String, String>();
 		BLLException e = new BLLException();
@@ -114,16 +95,18 @@ public class UtilisateurManager {
 				erreurs.put(BLLException.MP,BLLException.ERREUR_MP);
 			}else if(motDePasse.trim().length()>30) {
 				erreurs.put(BLLException.TAILLE_MP,BLLException.ERREUR_TMP);
-			}else {
-				erreurs.put(BLLException.CONFIR_MP,BLLException.ERREUR_CONFIRMP);
 			}
-
+		}else if(motDePasse == null || motDePasse.trim().length() == 0){
+			erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
+		}else if(confirMP == null || confirMP.trim().length() == 0){
+			erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
 		}
 		if(!erreurs.isEmpty()){
 			e.setErreurs(erreurs);//j' utilise le setter de la hasmap bll exception ( en passant para la hashmap) 
 			throw  e;//je lance un exception e de type BLLExc pr stopper l inscription 
 		}	
 	}
+	
 	/**
 	 * Méthode insert une Instance d'Utilisateur dans la base de données
 	 * Utilisée lors de la création d'un nouvel utilisateur

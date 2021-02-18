@@ -174,10 +174,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			e.printStackTrace();
 		}
 
-		if(user == null) {
-			throw new DALException("Pas d'utilisateur creer en parametre de ma methode selectByEmail");
-		}
-
 		//requete sql
 		String sql = "SELECT no_utilisateur,pseudo, nom, prenom ,email ,telephone, rue, code_postal,ville ,mot_de_passe,credit ,administrateur FROM UTILISATEURS WHERE email=";
 		sql = sql + "'"+email+"';";
@@ -300,14 +296,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}
 
 	}
-	
-	
-	/**
-	 * Méthode permettant de vérifier si un utilisateur a des ventes en cours
-	 * @param Utilisateur u
-	 * @throws DALException
-	 * @throws SQLException
-	 */
 	
 	
 	/**
