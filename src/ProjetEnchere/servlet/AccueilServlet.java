@@ -40,7 +40,7 @@ public class AccueilServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		
-		EnchereManager enchereManager = EnchereManager.getEnchereManager();
+		EnchereManager enchereManager = new EnchereManager();
 		//CategorieManager categorieManager = CategorieManager.getCategorieManager();
 		List<ArticleVendu> listeEncheres = new ArrayList<>();
 		ArticleVenduManager aVManager = ArticleVenduManager.getInstance();
