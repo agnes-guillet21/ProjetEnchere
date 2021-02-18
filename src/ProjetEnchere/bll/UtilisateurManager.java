@@ -16,6 +16,7 @@ import ProjetEnchere.dal.jdbc.DALException;
  *
  */
 public class UtilisateurManager {
+	
 	private UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	//charger une instance de utilisateurdaojbc impl via lafactory
 
@@ -131,40 +132,37 @@ public class UtilisateurManager {
 	 * @param Utilisateur u1
 	 * @throws SQLException 
 	 */
-	
 	public void InsertUtilisateur(Utilisateur u1) throws SQLException {
 		 try {
-			utilisateurDAO.insert(u1);//Méthode présente dans la DAL
+			utilisateurDAO.insert(u1);
 		} catch (DALException e) {
 			e.printStackTrace();
 		}		 
 	 }
-
 	
 	/**
-	 * Méthode permettant de récupérer un Utilisateur den fontion de son pseudo et de son mot de passe
+	 * Méthode permettant de récupérer un Utilisateur en fontion de son pseudo et de son mot de passe
 	 * @param String login
 	 * @param String pass
 	 * @return Utilisateur user si login et mdp ok. 
 	 * @return null si le mode passe ou le login ne sont pas bons
 	 */
-
 	public Utilisateur getUserByPseudoPassword(String login, String pass) {
 		
 		Utilisateur user = new Utilisateur();
-		boolean ConnectionOK;
 		
 		try {
-			user = utilisateurDAO.getUserByPseudo(login);//Méthode présente dans la DAL
+			user = utilisateurDAO.getUserByPseudo(login);//Méthode présente dans la DAL			
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
 		
+		if(user == null) {return null;}
+		
+		
 		if (user.getPseudo().equals(login) && user.getMotDePasse().equals(pass)){
-			ConnectionOK = true;
 			return user;
 		}else {
-			ConnectionOK = false;
 			return null;
 			//TODO prepare message à envoyer en param à la jsp
 		}
@@ -188,14 +186,35 @@ public class UtilisateurManager {
 		return null;
 	}
 	
-
-	 public void delete(Utilisateur utilisateur)throws DALException {
-		this.utilisateurDAO.delete(utilisateur);//appelle a ma methode ds utilisateur dao 
+	/**
+	 * Méthode permettant de "fermer" un utilisateur dans la BDD s'il n'a pas de vente en cours
+	 * @param Utilisateur utilisateur
+	 * @throws DALException
+	 * @throws BLLException 
+	 * @Override
+	 */
+	 public void fermer(Utilisateur utilisateur)throws BLLException, DALException {
+		 if(utilisateurDAO.getUserByPseudo(utilisateur.getPseudo()) == null) {
+			 throw new BLLException("Impossible de supprimer le compte. Aucun utilisateur avec le pseudo "+ utilisateur.getPseudo() + "n'existe dans la base de données.");
+		 }
+		try {
+			this.utilisateurDAO.fermer(utilisateur);
+		} catch (DALException e) {
+			e.getMessage();
+		} 
 	 }
 	 
-	 
-	public  void update(Utilisateur utilisateur) throws DALException{
-		this.utilisateurDAO.update(utilisateur);
+	/**
+	 * Méthode permettant de mettre à jour les informations d'un utilisateur dans la base de données 
+	 * @param Utilisateur
+	 * @return Utilisateur modifié
+	 * @throws DALException
+	 */
+	public Utilisateur update(Utilisateur newUtilisateur,Utilisateur utilisateurSession) throws DALException{
+		return this.utilisateurDAO.update(newUtilisateur,utilisateurSession);
 	}
-
+	
+	public Utilisateur getUserByPseudo(String pseudo) throws DALException {
+		return this.utilisateurDAO.getUserByPseudo(pseudo);
+	}
 }

@@ -63,9 +63,17 @@
 							<h5 class="card-header"><c:if test="${!empty user}"><a href=""></c:if>${v.nomArticle}<c:if test="${!empty user}"></a></c:if></h5>
 							<div class="card-text">
 								<p>Prix : ${v.prixVente} points</p>
-								<p>Fin de l'enchÃ¨re : ${v.dateFinEncheres}</p>
+								<p>Fin de l'enchère : ${v.dateFinEncheres}</p>
 							</div>
-							<div class="card-footer">Vendeur : <c:if test="${!empty user}"><a href=""></c:if>${v.utilisateurVendeur.getPseudo()}<c:if test="${!empty user}"></a></c:if></div>
+							<div class="card-footer"> 
+								<c:if test="${!empty user}">
+									<form method="post" action="profil.html" class="inline">
+  										<label>Vendeur : </label><input type="hidden">
+  										<button class="btn btn-link" type="submit" name="utilisateurVendeur" value="${v.utilisateurVendeur.getPseudo()}" class="link-button">
+    										${v.utilisateurVendeur.getPseudo()}</button>
+									</form>
+							</c:if>
+							<c:if test="${empty user}">${v.utilisateurVendeur.getPseudo()}</c:if></div>
 						</div>
 					</c:forEach>
 				</div>

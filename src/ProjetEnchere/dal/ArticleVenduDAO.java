@@ -4,12 +4,13 @@ import java.util.List;
 
 import ProjetEnchere.bll.BLLException;
 import ProjetEnchere.bo.ArticleVendu;
+import ProjetEnchere.bo.Enchere;
 import ProjetEnchere.dal.jdbc.DALException;
 
 public interface ArticleVenduDAO {
 	
 	/**
-	 * Méthode permettant de lister toutes les ventes de l'application
+	 * Mï¿½thode permettant de lister toutes les ventes de l'application
 	 * @return List<ArticleVendu> Une liste d'objets de type ArticleVendu
 	 * @throws DALException
 	 */
@@ -17,23 +18,30 @@ public interface ArticleVenduDAO {
 	
 
 	/**
-	 * Méthode permettant de lister les ventes en fonctions de critères donnés par l'utilisateur
+	 * Mï¿½thode permettant de lister les ventes en fonctions de critï¿½res donnï¿½s par l'utilisateur
 	 * @return List<ArticleVendu> Une liste d'objets de type ArticleVendu
 	 * @throws DALException
 	 */
 	List<ArticleVendu> listerVentesParCriteres()throws DALException;
 	
 	/**
-	 * Méthode permettant d'ajouter une vente (un ArticleVendu) dans la base de donnée
+	 * Mï¿½thode permettant d'ajouter une vente (un ArticleVendu) dans la base de donnï¿½e
 	 * @param Une instance d'ArticleVendu aV
 	 * @throws DALException
 	 */
 	void ajouterVente(ArticleVendu aV) throws DALException;
 
 	/**
-	 * Méthode permettant d'insérer une nouvelle vente (objet de type ArticleVendu) dans la base de donnée
+	 * Mï¿½thode permettant d'insï¿½rer une nouvelle vente (objet de type ArticleVendu) dans la base de donnï¿½e
 	 * @param ArticleVendu a
 	 */
 	void insert(ArticleVendu a);
-
+	
+	/**
+	 * MÃ©thode permmetant de rÃ©cupÃ©rer les encheres en cours pour l'afficher sur la page acceuil 
+	 * @return Liste Enchere
+	 * @throws DALException
+	 */
+	List<ArticleVendu> select(String categorie, String recherche) throws DALException;
+		
 }

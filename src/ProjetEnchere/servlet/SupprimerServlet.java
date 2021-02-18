@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ProjetEnchere.bll.BLLException;
 import ProjetEnchere.bll.UtilisateurManager;
 import ProjetEnchere.bo.Utilisateur;
 import ProjetEnchere.dal.jdbc.DALException;
 
-@WebServlet("/SupprimerServlet")
+@WebServlet("/SupprimerCompte.html")
 public class SupprimerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -23,62 +24,24 @@ public class SupprimerServlet extends HttpServlet {
 	        super();
 	  }
 
-	
-
-	   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		   //en jsp
-//		   <form method="get" action="Test" >
-//
-//		   <p><input type="submit"  value="Delete" /></p>
-//
-//		   </form>
-
-		 
-		  // UtilisateurManager user = UtilisateurManager.getInstance();
-		    //userDelete = request.getParameterValues("delete");
-		   
-		   
-
-	
-		   // initialisation erreur
-		   
-			//List<Integer> listeCodesErreur = new ArrayList<>();
-
-			//RÃ©cup utilisateur
+	  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 			HttpSession session = (HttpSession) request.getSession();
 			Utilisateur currentUser = (Utilisateur) session.getAttribute("user");
-
-			//
 			UtilisateurManager userManager = new UtilisateurManager();
 			
 			try {
-				userManager.delete(currentUser);
+				userManager.fermer(currentUser);
 			} catch (DALException e1) {
 				e1.printStackTrace();
+			} catch (BLLException e) {
+				e.printStackTrace();
 			}
 			
-			
-			//DÃ©co utilisateur
 			session.removeAttribute("user");
-			request.getRequestDispatcher("//deconnexion.html").forward(request, response);
+			request.setAttribute("suppressionOK", "Votre compte a bien été supprimé");
+			request.getRequestDispatcher("/deconnexion.html").forward(request, response);
 			session.invalidate();
-			
-			//Redirection profil
-			
-//			if(listeCodesErreur.size() > 0) {
-//				request.setAttribute(" ", listeCodesErreur); // a renseigner
-//				request.setAttribute("user", currentUser);
-//				this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/modifierprofil.jsp").forward(request, response);
-//				
-//			//Redirection acceuil
-//			
-//			}else {
-//				List<Integer> listeCodeSuccess = new ArrayList<>();
-//				//listeCodeSuccess.add(/*a renseigner*/.SUPPRESSION_REUSSIE);
-//				request.setAttribute("listeCodesSuccess",listeCodeSuccess);
-//				this.getServletContext().getRequestDispatcher("/ProjetEnchere").forward(request, response);
-			
 			
 	   }
 			

@@ -8,7 +8,7 @@ import ProjetEnchere.dal.DAOFactory;
 import ProjetEnchere.dal.jdbc.DALException;
 
 /**
- * Classe gérant les objets ArticleVendu en BLL
+ * Classe gï¿½rant les objets ArticleVendu en BLL
  * @author Team F
  *
  */
@@ -18,7 +18,7 @@ public class ArticleVenduManager {
 	private static ArticleVenduManager instance;
 	
 	/**
-	 * Méthode permettant d'obtenir une instance d'ArticleVenduManager
+	 * Mï¿½thode permettant d'obtenir une instance d'ArticleVenduManager
 	 * @return une instance d'ArticleVenduManager
 	 */
 	public static ArticleVenduManager getInstance(){
@@ -29,7 +29,7 @@ public class ArticleVenduManager {
 	}
 
 	/**
-	 * Méthode permettant d'afficher la liste des ventes
+	 * Mï¿½thode permettant d'afficher la liste des ventes
 	 * @return une liste d'objet de types ArticleVendu
 	 * @throws BLLException
 	 */
@@ -46,12 +46,12 @@ public class ArticleVenduManager {
 	}
 
 	/**
-	 * Méthode permettant d'insérer une nouvelle vente (objet de type ArticleVendu) dans la base de donnée
+	 * Mï¿½thode permettant d'insï¿½rer une nouvelle vente (objet de type ArticleVendu) dans la base de donnï¿½e
 	 * @param ArticleVendu a
 	 */
 	public void insert(ArticleVendu a) {
 		
-		articleVenduDAO.insert(a);
+		articleVenduDAO.insert(a); }
 		
+			
 	}
-}

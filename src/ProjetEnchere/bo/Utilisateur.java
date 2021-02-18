@@ -1,5 +1,6 @@
 package ProjetEnchere.bo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Utilisateur {
@@ -16,7 +17,9 @@ public class Utilisateur {
 	private String motDePasse;
 	private int credit;
 	private boolean administrateur;
+	private LocalDate ferme_le;
 	private ArrayList<ArticleVendu> vente = new ArrayList<>();
+	
 	// a voir pr l instancier ds la couche dal a voir
 
 	//1 article va avoir seulement un utilisateur 
@@ -190,6 +193,14 @@ public class Utilisateur {
 
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
+	}
+	
+	public LocalDate getFerme_le() {
+		return ferme_le;
+	}
+
+	public void setFerme_le(LocalDate ferme_le) {
+		this.ferme_le = ferme_le;
 	}
 
 	//methode to string
