@@ -17,6 +17,7 @@ import ProjetEnchere.dal.ArticleVenduDAO;
 import ProjetEnchere.dal.CategorieDAO;
 import ProjetEnchere.dal.DAOFactory;
 import ProjetEnchere.dal.RetraitDAO;
+import ProjetEnchere.dal.DALConnectionProvider;
 
 public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 
@@ -28,7 +29,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 
 
 	/**
-	 * Méthode permettant de lister toutes les ventes de l'application
+	 * Mï¿½thode permettant de lister toutes les ventes de l'application
 	 * @return List<ArticleVendu> Une liste d'objets de type ArticleVendu
 	 * @throws DALException
 	 * @Override
@@ -55,7 +56,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 				articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
 				articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
 				articleVendu.setPrixVente(rs.getInt("prix_vente"));
-				//TODO Revoir la récupération des Objets liés à ArticleVendu
+				//TODO Revoir la rï¿½cupï¿½ration des Objets liï¿½s ï¿½ ArticleVendu
 				articleVendu.setUtilisateurVendeur(utilisateur.getUserById(rs.getInt("no_utilisateur")));
 								articleVendu.setCategorieArticle(categorieDAO.selectById(rs.getInt("no_categorie")));
 							//	articleVendu.setLieuRetrait(retraitDAO.selectById(rs.getInt("no_retrait")));
@@ -84,7 +85,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 	}
 
 	/**
-	 * Méthode permettant de lister les ventes en fonctions de critères donnés par l'utilisateur
+	 * Mï¿½thode permettant de lister les ventes en fonctions de critï¿½res donnï¿½s par l'utilisateur
 	 * @return List<ArticleVendu> Une liste d'objets de type ArticleVendu
 	 * @throws DALException
 	 * @Override
@@ -153,7 +154,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 
 
 	/**
-	 * Méthode permettant d'ajouter une vente (un ArticleVendu) dans la base de donnée
+	 * Mï¿½thode permettant d'ajouter une vente (un ArticleVendu) dans la base de donnï¿½e
 	 * @param Une instance d'ArticleVendu aV
 	 * @throws DALException
 	 * @Override
@@ -174,7 +175,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 			pstmt.setInt(5,articleVendu.getMiseAPrix());
 			pstmt.setInt(6,articleVendu.getPrixVente());
 			pstmt.setInt(7,articleVendu.getUtilisateurVendeur().getNoUtilisateur());
-			//TODO Revoir la récupération des Objets liés à ArticleVendu
+			//TODO Revoir la rï¿½cupï¿½ration des Objets liï¿½s ï¿½ ArticleVendu
 			//pstmt.setInt(8,articleVendu.getCategorieArticle().getNoCategorie());
 			pstmt.setInt(8,1);
 			//pstmt.setInt(9,articleVendu.getLieuRetrait().getNoRetrait());
@@ -203,7 +204,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 	}
 
 	/**
-	 * Méthode permettant d'insérer une nouvelle vente (objet de type ArticleVendu) dans la base de données
+	 * Mï¿½thode permettant d'insï¿½rer une nouvelle vente (objet de type ArticleVendu) dans la base de donnï¿½es
 	 * @param ArticleVendu a
 	 * @Override
 	 */
@@ -217,6 +218,30 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 		return null;
 	}
 
+	//@Override
+	//public ArticleVendu getById(int id) throws DALException {
 
+	//	private static final String GET_BY_ID =  // a terminer
+	//	ArticleVendu articleVendu = null;
+
+	//	try (Connection cnx = DALConnectionProvider.getConnection()) {
+	//		PreparedStatement pstmt = cnx.prepareStatement(GET_BY_ID);
+	//		pstmt.setInt(1, id);
+
+	//		ResultSet rs = pstmt.executeQuery();
+
+	//		if (rs.next()) {
+	//			articleVendu = !!! ; // a terminer !
+
+	//		}
+
+	//	} catch (Exception e) {
+	//		e.printStackTrace();
+	//		DALException businessException = new DALException();
+	//		throw businessException;
+
+	//	}
+	//	return articleVendu;
+	//}
 
 }

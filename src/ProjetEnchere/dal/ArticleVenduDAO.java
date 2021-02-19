@@ -44,4 +44,6 @@ public interface ArticleVenduDAO {
 	 */
 	List<ArticleVendu> select(String categorie, String recherche) throws DALException;
 		
+	//public ArticleVendu getById(int id) throws DALException;
+
 }
