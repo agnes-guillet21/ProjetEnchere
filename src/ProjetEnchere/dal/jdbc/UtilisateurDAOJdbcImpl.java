@@ -65,7 +65,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			pstmt.setString(6, u1.getCodepostal());
 			pstmt.setString(7, u1.getVille());
 			pstmt.setString(8, u1.getMotDePasse());
-			pstmt.setInt(9, u1.getCredit());
+			pstmt.setInt(9, 100);
 			pstmt.setInt(10, 0);
 			//execution de la requete
 			pstmt.executeUpdate();

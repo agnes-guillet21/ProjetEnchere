@@ -17,7 +17,7 @@ import ProjetEnchere.dal.ArticleVenduDAO;
 import ProjetEnchere.dal.CategorieDAO;
 import ProjetEnchere.dal.DAOFactory;
 import ProjetEnchere.dal.RetraitDAO;
-import ProjetEnchere.dal.DALConnectionProvider;
+
 
 public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 
