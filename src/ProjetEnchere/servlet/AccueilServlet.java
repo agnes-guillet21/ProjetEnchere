@@ -35,11 +35,8 @@ public class AccueilServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		
 		EnchereManager enchereManager = new EnchereManager();
 		//CategorieManager categorieManager = CategorieManager.getCategorieManager();
 		List<ArticleVendu> listeEncheres = new ArrayList<>();
@@ -49,14 +46,12 @@ public class AccueilServlet extends HttpServlet {
 		String categorie = "Toutes";
 		String choix = "Tous";
 		String filtreChoix = "EnCours";
-
-
 		
 		request.setCharacterEncoding("UTF-8"); // ???
 		
 		//mise en place d un filter
 	
-		// rÃ©cup de la catÃ©gorie et de rechercher
+		// récup de la catégorie et de rechercher
 		if(request.getParameter("categorie")!=null) {
 			categorie = request.getParameter("categorie");
 		}
@@ -79,22 +74,7 @@ public class AccueilServlet extends HttpServlet {
 		e.printStackTrace();
 		}
 
-		
-		
-		
-
-			
-			
-////		for (int i = 0; i < listEnchere.size(); i++) {
-////			if (listEnchere.get(i).getArticleVendu().getDateDebutEncheres().before(Date.valueOf(LocalDate.now().plusDays(1))))
-////			{
-////				processEnchere.add(listEnchere.get(i));
-////			}
-////		}
-			
-	
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
-
 		rd.forward(request, response);
 	}
 
@@ -136,7 +116,6 @@ public class AccueilServlet extends HttpServlet {
 		// lister par criteres presente ds ma dal
 			//listeEncheres = aVManager.listerToutesLesVentes();
 			//request.setAttribute("listeEncheres", listeEncheres);
-		 
 		 
 		 request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);;
 	}
