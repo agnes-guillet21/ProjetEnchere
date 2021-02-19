@@ -8,7 +8,7 @@
         
         
         
-        
+ 
        
         <div class="row">
 	                <div class="col-md-4"></div>
@@ -59,14 +59,14 @@
 					<br>
 					<div class="row">
 						<div class="col-md-4"></div>
-						<div class="col-md-2">Ville :</div>
+						<div class="col-md-2">Ville * :</div>
 						<div class="col-md-3"> <input type="text" id="ville" name="city" value="" size="30" maxlength="30" required>
         <span class="erreur">${erreurs['city']}</span></div>
 					</div>
 					<br>
 					<div class="row">
 						<div class="col-md-4"></div>
-						<div class="col-md-2">Code Postal :</div>
+						<div class="col-md-2">Code Postal * :</div>
 						<div class="col-md-3"> <input type="text" id="cp" name="usercp" value="" size="30" maxlength="10" required>
         				<span class="erreur">${erreurs['usercp']}</span></div>
 					</div>
@@ -108,8 +108,4 @@
         
         
         
-
-        
-          
-</body>
-</html>
+<%@  include file="/WEB-INF/fragments/footer.jspf" %>

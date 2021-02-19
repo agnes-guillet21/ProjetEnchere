@@ -5,13 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
+
 <meta charset="ISO-8859-1">
 <title>Vendre un article</title>
 </head>
 <body>
 	<h1>Nouvelle Vente</h1>
-=======
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
@@ -132,18 +132,6 @@
     	<button>Annuler la vente</button>
     </form>
 
-    <!--redirection sur page d accueil page 1 du pdf -->
+
     </div> 
-	 <footer>
-        <div class="row">
-            <div class="col-md-6"> 
-            </div>
-            <div class="col-md-6">
-                <p>Amaury, Thomas & Agnès</p>  
-            </div>
-           
-        </div>
-    </footer>
->>>>>>> branch 'main' of https://github.com/agnes-guillet21/ProjetEnchere
-</body>
-</html>
+	 <%@  include file="/WEB-INF/fragments/footer.jspf" %>

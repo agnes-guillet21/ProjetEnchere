@@ -1,17 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Page mon profil</title>
-</head>
-<body>
-<header>
-    <p>Eni-encheres</p>
-    <!--faire un fragment-->
-</header>
-<body>
+<%@ include file="/WEB-INF/fragments/header.jspf"%>
     <!--que de l affichage dc pas de form ni method-->
      <div>
         <p>  Pseudo : </p>
@@ -58,5 +47,4 @@
         <!--redirection page 8  du pdf -->
         </form>
     </div>
-</body>
-</html>
+<%@  include file="/WEB-INF/fragments/footer.jspf" %>

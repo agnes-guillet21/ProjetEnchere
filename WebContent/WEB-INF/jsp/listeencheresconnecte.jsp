@@ -132,7 +132,4 @@
 			vendeur : <a href=""></a>
 		</p>
 	</div>
-</body>
-
-
-</html>
+<%@  include file="/WEB-INF/fragments/footer.jspf" %>
