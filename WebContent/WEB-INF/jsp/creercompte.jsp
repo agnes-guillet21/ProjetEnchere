@@ -38,14 +38,14 @@
 					<div class="row">
 						<div class="col-md-4"></div>
 						<div class="col-md-2"><label for="mail">Email *:</label></div>
-            			<div class="col-md-3"><input type="email" id="mail" name="usermail" value="" size="30" maxlength="100" required>
-          				<span class="erreur">${erreurs['userfirstname']}</span></div>
+            			<div class="col-md-3"><input type="email" id="mail" name="usermail" value="<c:out value="${param.usermail}"/>" size="30" maxlength="100" required>
+          				<span class="erreur">${erreurs['usermail']}</span></div>
 					</div>
 					<br>
 					<div class="row">
 						<div class="col-md-4"></div>
 						<div class="col-md-2"> <label for="tel">Téléphone :</label></div>
-            			<div class="col-md-3"><input type="text" id="tel" name="userphone"value="" size="20" maxlength="15">
+            			<div class="col-md-3"><input type="text" id="tel" name="userphone"value="<c:out value="${param.userphone}"/>" size="20" maxlength="15">
             			<span class="erreur">${erreurs['userphone']}</span>
             			</div>
 					</div>
@@ -53,21 +53,21 @@
 					<div class="row">
 						<div class="col-md-4"></div>
 						<div class="col-md-2"> <label for="rue">Rue * :</label></div>
-						<div class="col-md-3"> <input type="text" id="rue" name="user_street"value="" size="30" maxlength="50" required>
+						<div class="col-md-3"> <input type="text" id="rue" name="user_street"value="<c:out value="${param.user_street}"/>" size="30" maxlength="50" required>
        					<span class="erreur">${erreurs['user_street']}</span></div>
 					</div>
 					<br>
 					<div class="row">
 						<div class="col-md-4"></div>
 						<div class="col-md-2">Ville * :</div>
-						<div class="col-md-3"> <input type="text" id="ville" name="city" value="" size="30" maxlength="30" required>
+						<div class="col-md-3"> <input type="text" id="ville" name="city" value="<c:out value="${param.city}"/>" size="30" maxlength="30" required>
         <span class="erreur">${erreurs['city']}</span></div>
 					</div>
 					<br>
 					<div class="row">
 						<div class="col-md-4"></div>
 						<div class="col-md-2">Code Postal * :</div>
-						<div class="col-md-3"> <input type="text" id="cp" name="usercp" value="" size="30" maxlength="10" required>
+						<div class="col-md-3"> <input type="text" id="cp" name="usercp" value="<c:out value="${param.usercp}"/>" size="30" maxlength="10" required>
         				<span class="erreur">${erreurs['usercp']}</span></div>
 					</div>
 					<br>
