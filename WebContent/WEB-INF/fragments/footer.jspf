@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col-md-6"></div>
             <div class="col-md-6">
-            <img src="<%=request.getContextPath()%>/img/lognavsmall.png" alt="logo" >
-                <p>Amaury, Thomas & Agnès</p>  
+       <!--<img src="<%=request.getContextPath()%>/img/lognavsmall.png" alt="logo">-->
+                <p style="position: aboslu bottom-rigth">Amaury, Thomas & Agnès</p>  
        		</div>
         </div>
     </footer>

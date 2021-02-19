@@ -30,8 +30,7 @@ public class UtilisateurManager {
 
 		Map<String, String> erreurs = new HashMap<String, String>();//decla hasmap 
 
-		//reste  a faire le fait que se soit vide = null pr tous les champs
-
+		
 		if(pseudo.isEmpty()|| !pseudo.matches("[A-Za-z0-9_]+")) {
 			erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
 			erreurs.put(BLLException.PSEUDO,BLLException.ERREUR_PSEUDO);
@@ -59,7 +58,7 @@ public class UtilisateurManager {
 			erreurs.put(BLLException.EMAIL,BLLException.ERREUR_EMAIL1);
 			System.out.println(erreurs);
 		}
-		if (tel.isEmpty() || !tel.matches("([0-9][0-9])+")){ // pas sur de ce regex
+		if (tel.isEmpty() || !tel.matches("([0-9][0-9])+")){ 
 			erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
 			erreurs.put(BLLException.TEL,BLLException.ERREUR_TEL);
 			System.out.println(erreurs);
@@ -81,8 +80,8 @@ public class UtilisateurManager {
 		}
 		//initialisation du resultat global de la validation
 		if(!erreurs.isEmpty()){
-			e.setErreurs(erreurs);//j' utilise le setter de la hasmap bll exception ( en passant para la hashmap) 
-			throw  e;//je lance un exception e de type BLLExc pr stopper l inscription 
+			e.setErreurs(erreurs);// setter hasmap ( para la hashmap) 
+			throw  e;			//je lance un exception e de type BLLExc pr stopper l inscription 
 		}	
 	}
 	
