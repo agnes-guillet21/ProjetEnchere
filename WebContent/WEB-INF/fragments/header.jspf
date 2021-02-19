@@ -29,7 +29,7 @@
                     <p style ="color: white">ENI-Encheres</p>
                     <!-- insertion fragments header  Eni-enchere-->
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-5"></div>
              <!--   <img src="<%=request.getContextPath()%>/img/lognavsmall.png" alt="logo" ></div>-->  
                 <div class="col-md-4">
                     <c:if test="${empty user}">
