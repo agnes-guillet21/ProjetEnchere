@@ -23,7 +23,6 @@ public class UtilisateurManager {
 	 * utilisee pr valider l inscription
 	 * 
 	 * 
-
 	 */
 	public void validationFormulaire(String pseudo, String nom, String prenom,String email,String tel,String rue, String cp,String ville) throws Exception {
 		BLLException e = new BLLException();//je creer une variable e d instance de bllexception
@@ -48,13 +47,14 @@ public class UtilisateurManager {
 			erreurs.put(BLLException.PRENOM,BLLException.ERREUR_PRENOM);
 			System.out.println(erreurs);
 		}
-		if(email.isEmpty()|| email.trim().length()>100) {
-			if(!email.matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")) {
-				erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
-				erreurs.put(BLLException.EMAIL,BLLException.ERREUR_EMAIL);
-				System.out.println(erreurs);
-			}
-		}else {
+		if(email.isEmpty() || email.trim().length() == 0 ) {
+			erreurs.put(BLLException.CHAMPSVIDE,BLLException.ERREUR_CHAMPSVIDE);
+		}	
+//		if(!email.matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")) {
+//			erreurs.put(BLLException.EMAIL,BLLException.ERREUR_EMAIL);
+//			System.out.println(erreurs);
+//		}
+		if (email.trim().length()>100){
 			erreurs.put(BLLException.EMAIL,BLLException.ERREUR_EMAIL1);
 			System.out.println(erreurs);
 		}
