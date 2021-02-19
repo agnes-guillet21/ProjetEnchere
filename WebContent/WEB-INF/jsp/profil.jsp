@@ -13,7 +13,9 @@
 					</div>
 					
 					<div class="row">
-						<div class="col-md-4"></div><div class="col-md-1">Email :</div><div class="col-md-3">${userAffiche.getEmail()}</div>
+						<div class="col-md-4"></div>
+						<div class="col-md-1">Email :</div>
+						<div class="col-md-3">${userAffiche.getEmail()}</div>
 					</div>
 					
 					<div class="row">
