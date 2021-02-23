@@ -57,10 +57,12 @@
         <div class="row"> 
         <div class="col-md-1"></div>
         	<div class="col-md-10">
-        		<div class="row">
+        		
 					<c:forEach var="v" items="${listeEncheres}">
-						<div class="card bg-default col-md-5 m-1 p-0">
-							<h5 class="card-header"><c:if test="${!empty user}"><a href="vente.html"></c:if>${v.nomArticle}<c:if test="${!empty user}"></a></c:if></h5>
+					<div class="row">
+					<div class="col-md-3"></div>
+						<div class="card bg-default col-md-6 m-2 p-0">
+							<h4 class="card-header bg-dark text-white">${v.nomArticle}<c:if test="${!empty user}"><a href="vente.html" class="card-link" ><span class="h6 text-white card-link ml-4">Accéder à la vente</span><c:if test="${!empty user}"></a></c:if></c:if></h4>
 							<div class="card-text">
 								<p>Prix : ${v.prixVente} points</p>
 								<p>Fin de l'enchère : ${v.dateFinEncheres}</p>
@@ -73,10 +75,12 @@
     										${v.utilisateurVendeur.getPseudo()}</button>
 									</form>
 							</c:if>
-							<c:if test="${empty user}">${v.utilisateurVendeur.getPseudo()}</c:if></div>
+							<c:if test="${empty user}">Vendeur : ${v.utilisateurVendeur.getPseudo()}</c:if></div>
+						</div>
+						<div class="col-md-3"></div>
 						</div>
 					</c:forEach>
-				</div>
+				
 			</div>						
             <div class="col-md-1"></div>    
 

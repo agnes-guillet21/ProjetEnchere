@@ -5,3 +5,9 @@ header
 {
 background-color : black; 
 }
+
+.card-link:hover
+{
+	color:#c0c0c0!important;
+	text-decoration: none !veryimportant;
+}
