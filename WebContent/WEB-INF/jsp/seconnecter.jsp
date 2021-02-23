@@ -19,7 +19,7 @@
 			</div>
 			
 			<div class="row">
-				<div class="col-md-4"></div><div class="col-md-3"><input class="btn btn-success" type="submit" id="submit" value="Connexion"></div>
+				<div class="col-md-4"></div><div class="col-md-3"><input class="btn btn-outline-success" type="submit" id="submit" value="Connexion"></div>
 			</div>
 			<br>
 			<div class="row">
@@ -38,11 +38,11 @@
 			<div class="row">
 			<div class="col-md-4"></div>
 				<div class="col-md-2">	
-					<a  class="btn btn-primary" href="inscription.html">Créer un compte</a>
+					<a  class="btn btn-outline-primary" href="inscription.html">Créer un compte</a>
 					</form>
 				</div>
 				<div class="col-md-2">
-					<a class="btn btn-primary" href="/ProjetEnchere">Annuler</a>
+					<a class="btn btn-outline-danger" href="/ProjetEnchere">Annuler</a>
 				</div>
 		
 			</div>

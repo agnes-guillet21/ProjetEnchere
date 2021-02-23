@@ -40,17 +40,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			e2.printStackTrace();
 		}
 
-		try {
-			System.out.println("La connexion est " + (cnx.isClosed()?"fermée":"ouverte") + ".");
-		} catch (SQLException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
 
 		//test requete sql
-		String sql ="INSERT INTO dbo.UTILISATEURS(pseudo,nom,prenom,email,telephone,"
-				+ "code_postal,ville,mot_de_passe,credit,administrateur,rue)"
-				+ "VALUES (?,?,?,?,?,?,?,?,?,?);";
+		String sql ="INSERT INTO dbo.UTILISATEURS(pseudo,nom,prenom,email,telephone,rue,"
+				+ "code_postal,ville,mot_de_passe,credit,administrateur)"
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 
 		// desactivation de l autocommit (mode transactionnel)
 		try {
@@ -62,12 +56,13 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			pstmt.setString(3, u1.getPrenom());
 			pstmt.setString(4, u1.getEmail());
 			pstmt.setString(5, u1.getTelephone());
-			pstmt.setString(6, u1.getCodepostal());
-			pstmt.setString(7, u1.getVille());
-			pstmt.setString(8, u1.getMotDePasse());
-			pstmt.setInt(9, 100);
-			pstmt.setInt(10, 0);
-			pstmt.setString(11, u1.getRue());
+			pstmt.setString(6, u1.getRue());
+			pstmt.setString(7, u1.getCodepostal());
+			pstmt.setString(8, u1.getVille());
+			pstmt.setString(9, u1.getMotDePasse());
+			pstmt.setInt(10, 100);
+			pstmt.setInt(11, 0);
+			
 			//execution de la requete
 			pstmt.executeUpdate();
 			pstmt.close();
@@ -326,7 +321,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
           throw new DALException("Pas d'utilisateur passé en paramêtre de la méthode update");
       }
  
-      String update ="UPDATE UTILISATEURS SET pseudo='?',nom='?',prenom='?',email='?',telephone='?',rue='?',code_postal='?',ville='?', mot_de_passe='?' WHERE pseudo='?';";
+      String update ="UPDATE UTILISATEURS SET pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?, mot_de_passe=? WHERE pseudo=?;";
                  
       try {
           pstmt = cnx.prepareStatement(update);

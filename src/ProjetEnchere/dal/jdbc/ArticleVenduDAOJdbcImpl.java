@@ -24,7 +24,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 	private static final String SELECT_ALL="SELECT no_article, nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie,no_retrait FROM ARTICLES_VENDUS;";
 	private static final String INSERT_VENTE="INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, "
 			+ "prix_initial, prix_vente, no_utilisateur, no_categorie, no_retrait) "
-			+ "VALUES ('?', '?', '?', '?', ?, ?, ?, ?, ?);";
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	private static UtilisateurDAOJdbcImpl utilisateur = new UtilisateurDAOJdbcImpl();
 
 
@@ -56,9 +56,9 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 				articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
 				articleVendu.setMiseAPrix(rs.getInt("prix_initial"));
 				articleVendu.setPrixVente(rs.getInt("prix_vente"));
-				//TODO Revoir la rï¿½cupï¿½ration des Objets liï¿½s ï¿½ ArticleVendu
+				//TODO Revoir la récupération des Objets liés à ArticleVendu
 				articleVendu.setUtilisateurVendeur(utilisateur.getUserById(rs.getInt("no_utilisateur")));
-								articleVendu.setCategorieArticle(categorieDAO.selectById(rs.getInt("no_categorie")));
+				articleVendu.setCategorieArticle(categorieDAO.selectById(rs.getInt("no_categorie")));
 							//	articleVendu.setLieuRetrait(retraitDAO.selectById(rs.getInt("no_retrait")));
 				listeVentes.add(articleVendu);
 
@@ -85,7 +85,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 	}
 
 	/**
-	 * Mï¿½thode permettant de lister les ventes en fonctions de critï¿½res donnï¿½s par l'utilisateur
+	 * Méthode permettant de lister les ventes en fonctions de critï¿½res donnï¿½s par l'utilisateur
 	 * @return List<ArticleVendu> Une liste d'objets de type ArticleVendu
 	 * @throws DALException
 	 * @Override
@@ -154,7 +154,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 
 
 	/**
-	 * Mï¿½thode permettant d'ajouter une vente (un ArticleVendu) dans la base de donnï¿½e
+	 * Méthode permettant d'ajouter une vente (un ArticleVendu) dans la base de donnï¿½e
 	 * @param Une instance d'ArticleVendu aV
 	 * @throws DALException
 	 * @Override
@@ -175,7 +175,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO{
 			pstmt.setInt(5,articleVendu.getMiseAPrix());
 			pstmt.setInt(6,articleVendu.getPrixVente());
 			pstmt.setInt(7,articleVendu.getUtilisateurVendeur().getNoUtilisateur());
-			//TODO Revoir la rï¿½cupï¿½ration des Objets liï¿½s ï¿½ ArticleVendu
+			//TODO Revoir la récupération des Objets liés à ArticleVendu
 			//pstmt.setInt(8,articleVendu.getCategorieArticle().getNoCategorie());
 			pstmt.setInt(8,1);
 			//pstmt.setInt(9,articleVendu.getLieuRetrait().getNoRetrait());

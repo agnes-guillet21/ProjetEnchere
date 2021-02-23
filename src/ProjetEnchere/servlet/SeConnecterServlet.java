@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import ProjetEnchere.bll.UtilisateurManager; // rajout import 
 import ProjetEnchere.bo.Utilisateur;
-// pour git 
+ 
 /**
  * Servlet implementation class SeConnecterServlet
  */
@@ -34,12 +35,13 @@ public class SeConnecterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		RequestDispatcher rd;
 	
 		if(session.getAttribute("user")!=null) {
-			request.getRequestDispatcher("/accueil").forward(request, response);
-		}
+			rd = request.getRequestDispatcher("/accueil");
+		}else{ rd = request.getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp");}
 		
-		request.getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp").forward(request, response);
+		rd.forward(request, response);
 	}
 
 	/**
@@ -47,10 +49,10 @@ public class SeConnecterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-	
+		RequestDispatcher rd = null;
 		
 		if(session.getAttribute("user")!=null) {
-			request.getRequestDispatcher("/accueil").forward(request, response);
+			request.getRequestDispatcher("/accueil");
 		}
 
 		String login = request.getParameter("susername");
@@ -61,15 +63,20 @@ public class SeConnecterServlet extends HttpServlet {
 		Utilisateur user = userManager.getUserByPseudoPassword(login, pass);
 		
 		if (user == null) {
-			request.setAttribute("messageErreur", "Le compte n'existe pas");
-			this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp").forward(request, response);
+			request.setAttribute("messageErreur", "Le compte n'existe pas ou le mot de passe est incorrect");
+			rd = this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp");
+		} else {
+		if (user.getFerme_le() != null) {
+			request.setAttribute("messageErreur", "Le compte a été supprimé");
+			rd = this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/seconnecter.jsp");
 		}else {
 
 		session.setAttribute("user", user);
-		request.setAttribute("doGet", "ok");
-		this.getServletContext().getRequestDispatcher("/accueil").forward(request, response);
+		rd = this.getServletContext().getRequestDispatcher("/accueil");
 		}
 						
 		}
+		rd.forward(request, response);
 	}
 
+}

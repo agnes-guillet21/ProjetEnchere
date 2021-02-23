@@ -60,13 +60,12 @@ public class SInscrireServlet extends HttpServlet {
 		String ville=request.getParameter("city");
 		String motDePasse=request.getParameter("spassword");
 		String confirMP=request.getParameter("spassword2");
-		RequestDispatcher rd;
+		RequestDispatcher rd = null;
 		
 		request.setCharacterEncoding("UTF-8");
 	
 		Utilisateur u1 = new Utilisateur(pseudo,nom,prenom,email,tel,rue,cp,ville,motDePasse,0);
-		UtilisateurManager user = new UtilisateurManager(); 
-		System.out.println(u1);		
+		UtilisateurManager user = new UtilisateurManager(); 	
 					
 		try {
 			
@@ -81,8 +80,7 @@ public class SInscrireServlet extends HttpServlet {
 			//on va lui passer l utilisateur en attribut
 			Utilisateur user1 = user.getUserByPseudoPassword(u1.getPseudo(), u1.getMotDePasse());
 			session.setAttribute("user", user1);
-			request.setAttribute("doGet", "ok");
-			request.getRequestDispatcher("/connexion.html").forward(request, response);
+			rd = request.getRequestDispatcher("/accueil");
 		} catch (BLLException e2) {
 			request.setAttribute("erreurs",e2.getErreurs());//passage de la hashmap en attribut
 			//response.getWriter().print("erreurs");
@@ -90,8 +88,9 @@ public class SInscrireServlet extends HttpServlet {
 			rd.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			rd.forward(request, response);
 		}
-
-		
+	
 	}
 }

@@ -37,7 +37,7 @@
 				<div class="row">
 						<div class="col-md-4"></div>
 						<c:if test="${userAffiche.getPseudo().equals(user.getPseudo())}">
-							<div class="col-md-3"><a id="modifProfil" href="modifierprofil.html" class="btn btn-primary">Modifier</a></div>
+							<div class="col-md-3"><a id="modifProfil" href="modifierprofil.html" class="btn btn-outline-primary">Modifier</a></div>
 						</c:if>	
 	        	</div>
 	        	

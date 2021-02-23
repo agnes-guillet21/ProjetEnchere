@@ -60,7 +60,7 @@ public class CreerVenteServlet extends HttpServlet {
 			listeCategories = cMger.selectAll();
 			request.setAttribute("listeCategories", listeCategories);
 		} catch (DALException ex) {
-			request.setAttribute("error", ex.getMessage());
+			ex.printStackTrace();
 		}
 		
 		if (session.getAttribute("user") != null) {
@@ -106,7 +106,8 @@ public class CreerVenteServlet extends HttpServlet {
 		a.setLieuRetrait(rMger.selectByCriteres(r));
 		aMger.insert(a);
 		
-		rd = request.getRequestDispatcher("/ProjetEnchere");
+		request.setAttribute("doGet", "ok");
+		rd = request.getRequestDispatcher("/accueil");
 		rd.forward(request, response);
 
 	}

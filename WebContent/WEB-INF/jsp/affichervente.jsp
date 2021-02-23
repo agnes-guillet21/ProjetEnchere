@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/fragments/header.jspf" %>
 					
     </div>
-        </div> <% ArticleVendu article = (ArticleVendu)request.getAttribute("NomArticle"); %>
+
         <table>
        		 <tr>
                 <td class="td1"><p class="value-td1">Nom:</p></td>

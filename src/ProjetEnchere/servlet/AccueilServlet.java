@@ -61,9 +61,6 @@ public class AccueilServlet extends HttpServlet {
 			recherche = request.getParameter("ArticleVendu");
 		}
 		
-		System.out.println(categorie);
-		System.out.println(recherche);
-		
 		try {
 				
 		// Recup liste categories pour select html
@@ -83,33 +80,33 @@ public class AccueilServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if (request.getAttribute("doGet").equals("ok")) {
+//		if (request.getAttribute("doGet").equals("ok")) {
 			doGet(request, response);
-		}
-		
-		String nomProduitRecherche= request.getParameter("srecherche");
-		//instancie categorie manager 
-		 Categorie c1 = new Categorie();
-		 CategorieManager c = new CategorieManager();
-		 ArticleVenduManager aVManager =  new ArticleVenduManager();
-		 List<ArticleVendu> listeEncheres = new ArrayList<>();
-		 
-		 String categorie = request.getParameter("scategorie");
-		 
-		 if((nomProduitRecherche.isEmpty()|| nomProduitRecherche==null) && (categorie.isEmpty() || categorie==null)) {
-			 try {
-				listeEncheres= aVManager.listerToutesLesVentes();
-				request.setAttribute("listeEncheres", listeEncheres);// renvoyer des infos faut les monter en attibuts
-				request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);//je les envoie
-			} catch (BLLException e) {
-				e.printStackTrace();
-			}
-			 if(!nomProduitRecherche.isEmpty()|| nomProduitRecherche != null) {
-				 // methode ds la dal select by critere ( ya 2 criteres le nom et la categorie)
-				 
-			 }
-			  
-		 }
+//		}
+//		
+//		String nomProduitRecherche= request.getParameter("srecherche");
+//		//instancie categorie manager 
+//		 Categorie c1 = new Categorie();
+//		 CategorieManager c = new CategorieManager();
+//		 ArticleVenduManager aVManager =  new ArticleVenduManager();
+//		 List<ArticleVendu> listeEncheres = new ArrayList<>();
+//		 
+//		 String categorie = request.getParameter("scategorie");
+//		 
+//		 if((nomProduitRecherche.isEmpty()|| nomProduitRecherche==null) && (categorie.isEmpty() || categorie==null)) {
+//			 try {
+//				listeEncheres= aVManager.listerToutesLesVentes();
+//				request.setAttribute("listeEncheres", listeEncheres);// renvoyer des infos faut les monter en attibuts
+//				request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);//je les envoie
+//			} catch (BLLException e) {
+//				e.printStackTrace();
+//			}
+//			 if(!nomProduitRecherche.isEmpty()|| nomProduitRecherche != null) {
+//				 // methode ds la dal select by critere ( ya 2 criteres le nom et la categorie)
+//				 
+//			 }
+//			  
+//		 }
 		 //je veux modifier la liste des ventes en fction des filtres => categorie choisie
 		 //transmettre le getparameter  a ma dal 
 		 //ma dal ma m envoyer une liste des ventes en fction des para
@@ -117,7 +114,7 @@ public class AccueilServlet extends HttpServlet {
 			//listeEncheres = aVManager.listerToutesLesVentes();
 			//request.setAttribute("listeEncheres", listeEncheres);
 		 
-		 request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);;
+//		 request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);;
 	}
 
 }

@@ -25,17 +25,12 @@ public interface ArticleVenduDAO {
 	List<ArticleVendu> listerVentesParCriteres(String nom)throws DALException;
 	
 	/**
-	 * Mï¿½thode permettant d'ajouter une vente (un ArticleVendu) dans la base de donnï¿½e
+	 * Méthode permettant d'ajouter une vente (un ArticleVendu) dans la base de donnée
 	 * @param Une instance d'ArticleVendu aV
 	 * @throws DALException
 	 */
 	void ajouterVente(ArticleVendu aV) throws DALException;
 
-	/**
-	 * Mï¿½thode permettant d'insï¿½rer une nouvelle vente (objet de type ArticleVendu) dans la base de donnï¿½e
-	 * @param ArticleVendu a
-	 */
-	void insert(ArticleVendu a);
 	
 	/**
 	 * MÃ©thode permmetant de rÃ©cupÃ©rer les encheres en cours pour l'afficher sur la page acceuil 

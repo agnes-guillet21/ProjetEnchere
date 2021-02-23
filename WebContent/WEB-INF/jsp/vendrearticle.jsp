@@ -14,7 +14,7 @@
 		        </br>
 		
 		        <div>
-		            <label for="categorie">CatÃ©gorie</label>
+		            <label for="categorie">Catégorie</label>
 						<select name="categorie" id="categorie">
 			            	<c:forEach var="v" items="${listeCategories}">	
 						   		<option value="${v.getLibelle()}">${v.getLibelle()}</option>
@@ -24,19 +24,19 @@
 		        <br>
 		
 		        <div>
-		            <label for="miseAPrix">Mise A Prixâ€¯:</label>
+		            <label for="miseAPrix">Mise A Prix :</label>
 		            <input type="number" id="miseAPrix" name="miseAPrix" value="">
 		        </div>
 		        <br>
 		
 		        <div>
-		            <label for="dateDebutEnchere">DÃ©but de l'EnchÃ¨re :</label>
+		            <label for="dateDebutEnchere">Début de l'Enchère :</label>
 		            <input type="date" id="dateDebutEnchere" name="dateDebutEnchere" value="">
 		        </div>
 		        <br>
 		
 		        <div>
-		            <label for="dateFinEnchere">Fin de l'EnchÃ¨re :</label>
+		            <label for="dateFinEnchere">Fin de l'Enchère :</label>
 		            <input type="date" id="dateFinEnchere" name="dateFinEnchere" value="">
 		        </div>
 		        <br>
@@ -45,7 +45,7 @@
     				<legend>Retrait</legend>
 					
 					<div>
-			            <label for="rue">Rue:</label>
+			            <label for="rue">Rue :</label>
 			            <input type="text" id="rue" name="rue" size="30" value="${user.getRue() }" size="30" maxlength="30">
 			        </div>
 		

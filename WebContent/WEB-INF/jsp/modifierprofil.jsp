@@ -71,9 +71,9 @@
 					<div class="row">
 					<div class="col-md-4"></div>
 					<div class="col-md-4">
-						<button type="submit" id="submit" name="submit" class="btn btn-success">Enregistrer</button>
-						<a id="delete" name="delete" class="btn btn-danger" href="SupprimerCompte.html">Supprimer mon compte</a>
-						<a id="previous" href="profil.html" class="btn btn-primary">Retour</a>
+						<button type="submit" id="submit" name="submit" class="btn btn-outline-success">Enregistrer</button>
+						<a id="delete" name="delete" class="btn btn-outline-danger" href="SupprimerCompte.html">Supprimer mon compte</a>
+						<a id="previous" href="profil.html" class="btn btn-outline-primary">Retour</a>
 					</div>
 					</div>
 				  	</form>
