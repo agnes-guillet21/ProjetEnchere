@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
 
+body
+{
+	background-color : #ffb7008a!important;
+}
+
 header
 {
 background-color : black; 
@@ -10,4 +15,8 @@ background-color : black;
 {
 	color:#c0c0c0!important;
 	text-decoration: none !veryimportant;
+}
+footer
+{
+	background-color : black!important; 
 }
