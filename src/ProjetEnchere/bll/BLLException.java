@@ -12,9 +12,9 @@ import ProjetEnchere.servlet.SInscrireServlet;
  */
 public class BLLException extends Exception {
 	
-	public static final String ERREUR_PSEUDO ="caractere incorrectes, merci de saisir un autre pseudo";
+	public static final String ERREUR_PSEUDO ="Caracteres incorrects. Merci de saisir un autre pseudo (Alphanumérique)";
 	public static final String PSEUDO ="userpseudo";
-	public static final String ERREUR_NOM ="Nom incorrecte, merci de saisir un autre nom";
+	public static final String ERREUR_NOM ="Nom incorrect. Merci de saisir un autre nom  (Alphanumérique)";
 	public static final String NOM ="username";
 	public static final String ERREUR_PRENOM ="Prenom incorrecte, merci de saisir un autre prenom";
 	public static final String PRENOM="userfirstname";

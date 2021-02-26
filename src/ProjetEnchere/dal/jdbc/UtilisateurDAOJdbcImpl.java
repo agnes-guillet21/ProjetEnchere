@@ -22,16 +22,16 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 
 
 	/**
-	 * Méthode permettant d'insérer un utilisateur dans la BDD
-	 * @param Utilisateur u1
-	 */
+	* Méthode permettant d'insérer un utilisateur dans la BDD
+	* @param Utilisateur u1
+	*/
 	public void insert ( Utilisateur u1) throws DALException, SQLException{
 		Connection cnx=null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;// c est un tableau , c est ma vue de ma requete sql
+		ResultSet rs = null;
 
 		if(u1 == null) {
-			throw new DALException("Pas d'utilisateur creer en parametre de ma methode inserer");
+			throw new DALException("Pas d'utilisateur transmis en parametre de ma methode inserer");
 		}
 
 		try {
@@ -40,16 +40,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			e2.printStackTrace();
 		}
 
-
-		//test requete sql
 		String sql ="INSERT INTO dbo.UTILISATEURS(pseudo,nom,prenom,email,telephone,rue,"
 				+ "code_postal,ville,mot_de_passe,credit,administrateur)"
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 
-		// desactivation de l autocommit (mode transactionnel)
 		try {
 
-			//cnx.setAutoCommit(false);
 			pstmt = cnx.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, u1.getPseudo());
 			pstmt.setString(2, u1.getNom());
@@ -63,25 +59,20 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			pstmt.setInt(10, 100);
 			pstmt.setInt(11, 0);
 			
-			//execution de la requete
 			pstmt.executeUpdate();
-			pstmt.close();
 		
-
 		}catch(SQLException e) {
-			throw new DALException("erreur de lors de l'insertion d'un nouvel utilisateur" + u1, e);
+			throw new DALException("Erreur lors de l'insertion d'un nouvel utilisateur : " + u1, e);
 
 		}finally {
 			try {
-
-				//				cnx.setAutoCommit(true);
+				pstmt.close();
 				cnx.close();
 			}catch (SQLException e) {
 				throw new DALException(e.getLocalizedMessage());
 			}
 		}
 	}
-
 
 	@Override
 	public Utilisateur getUserByPseudo(String pseudo) throws DALException {
@@ -124,7 +115,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}
 		return u;
 	}
-
 
 	public Utilisateur getUserByEmail(String email) throws DALException{
 
@@ -222,13 +212,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		return u;
 	}
 
-
-	/**
-	 * Méthode permettant de "fermer" un utilisateur dans la BDD s'il n'a pas de ven,tes en cours
-	 * @param Utilisateur utilisateur
-	 * @throws DALException
-	 * @Override
-	 */
+/**
+ 	* Méthode permettant de "fermer" un utilisateur dans la BDD s'il n'a pas de ven,tes en cours
+	* @param Utilisateur utilisateur
+	* @throws DALException
+	* @Override
+	*/
 	public void fermer(Utilisateur utilisateur) throws DALException {
 
 		Connection cnx=null;
@@ -267,13 +256,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}
 
 	}
-/*
+	
+/**
 	* Méthode permettant de vérifier si un utilisateur a des ventes en cours
     * @param Utilisateur u
     * @throws DALException
     * @throws SQLException
     */
-   private void verificationVentesEnCours(Utilisateur u) throws DALException, SQLException {
+	private void verificationVentesEnCours(Utilisateur u) throws DALException, SQLException {
       
        final String sql = "SELECT UTILISATEURS.no_utilisateur, pseudo, nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,utilisateur_ferme_le, etat_vente " +
                "FROM UTILISATEURS INNER JOIN ARTICLES_VENDUS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur WHERE ARTICLES_VENDUS.etat_vente='"+ EtatVente.EN_COURS + "' AND pseudo =? ;";
@@ -300,13 +290,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
       
    }
    
-   /* Méthode permettant de mettre à jour les informations d'un utilisateur dans la base de données
+   /** 
+    * Méthode permettant de mettre à jour les informations d'un utilisateur dans la base de données
    * @param Utilisateur
    * @return Utilisateur modifié
    * @throws DALException
    * @Override
    */
-  public Utilisateur update(Utilisateur utilisateur, Utilisateur utilisateurSession) throws DALException {
+   	public Utilisateur update(Utilisateur utilisateur, Utilisateur utilisateurSession) throws DALException {
       Connection cnx=null;
       PreparedStatement pstmt = null;
       ResultSet rs = null;
@@ -350,31 +341,21 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
       return getUserByPseudo(utilisateur.getPseudo());
   }
     
-
 	@Override
 	public List<Utilisateur> select() throws DALException {
 
 		return null;
 	}
 
-
-
 	@Override
 	public Utilisateur selectConnexion(String identifiant, String password) throws DALException {
 		return null;
 	}
 
-
-
 	@Override
 	public Utilisateur selectPseudo(String pseudo) throws DALException {
 		return null;
 	}
-
-
-
-
-
 
 }
 
